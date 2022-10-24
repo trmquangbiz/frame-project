@@ -1,0 +1,9 @@
+.DS_Store
+Podfile.lock
+Pods/
+frameproject.xcodeproj/xcuserdata
+frameproject.xcodeproj/xcshareddata
+frameproject.xcworkspace
+xcuserdata
+fastlane/report.xml
+fastlane/Preview.html
