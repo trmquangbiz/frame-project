@@ -7,3 +7,5 @@ frameproject.xcworkspace
 xcuserdata
 fastlane/report.xml
 fastlane/Preview.html
+frameprojectTests/
+frameprojectUITests
