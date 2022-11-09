@@ -14,10 +14,14 @@ class NetworkRequestInfo {
     var queryParam: [String: Any]
     var requestBody: [String: Any]
     
+    var isForAuthenticate: Bool
     /// cURL from requested request
     var cURL: String?
-    var requestTime: Date = Date()
+    var requestTime: Date
     var responseTime: Date?
+    var responseHeaders: [String: String] = [:]
+    
+    var downloadDestinationURL: URL?
     
     var latency: TimeInterval {
         get {
@@ -33,14 +37,39 @@ class NetworkRequestInfo {
           headers: [String: String] = [:],
           queryParam: [String: Any] = [:],
           requestBody: [String: Any] = [:],
-          cURL: String?) {
+          cURL: String?,
+          requestTime: Date = Date(),
+          responseTime: Date? = nil,
+          responseHeaders: [String: String] = [:],
+          downloadDestinationURL: URL? = nil,
+          isForAuthenticate: Bool = false) {
         self.url = url
         self.method = method
         self.headers = headers
         self.queryParam = queryParam
         self.requestBody = requestBody
         self.cURL = cURL
+        self.requestTime = requestTime
+        self.responseTime = responseTime
+        self.responseHeaders = responseHeaders
+        self.downloadDestinationURL = downloadDestinationURL
     }
     
+    convenience init(networkRequestInfo: NetworkRequestInfo) {
+        self.init(url: networkRequestInfo.url,
+                  method: networkRequestInfo.method,
+                  headers: networkRequestInfo.headers,
+                  queryParam: networkRequestInfo.queryParam,
+                  requestBody: networkRequestInfo.requestBody,
+                  cURL: networkRequestInfo.cURL,
+                  requestTime: networkRequestInfo.requestTime,
+                  responseTime: networkRequestInfo.responseTime,
+                  responseHeaders: networkRequestInfo.responseHeaders,
+                  downloadDestinationURL: networkRequestInfo.downloadDestinationURL,
+                  isForAuthenticate: networkRequestInfo.isForAuthenticate)
+    }
     
+    func copy() -> NetworkRequestInfo {
+        return NetworkRequestInfo.init(networkRequestInfo: self)
+    }
 }

@@ -8,27 +8,27 @@
 import Foundation
 
 class DevelopmentEnvironmentConfiguration: EnvironmentConfiguration {
-    var baseRequestURL: String = "https://lungo.lozi.space/v6"
+    let baseRequestURL: String = "https://lungo.lozi.space/v6"
     
-    var uploadImageURL: String = "https://macchiato.lozi.space/v1/upload/images"
+    let uploadImageURL: String = "https://macchiato.lozi.space/v1/upload/images"
     
-    var loziBaseRequestURL: String = "https://macchiato.lozi.space/v1"
+    let loziBaseRequestURL: String = "https://macchiato.lozi.space/v1"
     
-    var baseLoshipWebURL: String = "https://creme.lozi.space"
+    let baseLoshipWebURL: String = "https://creme.lozi.space"
     
-    var domain: String = "creme.lozi.space"
+    let domain: String = "creme.lozi.space"
     
-    var chatHost: String = "macchiato.lozi.space"
+    let chatHost: String = "macchiato.lozi.space"
     
-    var port: UInt32 = 1883
+    let port: UInt32 = 1883
     
-    var shortLinkDomain: String = "https"
+    let shortLinkDomain: String = "https"
     
-    var shortLinkURLPrefix: String = "https"
+    let shortLinkURLPrefix: String = "https"
     
-    var reviewExceptedIds: [Int] = []
+    let reviewExceptedIds: [Int] = []
     
-    var spotlightDomainIdentifier: String = "loship.user.spotlight.development"
+    let spotlightDomainIdentifier: String = "loship.user.spotlight.development"
     
     
 }

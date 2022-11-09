@@ -8,16 +8,16 @@
 import Foundation
 
 protocol EnvironmentConfiguration {
-    var baseRequestURL: String {get set}
-    var uploadImageURL: String {get set}
-    var loziBaseRequestURL: String {get set}
-    var baseLoshipWebURL: String {get set}
-    var domain: String {get set}
-    var chatHost: String {get set}
-    var port: UInt32 {get set}
-    var shortLinkDomain: String {get set}
-    var shortLinkURLPrefix: String {get set}
+    let baseRequestURL: String {get set}
+    let uploadImageURL: String {get set}
+    let loziBaseRequestURL: String {get set}
+    let baseLoshipWebURL: String {get set}
+    let domain: String {get set}
+    let chatHost: String {get set}
+    let port: UInt32 {get set}
+    let shortLinkDomain: String {get set}
+    let shortLinkURLPrefix: String {get set}
 //    var zalopayInviroment: ZPZPIEnvironment!
-    var reviewExceptedIds: [Int] {get set}
-    var spotlightDomainIdentifier: String {get set}
+    let reviewExceptedIds: [Int] {get set}
+    let spotlightDomainIdentifier: String {get set}
 }

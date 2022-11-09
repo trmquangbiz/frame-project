@@ -40,6 +40,8 @@ protocol NetworkServiceProtocol: AnyObject {
                 data: Data,
                 imagePathInfos: ImagePathInfo,
                 completionHandler: @escaping NetworkCompletionHandler) -> NetworkRequestInfo
+    
+    
 }
 
 

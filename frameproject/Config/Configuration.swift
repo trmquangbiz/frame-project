@@ -12,7 +12,6 @@ class Configuration {
         var instance = Configuration()
         return instance
     }()
-    
     var environmentConfig: EnvironmentConfiguration
     
     var baseRequestURL: String {
@@ -60,7 +59,6 @@ class Configuration {
             return environmentConfig.shortLinkURLPrefix
         }
     }
-//    var zalopayInviroment: ZPZPIEnvironment!
     var reviewExceptedIds: [Int] {
         get {
             return environmentConfig.reviewExceptedIds

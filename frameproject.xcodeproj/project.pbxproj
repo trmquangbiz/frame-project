@@ -53,6 +53,12 @@
 		BB769EF12902B8B2000D5F1D /* EnvironmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB769EF02902B8B2000D5F1D /* EnvironmentConfiguration.swift */; };
 		BB769EF32902BB71000D5F1D /* DevelopmentEnvironmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB769EF22902BB71000D5F1D /* DevelopmentEnvironmentConfiguration.swift */; };
 		BB769EF52902BB80000D5F1D /* ProductionEnvironmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB769EF42902BB80000D5F1D /* ProductionEnvironmentConfiguration.swift */; };
+		BB809BD229069F8900D123CD /* AlamofireNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB809BD129069F8900D123CD /* AlamofireNetworkService.swift */; };
+		BB809BD92906AB1900D123CD /* AlamofireServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB809BD82906AB1900D123CD /* AlamofireServiceConfig.swift */; };
+		BB809BDB2906C50F00D123CD /* CheatingCounterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB809BDA2906C50F00D123CD /* CheatingCounterService.swift */; };
+		BB809BDD2907C2E300D123CD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB809BDC2907C2E300D123CD /* String.swift */; };
+		BB809BDF2907D44200D123CD /* NetworkManagerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB809BDE2907D44200D123CD /* NetworkManagerUtilities.swift */; };
+		BB809BE1290BD72600D123CD /* APIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB809BE0290BD72600D123CD /* APIServiceManager.swift */; };
 		BB95AC652905C18200F4653E /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95AC642905C18200F4653E /* Dictionary.swift */; };
 		BB95AC672905C1AA00F4653E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95AC662905C1AA00F4653E /* Data.swift */; };
 		BBE4B87028B0F54E00ADDC4C /* NetworkingParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE4B86F28B0F54E00ADDC4C /* NetworkingParam.swift */; };
@@ -131,6 +137,12 @@
 		BB769EF02902B8B2000D5F1D /* EnvironmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfiguration.swift; sourceTree = "<group>"; };
 		BB769EF22902BB71000D5F1D /* DevelopmentEnvironmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentEnvironmentConfiguration.swift; sourceTree = "<group>"; };
 		BB769EF42902BB80000D5F1D /* ProductionEnvironmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionEnvironmentConfiguration.swift; sourceTree = "<group>"; };
+		BB809BD129069F8900D123CD /* AlamofireNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkService.swift; sourceTree = "<group>"; };
+		BB809BD82906AB1900D123CD /* AlamofireServiceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireServiceConfig.swift; sourceTree = "<group>"; };
+		BB809BDA2906C50F00D123CD /* CheatingCounterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheatingCounterService.swift; sourceTree = "<group>"; };
+		BB809BDC2907C2E300D123CD /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		BB809BDE2907D44200D123CD /* NetworkManagerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerUtilities.swift; sourceTree = "<group>"; };
+		BB809BE0290BD72600D123CD /* APIServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManager.swift; sourceTree = "<group>"; };
 		BB95AC642905C18200F4653E /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		BB95AC662905C1AA00F4653E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		BBE4B86F28B0F54E00ADDC4C /* NetworkingParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingParam.swift; sourceTree = "<group>"; };
@@ -171,7 +183,6 @@
 				2B1001D664A03BA3FA8131DB /* Pods-frameproject.debug.xcconfig */,
 				B88C784D9DD124BFE6D884E7 /* Pods-frameproject.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -242,6 +253,7 @@
 		BB06E2A02893D15100172F1E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				BB809BD72906AAF800D123CD /* AlamofireLib */,
 				BB4E369A28BF2A78002C27A7 /* SocketService */,
 				BB61DF2328A75CE4006F2E63 /* NetworkServiceConfigProtocol.swift */,
 				BB61DF2528A75F08006F2E63 /* NetworkServiceConfig.swift */,
@@ -255,6 +267,7 @@
 				BB4E369628BF2529002C27A7 /* DataType.swift */,
 				BB4E369828BF29CB002C27A7 /* ImagePathInfo.swift */,
 				BB4E369B28BF2E47002C27A7 /* NetworkManager.swift */,
+				BB809BDE2907D44200D123CD /* NetworkManagerUtilities.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -298,6 +311,7 @@
 				BB769EE92902B6DC000D5F1D /* DispatchQueue.swift */,
 				BB95AC642905C18200F4653E /* Dictionary.swift */,
 				BB95AC662905C1AA00F4653E /* Data.swift */,
+				BB809BDC2907C2E300D123CD /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -307,6 +321,7 @@
 			children = (
 				BB06E2A72893D6ED00172F1E /* Debugger.swift */,
 				BB06E2AF28951AAE00172F1E /* ViewUtility.swift */,
+				BB809BDA2906C50F00D123CD /* CheatingCounterService.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -407,9 +422,19 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		BB809BD72906AAF800D123CD /* AlamofireLib */ = {
+			isa = PBXGroup;
+			children = (
+				BB809BD129069F8900D123CD /* AlamofireNetworkService.swift */,
+				BB809BD82906AB1900D123CD /* AlamofireServiceConfig.swift */,
+			);
+			path = AlamofireLib;
+			sourceTree = "<group>";
+		};
 		BBE4B87128B0F5DE00ADDC4C /* APIServiceManager */ = {
 			isa = PBXGroup;
 			children = (
+				BB809BE0290BD72600D123CD /* APIServiceManager.swift */,
 			);
 			path = APIServiceManager;
 			sourceTree = "<group>";
@@ -613,6 +638,7 @@
 				BB06E2C728958A5600172F1E /* Corner.swift in Sources */,
 				BB06E2BD28956E9B00172F1E /* View.swift in Sources */,
 				BB61DF1628A3DC09006F2E63 /* RadioButtonView.swift in Sources */,
+				BB809BD229069F8900D123CD /* AlamofireNetworkService.swift in Sources */,
 				BB95AC672905C1AA00F4653E /* Data.swift in Sources */,
 				BB06E2B028951AAE00172F1E /* ViewUtility.swift in Sources */,
 				BB06E2712893D10200172F1E /* AppDelegate.swift in Sources */,
@@ -621,18 +647,23 @@
 				BBE4B87328B0F63C00ADDC4C /* ErrorData.swift in Sources */,
 				BB06E2B52895300600172F1E /* SampleNSObjectClass.swift in Sources */,
 				BB06E2A82893D6ED00172F1E /* Debugger.swift in Sources */,
+				BB809BD92906AB1900D123CD /* AlamofireServiceConfig.swift in Sources */,
+				BB809BDF2907D44200D123CD /* NetworkManagerUtilities.swift in Sources */,
 				BBE4B87028B0F54E00ADDC4C /* NetworkingParam.swift in Sources */,
 				BB61DF2C28B074D9006F2E63 /* NetworkHTTPMethod.swift in Sources */,
 				BB769EED2902B78F000D5F1D /* Configuration.swift in Sources */,
 				BB06E2C528958A0700172F1E /* UIColor.swift in Sources */,
 				BB06E2732893D10200172F1E /* SceneDelegate.swift in Sources */,
+				BB809BDD2907C2E300D123CD /* String.swift in Sources */,
 				BBE4B87528B101CE00ADDC4C /* ResponseData.swift in Sources */,
 				BB61DF2628A75F08006F2E63 /* NetworkServiceConfig.swift in Sources */,
 				BB769EF52902BB80000D5F1D /* ProductionEnvironmentConfiguration.swift in Sources */,
 				BB4E369728BF2529002C27A7 /* DataType.swift in Sources */,
 				BB95AC652905C18200F4653E /* Dictionary.swift in Sources */,
 				BB06E2CF28958CC500172F1E /* Font.swift in Sources */,
+				BB809BDB2906C50F00D123CD /* CheatingCounterService.swift in Sources */,
 				BB61DF0C28A0F52C006F2E63 /* StandardNSObject.swift in Sources */,
+				BB809BE1290BD72600D123CD /* APIServiceManager.swift in Sources */,
 				BB06E2AD2895190D00172F1E /* ObservingInfo.swift in Sources */,
 				BB4E369928BF29CB002C27A7 /* ImagePathInfo.swift in Sources */,
 				BB61DF1E28A41EC9006F2E63 /* SectionView.swift in Sources */,

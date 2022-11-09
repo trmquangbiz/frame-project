@@ -9,10 +9,9 @@ import Foundation
 
 class NetworkManager {
     var service: NetworkServiceProtocol
-    var taskDelegate: NetworkManagerDelegate?
-    
+    weak var taskDelegate: NetworkManagerDelegate?
     let networkQueue = DispatchQueue.makeCustomQueue(type: .serial, name: .networkManager)
-    init (service: NetworkServiceProtocol) {
+    init (service: NetworkServiceProtocol = AlamofireNetworkService.init()) {
         self.service = service
     }
     
@@ -195,7 +194,6 @@ class NetworkManager {
             }
             completionHandler(error, response)
         }
-        
     }
     
     private func logInitiateRequest(request: NetworkRequestInfo,
