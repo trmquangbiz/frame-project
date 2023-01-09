@@ -378,12 +378,8 @@
 		BB06E2AB289518F300172F1E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BB06E2AC2895190D00172F1E /* ObservingInfo.swift */,
-				BB06E2B2289528CB00172F1E /* ObservingSelectorInfo.swift */,
 				BB06E2B42895300600172F1E /* SampleNSObjectClass.swift */,
 				BBD85F6A29516EDE0019AD4D /* TestObject.swift */,
-				BBFB0C4029696D57005EF628 /* ObservingBlockInfo.swift */,
-				BBFB0C4229696E3D005EF628 /* ObservingActionInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -398,6 +394,10 @@
 				BB61DF1A28A3EAA7006F2E63 /* ShowHideView.swift */,
 				BBA8DE4229272D4500BD9E45 /* ObservableArray.swift */,
 				BBFB0C3E29696AB3005EF628 /* Observer.swift */,
+				BB06E2AC2895190D00172F1E /* ObservingInfo.swift */,
+				BB06E2B2289528CB00172F1E /* ObservingSelectorInfo.swift */,
+				BBFB0C4029696D57005EF628 /* ObservingBlockInfo.swift */,
+				BBFB0C4229696E3D005EF628 /* ObservingActionInfo.swift */,
 			);
 			path = Standardize;
 			sourceTree = "<group>";
