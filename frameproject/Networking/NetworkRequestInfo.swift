@@ -10,7 +10,7 @@ import Foundation
 class NetworkRequestInfo {
     var url: String
     var method: NetworkHTTPMethod
-    var headers: [String: String]
+    var headers: [String: String]?
     var queryParam: [String: Any]
     var requestBody: [String: Any]
     
@@ -34,7 +34,7 @@ class NetworkRequestInfo {
     
     init (url: String = "https://",
           method: NetworkHTTPMethod = .get,
-          headers: [String: String] = [:],
+          headers: [String: String]? = [:],
           queryParam: [String: Any] = [:],
           requestBody: [String: Any] = [:],
           cURL: String?,
@@ -53,6 +53,7 @@ class NetworkRequestInfo {
         self.responseTime = responseTime
         self.responseHeaders = responseHeaders
         self.downloadDestinationURL = downloadDestinationURL
+        self.isForAuthenticate = isForAuthenticate
     }
     
     convenience init(networkRequestInfo: NetworkRequestInfo) {

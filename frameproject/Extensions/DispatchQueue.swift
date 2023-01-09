@@ -15,9 +15,14 @@ extension DispatchQueue {
     
     enum CustomQueueName: String {
         case networkManager = "networkmanager"
+        case observableArray = "observablearray"
+    }
+    
+    private static func makeSession() -> String {
+        return "\(Date().timeIntervalSince1970)"
     }
     
     static func makeCustomQueue(type: DefaultQueueNamePrefix, name: CustomQueueName) -> DispatchQueue {
-        return DispatchQueue.init(label: "\(Constant.bundleIdentifier).queue.\(type.rawValue).\(name.rawValue)")
+        return DispatchQueue.init(label: "\(Constant.bundleIdentifier).queue.\(type.rawValue).\(name.rawValue).\(makeSession())")
     }
 }

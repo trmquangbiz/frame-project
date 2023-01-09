@@ -11,10 +11,18 @@ class SampleViewController: ViewController {
     @objc dynamic var sampleObservingObj = SampleNSObjectClass()
     var radioButtonView = DesignSystem.View.radioButtonView
     
+    var testObjectList: ObservableArray<TestObject> = [TestObject.init(name: "a"),
+                                                       TestObject.init(name: "b"),
+                                                       TestObject.init(name: "c"),
+                                                       TestObject.init(name: "d")]
     override func viewDidLoad() {
         super.viewDidLoad()
         Debugger.debug(sampleObservingObj.subscribedSampleKeyPath)
         // Hello! Any change call me?
+        let copiedObjectList = testObjectList
+        for obj in copiedObjectList {
+            Debugger.debug(obj)
+        }
     }
     
     override func setupView() {
@@ -23,8 +31,10 @@ class SampleViewController: ViewController {
         radioButtonView.innerCoreHeight = 12
         radioButtonView.isOn = false
         view.addSubviewForLayout(radioButtonView)
-        NSLayoutConstraint.activate([radioButtonView.relationCenterX(to: view),
-                                     radioButtonView.relationCenterY(to: view)])
+        NSLayoutConstraint.activate([radioButtonView.alignTop(to: view.safeAreaLayoutGuide, space: 15),
+                                     radioButtonView.alignLeading(to: view!, space: 15)])
+        
+        
         
     }
     

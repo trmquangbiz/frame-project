@@ -9,13 +9,18 @@ import Foundation
 
 
 class NetworkServiceConfig: NetworkServiceConfigProtocol {
-    required init(maxNumberRequest: Int, timeoutInterval: Int) {
-        self.timeoutInterval = timeoutInterval
-        self.maxNumberRequest = maxNumberRequest
-    }
+    var timeoutInterval: Double
     
+    var additionalHeadersForRequest: [String : String]
+    
+    var allowCellularAccess: Bool
     var maxNumberRequest: Int
     
-    var timeoutInterval: Int
+    required init(maxNumberRequest: Int, timeoutInterval: Double, additionalHeadersForRequest: [String : String], allowCellularAccess: Bool) {
+        self.timeoutInterval = timeoutInterval
+        self.maxNumberRequest = maxNumberRequest
+        self.additionalHeadersForRequest = additionalHeadersForRequest
+        self.allowCellularAccess = allowCellularAccess
+    }
     
 }

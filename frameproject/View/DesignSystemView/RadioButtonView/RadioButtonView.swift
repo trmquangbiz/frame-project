@@ -10,12 +10,19 @@ import UIKit
 class RadioButtonView: DesignSystemView {
     
     // MARK: - View Elements
-    private var outerBoxView: View = View.init()
-    private var innerCoreView: View = View.init()
+    private lazy var outerBoxView: View = {
+        let view = View.init()
+        return view
+    }()
+    private lazy var innerCoreView: View = {
+        let view = View.init()
+        return view
+    }()
     private var outerBoxViewHeightConstraint: NSLayoutConstraint!
     private var outerBoxViewWidthConstraint: NSLayoutConstraint!
     private var innerCoreViewHeightConstraint: NSLayoutConstraint!
     private var innerCoreViewWidthConstraint: NSLayoutConstraint!
+    
     
     // MARK: - Properties
     

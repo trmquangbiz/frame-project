@@ -16,4 +16,8 @@ struct ObservingInfo: Equatable, Hashable {
         self.keyPath = keyPath
         self.object = object
     }
+    
+    static func == (lhs: ObservingInfo, rhs: ObservingInfo) -> Bool {
+        return lhs.keyPath ==  rhs.keyPath && lhs.object == rhs.object
+    }
 }

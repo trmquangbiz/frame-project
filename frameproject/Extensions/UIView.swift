@@ -125,7 +125,7 @@ extension UIView {
 
 extension UIView {
     // align trailing to destinationView
-    func alignTrailing(to destinationView: UIView ,
+    func alignTrailing(to destinationView: Any ,
                   relation: NSLayoutConstraint.Relation = .equal,
                   multiplier: CGFloat = 1,
                   space: CGFloat = 0,
@@ -142,7 +142,7 @@ extension UIView {
         
     }
     // align leading to destinationView
-    func alignLeading(to destinationView: UIView ,
+    func alignLeading(to destinationView: Any ,
                   relation: NSLayoutConstraint.Relation = .equal,
                   multiplier: CGFloat = 1,
                   space: CGFloat = 0,
@@ -159,7 +159,7 @@ extension UIView {
     }
     
     // align top to destinationView
-    func alignTop(to destinationView: UIView ,
+    func alignTop(to destinationView: Any ,
                   relation: NSLayoutConstraint.Relation = .equal,
                   multiplier: CGFloat = 1,
                   space: CGFloat = 0,
@@ -176,7 +176,7 @@ extension UIView {
         
     }
     // align bottom to destinationView
-    func alignBottom(to destinationView: UIView ,
+    func alignBottom(to destinationView: Any ,
                   relation: NSLayoutConstraint.Relation = .equal,
                   multiplier: CGFloat = 1,
                   space: CGFloat = 0,
@@ -192,7 +192,7 @@ extension UIView {
         return constraint
     }
     /// spacing view's trailing side to destinationView's leading side
-    func spacingRight(to destinationView: UIView,
+    func spacingRight(to destinationView: Any,
                       relation: NSLayoutConstraint.Relation = .equal,
                       multiplier: CGFloat = 1,
                       space: CGFloat = 0,
@@ -209,7 +209,7 @@ extension UIView {
     }
     
     /// spacing view's leading side to destinationView's trailing side
-    func spacingLeft(to destinationView: UIView,
+    func spacingLeft(to destinationView: Any,
                       relation: NSLayoutConstraint.Relation = .equal,
                       multiplier: CGFloat = 1,
                       space: CGFloat = 0,
@@ -227,7 +227,7 @@ extension UIView {
     }
     
     /// spacing view's bottom side to destinationView's top side
-    func spacingBottom(to destinationView: UIView,
+    func spacingBottom(to destinationView: Any,
                       relation: NSLayoutConstraint.Relation = .equal,
                       multiplier: CGFloat = 1,
                       space: CGFloat = 0,
@@ -245,7 +245,7 @@ extension UIView {
     }
     
     /// spacing view's top side to destinationView's bottom side
-    func spacingTop(to destinationView: UIView,
+    func spacingTop(to destinationView: Any,
                       relation: NSLayoutConstraint.Relation = .equal,
                       multiplier: CGFloat = 1,
                       space: CGFloat = 0,
@@ -283,7 +283,7 @@ extension UIView {
     }
     
     // relation width to destination view
-    func relationWidth(to destinationView: UIView,
+    func relationWidth(to destinationView: Any,
                        relation: NSLayoutConstraint.Relation = .equal,
                        multiplier: CGFloat = 1,
                        constant: CGFloat = 0,
@@ -295,7 +295,7 @@ extension UIView {
     
     
     // relation height to destination view
-    func relationHeight(to destinationView: UIView,
+    func relationHeight(to destinationView: Any,
                        relation: NSLayoutConstraint.Relation = .equal,
                        multiplier: CGFloat = 1,
                        constant: CGFloat = 0,
@@ -306,7 +306,7 @@ extension UIView {
     }
     
     // relation center x to destination view
-    func relationCenterX(to destinationView: UIView,
+    func relationCenterX(to destinationView: Any,
                         relation: NSLayoutConstraint.Relation = .equal,
                         multiplier: CGFloat = 1,
                         constant: CGFloat = 0,
@@ -317,7 +317,7 @@ extension UIView {
     }
     
     // relation center y to destination view
-    func relationCenterY(to destinationView: UIView,
+    func relationCenterY(to destinationView: Any,
                          relation: NSLayoutConstraint.Relation = .equal,
                          multiplier: CGFloat = 1,
                          constant: CGFloat = 0,

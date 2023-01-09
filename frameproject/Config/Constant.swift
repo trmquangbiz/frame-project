@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 class Constant {
     
     static var bundleIdentifier: String {
@@ -92,7 +92,6 @@ class Constant {
     static let JWTSecretKey: String = "@q%pliCiVNTpql^11fJqGT1pfXi%2zqV"
     
     static let ZaloPayAppId: Int = 110
-    static let allowedCouponType = [CouponType.loshipPromotion.rawValue, CouponType.merchantPromotion.rawValue]
 //    static let paymentMethodList: [[String:Any]] = [["id": 0,
 //                                                     "isOnlinePayment": false,
 //                                                     "fee": 0.0],
@@ -123,19 +122,9 @@ class Constant {
     static let kLatestVersionRating = "latestVersionRating"
     static let JWTTrackingDataSecretKey = "Ta4dz9CJ&q8R@z&4TGi1S4^S%VlVaSNf"
     static let JWTDeviceInfoSecretKey = "n9DTl4Tbg7xHqIhSK6hs3h5iwlJSdpdknZSxBPRq"
-    static let localLoziCategoryList: [LoshipLoziCategory] = [LoshipLoziCategory.init(id: 4, name: "Góc con gái", slug: "goc-con-gai", image: "https://tea-4.lozi.vn/v1/images/resized/goc-con-gai-1500526800", order: 0),
-                                                              LoshipLoziCategory.init(id: 5, name: "Đồ con trai", slug: "do-con-trai", image: "https://tea-2.lozi.vn/v1/images/resized/do-con-trai-1500526800", order: 0),
-                                                              LoshipLoziCategory.init(id: 13, name: "Đồ ăn ship", slug: "do-an-ship", image: "https://tea-2.lozi.vn/v1/images/resized/do-an-ship-1500526800", order: 0),
-                                                              LoshipLoziCategory.init(id: 8, name: "Mỹ phẩm", slug: "my-pham", image: "https://tea-4.lozi.vn/v1/images/resized/my-pham-1500526800", order: 0),
-                                                              LoshipLoziCategory.init(id: 28, name: "Mẹ & Bé", slug: "me-va-be", image: "https://tea-4.lozi.vn/v1/images/resized/me-va-be-1500526800", order: 0),
-                                                              LoshipLoziCategory.init(id: 6, name: "Phụ kiện thời trang", slug: "phu-kien-thoi-trang", image:
-                                                                "https://tea-3.lozi.vn/v1/images/resized/phu-kien-thoi-trang-1500526800", order: 0),
-                                                              LoshipLoziCategory.init(id: 19, name: "Sách & truyện", slug: "sach-va-truyen", image: "https://tea-3.lozi.vn/v1/images/resized/sach-va-truyen-1500526800", order: 0),
-                                                              LoshipLoziCategory.init(id: 20, name: "Đồ chơi & Sở thích", slug: "do-choi-va-so-thich", image: "https://tea-1.lozi.vn/v1/images/resized/do-choi-va-so-thich-1500526800", order: 0)]
     
     static let defaultCornerRadius: CGFloat = 10
     static let kLatestServerTimeDiff: String = "latestServerTimeDiff"
-    static let gatewayMethod: [String] =  [OrderPaymentMethod.cc.rawValue, OrderPaymentMethod.fullpayment.rawValue, OrderPaymentMethod.epayCC.rawValue, OrderPaymentMethod.epayfullpayment.rawValue]
     static let fbAppPrefix = "fb600859170003466loshipuser"
     
     static let guestId: String = "CaXl012hWQRRKqrV"

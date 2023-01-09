@@ -7,6 +7,10 @@ target 'frameproject' do
 
   # Pods for frameproject
   pod 'Alamofire'
-  pod 'Kingfisher'
-
+  pod 'Kingfisher', '~> 5.15'
+  pod 'ObjectMapper'
+  pod 'RealmSwift'
+  pod 'IQKeyboardManagerSwift'
+  pod 'CocoaMQTT'
+  pod 'MJRefresh'
 end

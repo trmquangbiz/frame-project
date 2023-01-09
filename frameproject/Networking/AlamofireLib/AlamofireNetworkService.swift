@@ -61,7 +61,7 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                                       interceptor: nil,
                                       requestModifier: .none)
         let requestInfo = NetworkRequestInfo.init(url: url,
-                                                  method: .get,
+                                                  method: .post,
                                                   headers: headers,
                                                   queryParam: [:],
                                                   requestBody: requestBody,

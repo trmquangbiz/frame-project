@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ObservingSelectorInfo{
+struct ObservingSelectorInfo: ObservingActionInfo{
     var selector: Selector
     var thread: Thread
     

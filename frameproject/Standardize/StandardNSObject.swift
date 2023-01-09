@@ -82,4 +82,13 @@ class StandardNSObject: NSObject {
         observableHandlingMap.removeValue(forKey: key)
     }
     
+    func removeSafeObserver(_ observer: NSObject) {
+        for key in observableHandlingMap.keys {
+            if key.object == observer {
+                observer.removeObserver(self, forKeyPath: key.keyPath)
+                removeSafeObserverOnMap(key: ObservingInfo.init(keyPath: key.keyPath,
+                                                                object: observer))
+            }
+        }
+    }
 }
