@@ -32,10 +32,11 @@ class SampleViewController: ViewController {
         }
         presenter.viewDidLoad()
         radioButtonInteractiveView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(radioButtonInteractiveView_Tap)))
+        
     }
     
     deinit {
-        // Who care, it will remove observers automatically
+        testObjectList.removeAllObserver()
     }
     
     override func setupView() {
@@ -74,6 +75,7 @@ class SampleViewController: ViewController {
     override func addViewObservers() {
         super.addViewObservers()
         addSafeObserver(sampleObservingObj, forKeyPath: #keyPath(SampleNSObjectClass.subscribedSampleKeyPath), selector: #selector(receiveChange))
+        testObjectList.registerChange(object: self, selector: #selector(receiveListChange))
     }
     
     override func firstTimesViewDidAppear() {
@@ -89,8 +91,15 @@ class SampleViewController: ViewController {
         Debugger.debug("Did receive change with new value: \(sampleObservingObj.subscribedSampleKeyPath)")
     }
     
+    @objc func receiveListChange() {
+        Debugger.debug("Did receive observe list change. Count now: \(testObjectList.count)")
+    }
+    
     @objc func radioButtonInteractiveView_Tap() {
         radioButtonView.toggle(isOn: !radioButtonView.isOn)
+        if !testObjectList.isEmpty {
+            testObjectList.append(TestObject(name: "new added"))
+        }
     }
     
     

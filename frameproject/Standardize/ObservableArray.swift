@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ObservableArray<Element: Any>  {
+class ObservableArray<Element: Any>: ExpressibleByArrayLiteral  {
     
     
     fileprivate var contents: [Element] = [] {
@@ -50,15 +50,15 @@ struct ObservableArray<Element: Any>  {
         return contents.endIndex
     }
     
-    mutating func append(_ newElement: Element) {
+    func append(_ newElement: Element) {
         contents.append(newElement)
     }
     
-    mutating func append<S>(contentsOf newElements: S) where S.Element == Element, S: Sequence {
+   func append<S>(contentsOf newElements: S) where S.Element == Element, S: Sequence {
         contents.append(contentsOf: newElements)
     }
     
-    mutating func replace<S>(contentsOf newElements: S) where S.Element == Element, S: Sequence {
+    func replace<S>(contentsOf newElements: S) where S.Element == Element, S: Sequence {
         var s: [Element] = []
         s.append(contentsOf: newElements)
         self.contents = s
@@ -72,19 +72,19 @@ struct ObservableArray<Element: Any>  {
         return contents.lastIndex(of: element)
     }
     
-    mutating func removeAt(at index: Int) -> Element? {
+    func removeAt(at index: Int) -> Element? {
         return contents.remove(at: index)
     }
     
-    mutating func removeFirst() -> Element? {
+    func removeFirst() -> Element? {
         return contents.removeFirst()
     }
     
-    mutating func removeAll() {
+    func removeAll() {
         contents.removeAll()
     }
     
-    mutating func insert(_ newElement: Element, at index: Int) {
+    func insert(_ newElement: Element, at index: Int) {
         contents.insert(newElement, at: index)
     }
     
@@ -121,28 +121,34 @@ struct ObservableArray<Element: Any>  {
         }
     }
     
-    mutating func registerChange(object: NSObject, thread: Thread = Thread.current, selector: Selector) {
+    func registerChange(object: NSObject, thread: Thread = Thread.current, selector: Selector) {
         let observer = Observer.init(object: object)
         let action = ObservingSelectorInfo.init(selector: selector, thread: thread)
         observerInfo[observer] = action
     }
     
     
-    mutating func registerChange(object: NSObject, userInfo: [String: Any]? = nil, _ changeAction: @escaping ([String:Any]?)->()) {
+    func registerChange(object: NSObject, userInfo: [String: Any]? = nil, _ changeAction: @escaping ([String:Any]?)->()) {
         let observer = Observer.init(object: object)
         let action = ObservingBlockInfo.init(userInfo: userInfo, block: changeAction)
         observerInfo[observer] = action
     }
     
-    mutating func removeObserver(object: NSObject) {
+    func removeObserver(object: NSObject) {
         let observer = Observer.init(object: object)
         if observerInfo[observer] != nil {
             observerInfo.removeValue(forKey: observer)
         }
     }
     
-    mutating func removeAllObserver() {
+    func removeAllObserver() {
         observerInfo.removeAll()
+    }
+    
+    typealias ArrayLiteralElement = Element
+    
+    convenience required init(arrayLiteral elements: Element...) {
+        self.init(elements)
     }
 }
 
@@ -153,16 +159,6 @@ extension ObservableArray: CustomStringConvertible {
     
     
 }
-
-extension ObservableArray: ExpressibleByArrayLiteral {
-    typealias ArrayLiteralElement = Element
-    
-    init(arrayLiteral elements: Element...) {
-        self.init(elements)
-    }
-
-}
-
 extension ObservableArray: Sequence {
     
     typealias Iterator = IndexingIterator<Array<Element>>
