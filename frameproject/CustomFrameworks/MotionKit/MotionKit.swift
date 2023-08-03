@@ -323,7 +323,6 @@ import CoreMotion
                 let powValX = valX * valX
                 let powValY = valY * valY
                 let powValZ = valZ * valZ
-                let absoluteVal = sqrt(powValX + powValY + powValZ)
                 self.delegate?.getRotationRateFromDeviceMotion!(x: valX, y: valY, z: valZ)
             }
             

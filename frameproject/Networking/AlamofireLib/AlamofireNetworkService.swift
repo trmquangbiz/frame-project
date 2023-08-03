@@ -21,6 +21,10 @@ class AlamofireNetworkService: NetworkServiceProtocol {
         session.sessionConfiguration.timeoutIntervalForRequest = config.timeoutInterval
     }
     
+    func cancel(){
+        session.cancelAllRequests()
+    }
+    
     func get(url: String,
              headers: [String : String],
              queryParam: [String : Any],
@@ -168,9 +172,11 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                         fileName: imagePathInfos.fileName,
                         mimeType: imagePathInfos.mimeType)
         },
-                       to: url,
-                       usingThreshold: UInt64(), method: .post,
-                       headers: HTTPHeaders.init(headers), requestModifier: nil)
+                                     to: url,
+                                     usingThreshold: UInt64(),
+                                     method: .post,
+                                     headers: HTTPHeaders.init(headers),
+                                     requestModifier: nil)
         let requestInfo = NetworkRequestInfo.init(url: url, method: .post, headers: headers, cURL: request.cURL)
         request.responseString { [weak self] response in
             requestInfo.responseTime = Date()
@@ -185,65 +191,54 @@ class AlamofireNetworkService: NetworkServiceProtocol {
     }
     
     private func completionHandle(response: AFDataResponse<String>, requestInfo: NetworkRequestInfo, forAuthenticate: Bool, completionHandler: @escaping NetworkCompletionHandler) {
-        if let error = response.error {
-            let errorData = ErrorData.init(code: 9999, value: error.localizedDescription, requestInfo: requestInfo)
-            if let request = response.request, let url = request.url {
-                requestInfo.url = url.absoluteString
-            }
-            DispatchQueue.main.async {
-                completionHandler(errorData, nil)
-            }
-            return
-        }
-        else {
-            if let headers = response.response?.allHeaderFields {
-                for key in headers.keys {
-                    if let key = key as? String, let headerVal = headers[key] as? String {
-                        requestInfo.responseHeaders[key] = headerVal
-                    }
+        if let headers = response.response?.allHeaderFields {
+            for key in headers.keys {
+                if let key = key as? String, let headerVal = headers[key] as? String {
+                    requestInfo.responseHeaders[key] = headerVal
                 }
             }
-            if let request = response.request,
-               let url = request.url {
-                requestInfo.url = url.absoluteString
-            }
+        }
+        if let request = response.request,
+           let url = request.url {
+            requestInfo.url = url.absoluteString
+        }
+        
+        if let code = response.response?.statusCode {
+            var value: Any = ""
             switch response.result {
             case .success(let responseStr):
-                if let code = response.response?.statusCode {
-                    var responseBody: Any = responseStr
-                    if let json = responseStr.dictionary {
-                        responseBody = json
-                    }
-                    if code >= 200 && code <= 300 {
-                        let responseData = ResponseData.init(code: code, value: responseBody, requestInfo: requestInfo)
-                        DispatchQueue.main.async {
-                            completionHandler(nil, responseData)
-                        }
-                        return
-                    }
-                    else {
-                        let errorData = ErrorData.init(code: code, value: responseBody, requestInfo: requestInfo)
-                        DispatchQueue.main.async {
-                            completionHandler(errorData, nil)
-                        }
-                    }
+                if let json = responseStr.dictionary {
+                    value = json
                 }
                 else {
-                    let errorData = ErrorData.init(code: 9999, value: "No status code", requestInfo: requestInfo)
-                    DispatchQueue.main.async {
-                        completionHandler(errorData, nil)
-                    }
+                    value = responseStr
                 }
-                
             case .failure(let error):
-                var errorDescription = "Alamofire throw error"
-                if let AFerrorDescription = error.errorDescription {
-                    errorDescription = AFerrorDescription
+                value = error.localizedDescription
+            }
+            
+            if code >= 200 && code <= 300 {
+                let responseData = ResponseData.init(code: code, value: value, requestInfo: requestInfo)
+                DispatchQueue.main.async {
+                    completionHandler(nil, responseData)
                 }
-                let errorData = ErrorData.init(code: 9999, value: errorDescription, requestInfo: requestInfo)
+                return
+            }
+            else {
+                let errorData = ErrorData.init(code: code, value: value, requestInfo: requestInfo)
                 DispatchQueue.main.async {
                     completionHandler(errorData, nil)
                 }
+            }
+        }
+        else {
+            var errorValue = "No status code"
+            if let error = response.error {
+                errorValue = error.localizedDescription
+            }
+            let errorData = ErrorData.init(code: 9999, value: errorValue, requestInfo: requestInfo)
+            DispatchQueue.main.async {
+                completionHandler(errorData, nil)
             }
         }
     }

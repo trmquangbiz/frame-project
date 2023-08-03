@@ -15,14 +15,4 @@ final class AuthenticationService {
     static var currentUserId: Int? {
         return (UserDefaults.standard.object(forKey: Constant.kCurrentUserId) as? Int)
     }
-    
-    static var isReviewExceptId: Bool {
-        get {
-            if let currentUserId = AuthenticationService.currentUserId {
-                return Configuration().reviewExceptedIds.contains(currentUserId)
-            }
-            return false
-        }
-    }
-    
 }

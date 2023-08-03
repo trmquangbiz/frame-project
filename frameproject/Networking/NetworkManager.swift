@@ -205,12 +205,6 @@ class NetworkManager {
             var log = "\n-----Begin Request Initiate log-----"
             log += "\n- URL: \(request.url)"
             log += "\n- Method: \(request.method.rawValue)"
-            if let cURL = request.cURL {
-                log += "\n- cURL:"
-                log += "\n```"
-                log += "\n\(cURL)"
-                log += "\n```"
-            }
             log += "\n-----End Request Initiate log-----"
             return log
         },

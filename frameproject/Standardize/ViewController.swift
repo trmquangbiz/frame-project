@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     private var isFirstTimesViewWillAppear = true
     private var isFirstTimesViewDidAppear = true
     private var observableHandlingMap: [ObservingInfo: ObservingSelectorInfo] = [:]
+    private lazy var initNavigationTitle: String = Self.storyBoardId()
+    private var isHaveTitleView: Bool = false
     var viewIsLoaded: Bool {
         return _viewIsLoaded
     }
@@ -35,6 +37,12 @@ class ViewController: UIViewController {
         if isFirstTimesViewWillAppear {
             firstTimesViewWillAppear()
             isFirstTimesViewWillAppear = false
+        }
+        if isHaveTitleView {
+            // set navigationItem.titleView here
+        }
+        else {
+            navigationItem.title = initNavigationTitle
         }
     }
     
@@ -59,6 +67,13 @@ class ViewController: UIViewController {
     
     func setupView() {
         
+    }
+    
+    /**
+     Use this function to setNavigationTitle, so you don't need to set it in viewDidLoad, make you code cleaner. However. if you want to change navigation title during runtime, please set it manually
+     */
+    final func setNavigationTitle(_ title: String) {
+        initNavigationTitle = title
     }
     
     final func registerViewObserver() {

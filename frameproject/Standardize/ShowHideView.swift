@@ -88,7 +88,6 @@ class ShowHideView: View {
     
     func show() {
         isShow = true
-        
     }
     
     func hide() {

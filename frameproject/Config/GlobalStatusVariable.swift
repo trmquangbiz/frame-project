@@ -33,23 +33,6 @@ final class GlobalStatusVariable: NSObject {
             }
         }
     }
-    static var googleAPIKey: String {
-        get {
-            #if DEBUG
-            return "AIzaSyB0GefQuX7OQXteL7Le5lFwOUMdnCh1nTE"
-//                return "AIzaSyDOImdsJdbnLingPQxOOoS4OFJ3DnSWP40"
-            #else
-                return "AIzaSyB0GefQuX7OQXteL7Le5lFwOUMdnCh1nTE"
-            #endif
-            
-        }
-    }
-    
-    static var currentShippingAddressId: Int? {
-        get {
-            return  UserDefaults.standard.object(forKey: Constant.kCurrentShippingAddressId) as? Int
-        }
-    }
     
     static var highlightKeywordColorArr: [Int] {
         return [0xEBEBEB, 0xFDCCD2, 0xCEEAFC, 0xE5F6D3, 0xFDEDD3]
