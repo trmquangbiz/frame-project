@@ -28,6 +28,6 @@ class SampleWireFrame: SampleWireFrameProtocol {
         }
         return nil
     }
-    
-    
 }
+
+
