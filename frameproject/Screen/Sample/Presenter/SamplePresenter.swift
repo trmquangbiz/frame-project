@@ -19,10 +19,10 @@ class SamplePresenter: SamplePresenterProtocol {
     var sampleObservable: SmartLocalObservable<SampleObject>!
     
     var loadingRequestCounter: LoadingRequestCounter! = nil
+    
     func viewDidLoad() {
         // Do some setup
-        sampleObservable = .init(primaryKeyValue: sampleId!)
-            .set(remotePath: .getSampleDetail(sampleId: sampleId))
+        sampleObservable = SampleObject.makeSampleObject(id: sampleId)
             .subscribe({[weak self] obj in
                 if let weakSelf = self, let view = weakSelf.view {
                     view.updateSampleViewDetail()
@@ -58,8 +58,6 @@ class SamplePresenter: SamplePresenterProtocol {
             }
             // show error message if you want
         })
-        
-        
     }
     
 

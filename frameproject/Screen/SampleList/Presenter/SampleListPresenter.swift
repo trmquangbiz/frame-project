@@ -73,6 +73,7 @@ class SampleListPresenter: SampleListPresenterProtocol {
             }
         })
     }
+    
     func showDetail(sampleId: Int) {
         if let view = view {
             wireFrame.pushSampleDetail(id: sampleId, from: view)
