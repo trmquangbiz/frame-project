@@ -12,3 +12,5 @@ import Realm
 
 typealias ObjectMapperMap = ObjectMapper.Map
 typealias RLMObjectChange = ObjectChange<RLMObjectBase>
+typealias DSSpacing = DesignSystem.Spacing
+typealias DSColor = DesignSystem.Color

@@ -8,13 +8,6 @@
 import Foundation
 
 class SampleWireFrame: SampleWireFrameProtocol {
-    func pushSampleView(of sampleId: Int, from view: SampleViewProtocol) {
-        if let vc = SampleWireFrame.createSampleViewController(sampleId: sampleId),
-            let view = view as? SampleViewController,
-            let navigationController = view.navigationController {
-            navigationController.pushViewController(vc, animated: true)
-        }
-    }
     
     static func createSampleViewController(sampleId: Int) -> SampleViewController? {
         if let vc = SampleViewController.initWithStoryBoard() {

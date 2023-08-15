@@ -103,6 +103,19 @@
 		BBAD312A2A7BDBA50082247B /* Init.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBAD31292A7BDBA50082247B /* Init.storyboard */; };
 		BBAD312C2A7BDC480082247B /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAD312B2A7BDC480082247B /* InitViewController.swift */; };
 		BBAD312E2A7BDD4E0082247B /* UtilityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAD312D2A7BDD4E0082247B /* UtilityRouter.swift */; };
+		BBAEE5052A8B347100BE47F7 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE5042A8B347100BE47F7 /* TableView.swift */; };
+		BBAEE5072A8B767F00BE47F7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE5062A8B767F00BE47F7 /* TableViewCell.swift */; };
+		BBAEE50B2A8B78FD00BE47F7 /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE50A2A8B78FD00BE47F7 /* NameTableViewCell.swift */; };
+		BBAEE50D2A8B7CCB00BE47F7 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE50C2A8B7CCB00BE47F7 /* UILabel.swift */; };
+		BBAEE50F2A8B837300BE47F7 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE50E2A8B837300BE47F7 /* UIScrollView.swift */; };
+		BBAEE5152A8B84F000BE47F7 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE5142A8B84F000BE47F7 /* UITableView.swift */; };
+		BBAEE5172A8B85E500BE47F7 /* SampleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE5162A8B85E500BE47F7 /* SampleListViewController.swift */; };
+		BBAEE5192A8B85F300BE47F7 /* SampleList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBAEE5182A8B85F300BE47F7 /* SampleList.storyboard */; };
+		BBAEE51B2A8B85FC00BE47F7 /* SampleListViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE51A2A8B85FC00BE47F7 /* SampleListViewProtocol.swift */; };
+		BBAEE51D2A8B865800BE47F7 /* SampleListPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE51C2A8B865800BE47F7 /* SampleListPresenterProtocol.swift */; };
+		BBAEE51F2A8B865E00BE47F7 /* SampleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE51E2A8B865E00BE47F7 /* SampleListPresenter.swift */; };
+		BBAEE5212A8B86AE00BE47F7 /* SampleListWireFrameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE5202A8B86AE00BE47F7 /* SampleListWireFrameProtocol.swift */; };
+		BBAEE5232A8B86B400BE47F7 /* SampleListWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE5222A8B86B400BE47F7 /* SampleListWireFrame.swift */; };
 		BBD85F6B29516EDE0019AD4D /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F6A29516EDE0019AD4D /* TestObject.swift */; };
 		BBD85F6D295462690019AD4D /* GlobalStatusVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */; };
 		BBD85F71295463020019AD4D /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F70295463020019AD4D /* NSBundle+Language.m */; };
@@ -239,6 +252,19 @@
 		BBAD31292A7BDBA50082247B /* Init.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Init.storyboard; sourceTree = "<group>"; };
 		BBAD312B2A7BDC480082247B /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 		BBAD312D2A7BDD4E0082247B /* UtilityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityRouter.swift; sourceTree = "<group>"; };
+		BBAEE5042A8B347100BE47F7 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		BBAEE5062A8B767F00BE47F7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		BBAEE50A2A8B78FD00BE47F7 /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
+		BBAEE50C2A8B7CCB00BE47F7 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		BBAEE50E2A8B837300BE47F7 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
+		BBAEE5142A8B84F000BE47F7 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		BBAEE5162A8B85E500BE47F7 /* SampleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListViewController.swift; sourceTree = "<group>"; };
+		BBAEE5182A8B85F300BE47F7 /* SampleList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SampleList.storyboard; sourceTree = "<group>"; };
+		BBAEE51A2A8B85FC00BE47F7 /* SampleListViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListViewProtocol.swift; sourceTree = "<group>"; };
+		BBAEE51C2A8B865800BE47F7 /* SampleListPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListPresenterProtocol.swift; sourceTree = "<group>"; };
+		BBAEE51E2A8B865E00BE47F7 /* SampleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListPresenter.swift; sourceTree = "<group>"; };
+		BBAEE5202A8B86AE00BE47F7 /* SampleListWireFrameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListWireFrameProtocol.swift; sourceTree = "<group>"; };
+		BBAEE5222A8B86B400BE47F7 /* SampleListWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListWireFrame.swift; sourceTree = "<group>"; };
 		BBD85F6A29516EDE0019AD4D /* TestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
 		BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStatusVariable.swift; sourceTree = "<group>"; };
 		BBD85F6F295463020019AD4D /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
@@ -397,6 +423,7 @@
 		BB06E2A32893D18600172F1E /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				BBAEE5082A8B785F00BE47F7 /* SampleList */,
 				BB06E2B62895307800172F1E /* Sample */,
 			);
 			path = Screen;
@@ -423,6 +450,9 @@
 				BBA8DE3E29272C5F00BD9E45 /* ArrayExtension.swift */,
 				BBAD30FE2A73D8530082247B /* UserDefaults.swift */,
 				BBAD31102A74D24D0082247B /* Realm.swift */,
+				BBAEE50C2A8B7CCB00BE47F7 /* UILabel.swift */,
+				BBAEE50E2A8B837300BE47F7 /* UIScrollView.swift */,
+				BBAEE5142A8B84F000BE47F7 /* UITableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -470,6 +500,8 @@
 				BBAD31162A76279E0082247B /* SmartLocalObservableList.swift */,
 				BBAD311D2A7BB3180082247B /* LoadingRequestCounter.swift */,
 				BBAD312D2A7BDD4E0082247B /* UtilityRouter.swift */,
+				BBAEE5042A8B347100BE47F7 /* TableView.swift */,
+				BBAEE5062A8B767F00BE47F7 /* TableViewCell.swift */,
 			);
 			path = Standardize;
 			sourceTree = "<group>";
@@ -510,6 +542,7 @@
 		BB06E2D02896322F00172F1E /* DesignSystemView */ = {
 			isa = PBXGroup;
 			children = (
+				BBAEE5092A8B78DB00BE47F7 /* NameTableViewCell */,
 				BB61DF1C28A41EA0006F2E63 /* SectionView */,
 				BB61DF1428A3DBEB006F2E63 /* RadioButtonView */,
 			);
@@ -683,6 +716,52 @@
 			path = Init;
 			sourceTree = "<group>";
 		};
+		BBAEE5082A8B785F00BE47F7 /* SampleList */ = {
+			isa = PBXGroup;
+			children = (
+				BBAEE5132A8B847400BE47F7 /* Presenter */,
+				BBAEE5122A8B846500BE47F7 /* WireFrame */,
+				BBAEE5102A8B845500BE47F7 /* View */,
+			);
+			path = SampleList;
+			sourceTree = "<group>";
+		};
+		BBAEE5092A8B78DB00BE47F7 /* NameTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				BBAEE50A2A8B78FD00BE47F7 /* NameTableViewCell.swift */,
+			);
+			path = NameTableViewCell;
+			sourceTree = "<group>";
+		};
+		BBAEE5102A8B845500BE47F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BBAEE5162A8B85E500BE47F7 /* SampleListViewController.swift */,
+				BBAEE5182A8B85F300BE47F7 /* SampleList.storyboard */,
+				BBAEE51A2A8B85FC00BE47F7 /* SampleListViewProtocol.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BBAEE5122A8B846500BE47F7 /* WireFrame */ = {
+			isa = PBXGroup;
+			children = (
+				BBAEE5202A8B86AE00BE47F7 /* SampleListWireFrameProtocol.swift */,
+				BBAEE5222A8B86B400BE47F7 /* SampleListWireFrame.swift */,
+			);
+			path = WireFrame;
+			sourceTree = "<group>";
+		};
+		BBAEE5132A8B847400BE47F7 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BBAEE51C2A8B865800BE47F7 /* SampleListPresenterProtocol.swift */,
+				BBAEE51E2A8B865E00BE47F7 /* SampleListPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		BBD85F6E295462CE0019AD4D /* NSBundle+Language */ = {
 			isa = PBXGroup;
 			children = (
@@ -817,6 +896,7 @@
 			files = (
 				BB68DDC52A2502C70095AFD8 /* SourceSansPro-Semibold.otf in Resources */,
 				BB06E27D2893D10200172F1E /* LaunchScreen.storyboard in Resources */,
+				BBAEE5192A8B85F300BE47F7 /* SampleList.storyboard in Resources */,
 				BB06E27A2893D10200172F1E /* Assets.xcassets in Resources */,
 				BBAD312A2A7BDBA50082247B /* Init.storyboard in Resources */,
 				BB68DDBD2A2502C70095AFD8 /* SourceSansPro-Regular.otf in Resources */,
@@ -898,6 +978,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBAEE5172A8B85E500BE47F7 /* SampleListViewController.swift in Sources */,
 				BB4E369C28BF2E47002C27A7 /* NetworkManager.swift in Sources */,
 				BB06E2C32895887F00172F1E /* DesignSystem.swift in Sources */,
 				BB61DF1328A3D811006F2E63 /* UIFont.swift in Sources */,
@@ -917,26 +998,33 @@
 				BB06E2D22896324D00172F1E /* DesignSystemView.swift in Sources */,
 				BBE4B87728B1039200ADDC4C /* NetworkUtility.swift in Sources */,
 				BB61DF2428A75CE4006F2E63 /* NetworkServiceConfigProtocol.swift in Sources */,
+				BBAEE51B2A8B85FC00BE47F7 /* SampleListViewProtocol.swift in Sources */,
 				BBAD312C2A7BDC480082247B /* InitViewController.swift in Sources */,
 				BB06E2C728958A5600172F1E /* Corner.swift in Sources */,
 				BB06E2BD28956E9B00172F1E /* View.swift in Sources */,
 				BB61DF1628A3DC09006F2E63 /* RadioButtonView.swift in Sources */,
 				BB809BD229069F8900D123CD /* AlamofireNetworkService.swift in Sources */,
+				BBAEE50B2A8B78FD00BE47F7 /* NameTableViewCell.swift in Sources */,
 				BBAD31172A76279E0082247B /* SmartLocalObservableList.swift in Sources */,
 				BB95AC672905C1AA00F4653E /* Data.swift in Sources */,
 				BB06E2B028951AAE00172F1E /* ViewUtility.swift in Sources */,
+				BBAEE5232A8B86B400BE47F7 /* SampleListWireFrame.swift in Sources */,
 				BB06E2712893D10200172F1E /* AppDelegate.swift in Sources */,
+				BBAEE50F2A8B837300BE47F7 /* UIScrollView.swift in Sources */,
 				BB06E2C928958A8300172F1E /* Color.swift in Sources */,
 				BB61DF2A28B07439006F2E63 /* NetworkRequestInfo.swift in Sources */,
 				BBE4B87328B0F63C00ADDC4C /* ErrorData.swift in Sources */,
 				BB06E2B52895300600172F1E /* SampleNSObjectClass.swift in Sources */,
+				BBAEE5212A8B86AE00BE47F7 /* SampleListWireFrameProtocol.swift in Sources */,
 				BBAD30FF2A73D8530082247B /* UserDefaults.swift in Sources */,
 				BB06E2A82893D6ED00172F1E /* Debugger.swift in Sources */,
 				BB809BD92906AB1900D123CD /* AlamofireServiceConfig.swift in Sources */,
 				BB809BDF2907D44200D123CD /* NetworkManagerUtilities.swift in Sources */,
+				BBAEE5152A8B84F000BE47F7 /* UITableView.swift in Sources */,
 				BBA8DE3B2927258E00BD9E45 /* MotionKit.swift in Sources */,
 				BBAD31032A73F2570082247B /* APIPath.swift in Sources */,
 				BBD85F74295467360019AD4D /* Utils.swift in Sources */,
+				BBAEE51D2A8B865800BE47F7 /* SampleListPresenterProtocol.swift in Sources */,
 				BBE4B87028B0F54E00ADDC4C /* NetworkingParam.swift in Sources */,
 				BB61DF2C28B074D9006F2E63 /* NetworkHTTPMethod.swift in Sources */,
 				BBA8DE3F29272C5F00BD9E45 /* ArrayExtension.swift in Sources */,
@@ -949,12 +1037,15 @@
 				BB61DF2628A75F08006F2E63 /* NetworkServiceConfig.swift in Sources */,
 				BBAD31242A7BB88D0082247B /* SamplePresenterProtocol.swift in Sources */,
 				BB769EF52902BB80000D5F1D /* ProductionEnvironmentConfiguration.swift in Sources */,
+				BBAEE5072A8B767F00BE47F7 /* TableViewCell.swift in Sources */,
 				BBD85F71295463020019AD4D /* NSBundle+Language.m in Sources */,
 				BB4E369728BF2529002C27A7 /* DataType.swift in Sources */,
+				BBAEE5052A8B347100BE47F7 /* TableView.swift in Sources */,
 				BBAD310D2A74AFBD0082247B /* SmartLocalObservable.swift in Sources */,
 				BB95AC652905C18200F4653E /* Dictionary.swift in Sources */,
 				BBFB0C4129696D57005EF628 /* ObservingBlockInfo.swift in Sources */,
 				BB06E2CF28958CC500172F1E /* Font.swift in Sources */,
+				BBAEE51F2A8B865E00BE47F7 /* SampleListPresenter.swift in Sources */,
 				BB61DF0C28A0F52C006F2E63 /* StandardNSObject.swift in Sources */,
 				BB809BE1290BD72600D123CD /* APIServiceManager.swift in Sources */,
 				BBA8DE2D292724C800BD9E45 /* NSString+MD5Addition.m in Sources */,
@@ -974,6 +1065,7 @@
 				BBA8DE35292724C800BD9E45 /* UrlRouter.swift in Sources */,
 				BBAD31012A73E33D0082247B /* TypeAliasList.swift in Sources */,
 				BBA8DE33292724C800BD9E45 /* ListTransform.swift in Sources */,
+				BBAEE50D2A8B7CCB00BE47F7 /* UILabel.swift in Sources */,
 				BB61DF2828B07407006F2E63 /* NetworkServiceProtocol.swift in Sources */,
 				BBAD31112A74D24D0082247B /* Realm.swift in Sources */,
 				BB06E2D42897905D00172F1E /* Spacing.swift in Sources */,

@@ -9,8 +9,8 @@ import Foundation
 
 class DevelopmentEnvironmentConfiguration: EnvironmentConfiguration {
     
-    var baseRequestURL: String = ""
+    var baseRequestURL: String = "https://localhost"
     
-    var uploadImageURL: String = ""
+    var uploadImageURL: String = "https://localhost"
     
 }

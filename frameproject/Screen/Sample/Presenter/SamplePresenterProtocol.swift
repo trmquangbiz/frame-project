@@ -12,9 +12,7 @@ protocol SamplePresenterProtocol: AnyObject {
     var wireFrame: SampleWireFrameProtocol! {get set}
     var sampleId: Int! {get set}
     var sampleObservable: SmartLocalObservable<SampleObject>! {get set}
-    var sampleObservableList: SmartLocalObservableList<Results<SampleObject>>! {get set}
+    
     func viewDidLoad()
     func reloadData()
-    func loadMore()
-    func showDetail(of sampleId: Int)
 }

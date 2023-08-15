@@ -17,11 +17,11 @@ class SectionView: ShowHideView {
     override func layoutView() {
         super.layoutView()
         contentViewTopPadding = DesignSystem.Spacing.margin.rawValue
-        setContentViewColor(contentViewColor)
+        setContentViewColor(contentViewColor.value)
     }
     
     private func didSetContentViewColor() {
-        setContentViewColor(contentViewColor)
+        setContentViewColor(contentViewColor.value)
     }
     
     func setContentViewColor(_ color: UIColor) {

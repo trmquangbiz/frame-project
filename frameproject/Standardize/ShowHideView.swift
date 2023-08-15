@@ -7,6 +7,9 @@
 
 import UIKit
 
+/// This view is used to add show/hide ability to a view inside of contentView
+/// If you want to use this and layout, please put layout code by add views into contentView
+/// set padding of content
 class ShowHideView: View {
 
     enum ShowHideDirection {

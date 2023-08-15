@@ -23,6 +23,8 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
         }
     }
     
+    var preprocessObject: ((T) -> (T))?
+    
     internal final var _primaryKeyValue: Any
     
     private var notificationToken: NotificationToken?
@@ -68,7 +70,7 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
         }
     }
     
-    func fetchRemote(queryParams: [String : Any]?, preprocessObject: ((T) -> (T))?, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?) {
+    func fetchRemote(queryParams: [String : Any]?, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?) {
         if let remotePath = remotePath {
             APIServiceManager.shared.getObject(endPoint: remotePath.path,
                                                queryParams: queryParams,
@@ -89,7 +91,7 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
                     return
                 }
                 if var responseObject = responseObject {
-                    if let process = preprocessObject {
+                    if let weakSelf = self, let process = weakSelf.preprocessObject {
                         responseObject = process(responseObject)
                     }
                     let realm = try! Realm()
@@ -111,6 +113,11 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
     
     func set(remotePath: APIPath) -> Self {
         _remotePath = remotePath
+        return self
+    }
+    
+    func set(preprocessObject: ((T) -> (T))?) -> Self {
+        self.preprocessObject = preprocessObject
         return self
     }
     

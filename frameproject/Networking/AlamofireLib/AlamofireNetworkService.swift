@@ -46,6 +46,7 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                                                   isForAuthenticate: forAuthenticate)
         request.responseString(queue: .global(qos: .background)) {[weak self] response in
             requestInfo.responseTime = Date()
+            requestInfo.cURL = request.cURL
             if let weakSelf = self {
                 weakSelf.completionHandle(response: response,
                                           requestInfo: requestInfo,
@@ -73,6 +74,7 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                                                   isForAuthenticate: forAuthenticate)
         request.responseString(queue: .global(qos: .background)) { [weak self] response in
             requestInfo.responseTime = Date()
+            requestInfo.cURL = request.cURL
             if let weakSelf = self {
                 weakSelf.completionHandle(response: response,
                                           requestInfo: requestInfo,
@@ -100,6 +102,7 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                                                   isForAuthenticate: forAuthenticate)
         request.responseString(queue: .global(qos: .background)) { [weak self] response in
             requestInfo.responseTime = Date()
+            requestInfo.cURL = request.cURL
             if let weakSelf = self {
                 weakSelf.completionHandle(response: response,
                                           requestInfo: requestInfo,
@@ -126,6 +129,7 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                                                   cURL: request.cURL)
         request.responseString(queue: .global(qos: .background)) { [weak self] response in
             requestInfo.responseTime = Date()
+            requestInfo.cURL = request.cURL
             if let weakSelf = self {
                 weakSelf.completionHandle(response: response,
                                           requestInfo: requestInfo,
@@ -152,6 +156,7 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                                                   cURL: request.cURL)
         request.response(completionHandler: { (response) in
             requestInfo.responseTime = Date()
+            requestInfo.cURL = request.cURL
             if let error = response.error, let request = response.request, let url = request.url {
                 requestInfo.url = url.absoluteString
                 let error = ErrorData.init(code: 9999, value: error.localizedDescription, requestInfo: requestInfo)
@@ -180,6 +185,7 @@ class AlamofireNetworkService: NetworkServiceProtocol {
         let requestInfo = NetworkRequestInfo.init(url: url, method: .post, headers: headers, cURL: request.cURL)
         request.responseString { [weak self] response in
             requestInfo.responseTime = Date()
+            requestInfo.cURL = request.cURL
             if let weakSelf = self {
                 weakSelf.completionHandle(response: response,
                                           requestInfo: requestInfo,

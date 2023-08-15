@@ -27,14 +27,14 @@ class RadioButtonView: DesignSystemView {
     // MARK: - Properties
     
     /// default = light gray
-    var unselectedColor = DesignSystem.Color.lightGray {
+    var unselectedColor = DesignSystem.Color.lightGray.value {
         didSet {
             updateUnselectedColor()
         }
     }
     
     /// default = red
-    var selectedColor = DesignSystem.Color.red {
+    var selectedColor = DesignSystem.Color.red.value {
         didSet {
             updateSelectedColor()
         }

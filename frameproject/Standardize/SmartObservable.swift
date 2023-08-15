@@ -30,6 +30,8 @@ class SmartObservable<T: Mappable>: SmartObservableProtocol {
         }
     }
     
+    var preprocessObject: ((T)->(T))? = nil
+    
     internal final var subscribeBlock: ((T?)->())?
     
     internal final var _remotePath: APIPath?
@@ -55,6 +57,10 @@ class SmartObservable<T: Mappable>: SmartObservableProtocol {
         _remotePath = remotePath
         return self
     }
+    func set(preprocessObject: ((T)->(T))?) -> Self {
+        self.preprocessObject = preprocessObject
+        return self
+    }
     
     func subscribe(_ block: @escaping ((T?) -> ())) -> Self {
         subscribeBlock = block
@@ -78,7 +84,7 @@ class SmartObservable<T: Mappable>: SmartObservableProtocol {
     func fetchLocal() {
     }
     
-    func fetchRemote(queryParams: [String: Any]? = nil, preprocessObject: ((T)->(T))? = nil, onSuccess successCompletion: (()->())? = nil, onFail failCompletion: ((_ errorCode: Int, _ errorMsg: Any?)->())? = nil) {
+    func fetchRemote(queryParams: [String: Any]? = nil, onSuccess successCompletion: (()->())? = nil, onFail failCompletion: ((_ errorCode: Int, _ errorMsg: Any?)->())? = nil) {
         if let remotePath = remotePath {
             APIServiceManager.shared.getObject(endPoint: remotePath.path,
                                                queryParams: queryParams,
@@ -95,7 +101,7 @@ class SmartObservable<T: Mappable>: SmartObservableProtocol {
                     return
                 }
                 if var responseObject = responseObject {
-                    if let process = preprocessObject {
+                    if let weakSelf = self, let process = weakSelf.preprocessObject {
                         responseObject = process(responseObject)
                     }
                     if let weakSelf = self {

@@ -9,5 +9,4 @@ import Foundation
 
 protocol SampleWireFrameProtocol: AnyObject {
     static func createSampleViewController(sampleId: Int) -> SampleViewController?
-    func pushSampleView(of sampleId: Int, from view: SampleViewProtocol)
 }

@@ -18,7 +18,7 @@ class InitViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UtilityRouter.showSample(sampleId: 0)
+        UtilityRouter.showSampleList()
     }
 
 }
