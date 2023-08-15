@@ -44,7 +44,6 @@ class SampleListPresenter: SampleListPresenterProtocol {
             }
         }, onFail: {[weak self] errorCode, errorMsg in
             if let weakSelf = self, let view = weakSelf.view {
-                weakSelf.makeTestData()
                 view.endRefreshing()
             }
             // show error message if you want
@@ -59,7 +58,6 @@ class SampleListPresenter: SampleListPresenterProtocol {
     }
     
     func loadMore() {
-        
         sampleObservableList.loadMore(queryParams: ["sort": "nearest"],
                                       onSuccess: {[weak self] in
             if let weakSelf = self, let view = weakSelf.view {
@@ -67,7 +65,6 @@ class SampleListPresenter: SampleListPresenterProtocol {
             }
         }, onFail: {[weak self] _,_ in
             if let weakSelf = self, let view = weakSelf.view {
-                weakSelf.makeLoadMoreTestData()
                 view.endLoadMore()
             }
         }, onEmpty: {[weak self] in
