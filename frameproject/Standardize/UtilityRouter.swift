@@ -9,13 +9,12 @@ import Foundation
 import UIKit
 // Routing View Helper
 class UtilityRouter {
-    
-    static func showSample(sampleId: Int) {
-        if let vc = SampleWireFrame.createSampleViewController(sampleId: sampleId) {
+    static func showSampleList() {
+        if let vc = SampleListWireFrame.createSampleListViewController() {
             let nav = UINavigationController.init(rootViewController: vc)
             let window = UIWindow.init(frame: UIScreen.main.bounds)
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            window.backgroundColor = DesignSystem.Color.white
+            window.backgroundColor = DSColor.white.value
             window.rootViewController = nav
             appDelegate.window = window
             appDelegate.window!.makeKeyAndVisible()

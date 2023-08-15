@@ -103,6 +103,23 @@ extension Object {
             token(notificationToken)
         }
     }
+    
+    func isValidated() -> Bool {
+        if realm == nil || (realm != nil && isInvalidated == false) {
+            return true
+        }
+        return false
+    }
+    
+    func isDeleted(_ primaryKeyValue: Any) -> Bool {
+        let metaType = type(of: self)
+        if let realm = realm,
+            metaType.primaryKey() != nil,
+            realm.object(ofType: metaType.self, forPrimaryKey: primaryKeyValue) == nil {
+            return true
+        }
+        return false
+    }
 }
 
 extension List {
@@ -112,5 +129,11 @@ extension List {
             list.append(copyMethod(value))
         }
         return list
+    }
+    func isValidated() -> Bool {
+        if realm == nil || (realm != nil && isInvalidated == false) {
+            return true
+        }
+        return false
     }
 }

@@ -20,6 +20,8 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
     var sortConditions: [RealmSwift.SortDescriptor] = []
     var subscribeBlock: ((RealmCollectionChange<T>) -> ())?
     var currentPagination: [String: Any]?
+    var preprocessReloadedObject: (([E]) -> [E])?
+    var preprocessLoadMoreObject: (([E], Int) -> [E])?
     private var notificationToken: NotificationToken?
     
     init(predicate: String?, sortConditions: [RealmSwift.SortDescriptor]) {
@@ -44,23 +46,26 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
         let realm = try! Realm()
         if let predicate = predicate {
             obj = realm.objects(E.self).filter(predicate).sorted(by: sortConditions) as? T
-            if let obj = obj {
-                obj.safeObserve {[weak self] changes in
-                    if let weakSelf = self, let block = weakSelf.subscribeBlock {
-                        block(changes)
-                    }
-                } token: {[weak self] token in
-                    if let weakSelf = self {
-                        weakSelf.notificationToken = token
-                    }
+            
+        }
+        else {
+            obj = realm.objects(E.self).sorted(by: sortConditions) as? T
+        }
+        if let obj = obj {
+            obj.safeObserve {[weak self] changes in
+                if let weakSelf = self, let block = weakSelf.subscribeBlock {
+                    block(changes)
+                }
+            } token: {[weak self] token in
+                if let weakSelf = self {
+                    weakSelf.notificationToken = token
                 }
             }
-            
         }
        
     }
     
-    func fetchRemote(queryParams: [String : Any]?, preprocessObject: (([E]) -> [E])?, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?, onEmpty emptyCompletion: (()->())?) {
+    func fetchRemote(queryParams: [String : Any]?, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?, onEmpty emptyCompletion: (()->())?) {
         guard let remotePath = remotePath else {
             if let completion = failCompletion {
                 completion(9999, "Remote path is not set")
@@ -76,7 +81,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                     weakSelf.currentPagination = pagination
                 }
                 if var list = responseObject {
-                    if let preprocessObject = preprocessObject {
+                    if let weakSelf = self, let preprocessObject = weakSelf.preprocessReloadedObject {
                         list = preprocessObject(list)
                     }
                     if let primaryProperty = E._getProperties().first(where: { property in
@@ -133,11 +138,16 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                         completion()
                     }
                 }
+                else {
+                    if let completion = failCompletion {
+                        completion(statusCode, errorMsg)
+                    }
+                }
             }
         }
     }
     
-    func loadMore(queryParams: [String : Any]?, preprocessObject: (([E]) -> [E])?, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?, onEmpty emptyCompletion: (()->())?) {
+    func loadMore(queryParams: [String : Any]?, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?, onEmpty emptyCompletion: (()->())?) {
         guard let remotePath = remotePath else {
             if let completion = failCompletion {
                 completion(9999, "Remote path is not set")
@@ -148,7 +158,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
         if let queryParams = queryParams {
             newQueryParams = queryParams
         }
-        if let currentPagination = currentPagination {
+        guard let currentPagination = currentPagination else {
             if let completion = failCompletion {
                 completion(9999, "Pagination is null")
             }
@@ -156,25 +166,33 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
         }
         // set pagination query param here
         
-        APIServiceManager.shared.getListObject(endPoint: remotePath.path, queryParams: newQueryParams, objectType: E.self) {[weak self] isSuccess, statusCode, responseObject, errorMsg, pagination in
+        APIServiceManager.shared.getListObject(endPoint: remotePath.path,
+                                               queryParams: newQueryParams,
+                                               objectType: E.self) {[weak self] isSuccess, statusCode, responseObject, errorMsg, pagination in
             if isSuccess {
                 if let weakSelf = self {
                     weakSelf.currentPagination = pagination
                 }
                 if var list = responseObject {
-                    if let preprocessObject = preprocessObject {
-                        list = preprocessObject(list)
+                    let realm = try! Realm()
+                    if let weakSelf = self, let preprocessObject = weakSelf.preprocessLoadMoreObject {
+                        var listCount = 0
+                        if let predicate = weakSelf.predicate {
+                            listCount = realm.objects(E.self).filter(predicate).count
+                        }
+                        else {
+                            listCount = realm.objects(E.self).count
+                        }
+                        list = preprocessObject(list, listCount)
                     }
                     if let _ = E._getProperties().first(where: { property in
                         return property.isPrimary
                     }) {
-                        let realm = try! Realm()
                         realm.safeWrite {
                             realm.add(list, update: .all)
                         }
                     }
                     else {
-                        let realm = try! Realm()
                         realm.safeWrite {
                             realm.add(list)
                         }
@@ -191,9 +209,13 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
             }
             else {
                 if statusCode == 404 {
-                    let realm = try! Realm()
                     if let completion = emptyCompletion {
                         completion()
+                    }
+                }
+                else {
+                    if let completion = failCompletion {
+                        completion(statusCode, errorMsg)
                     }
                 }
             }
@@ -211,6 +233,16 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
         return self
     }
     
+    func set(preprocessReloadedObject: (([E]) -> [E])?) -> Self {
+        self.preprocessReloadedObject = preprocessReloadedObject
+        return self
+    }
+    
+    func set(preprocessLoadMoreObject: (([E], Int) -> [E])?) -> Self {
+        self.preprocessLoadMoreObject = preprocessLoadMoreObject
+        return self
+    }
+
     func subscribe(_ block: @escaping ((RealmCollectionChange<T>) -> ())) -> Self {
         self.subscribeBlock = block
         if let obj = obj {
@@ -250,6 +282,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
 
         }
     }
+    
     
     
 }

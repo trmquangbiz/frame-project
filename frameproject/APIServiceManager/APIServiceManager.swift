@@ -45,7 +45,8 @@ class APIServiceManager {
      - returns: <#return value description#>
      */
     func currentRequestURLString(fromEndPoint endPoint: String) -> String {
-        return self.getBaseRequestURL() + "/" + endPoint.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        let trimmedEndpoint = endPoint.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        return self.getBaseRequestURL() + (trimmedEndpoint.count > 0 ? "/\(trimmedEndpoint)" : trimmedEndpoint)
     }
     
     
@@ -463,4 +464,8 @@ extension APIServiceManager {
                line: line)
         
     }
+}
+
+extension APIServiceManager {
+    
 }

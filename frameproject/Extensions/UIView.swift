@@ -31,14 +31,14 @@ extension UIView {
     }
     
     func addShadow() {
-        layer.shadowColor = UIColor.lightGray.cgColor
+        layer.shadowColor = DSColor.lightGray.value.cgColor
         layer.shadowOpacity = 1
         layer.shadowOffset = CGSize.zero
         layer.shadowRadius = 2
     }
     func addShadowToOneSide(verticalDirection: UIViewShadowVerticalDirection) {
         layer.masksToBounds = false
-        layer.shadowColor = DesignSystem.Color.darkGray.cgColor
+        layer.shadowColor = DSColor.darkGray.value.cgColor
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 1
         
