@@ -13,4 +13,6 @@ target 'frameproject' do
   pod 'IQKeyboardManagerSwift', '6.5.12'
   pod 'CocoaMQTT', '2.1.5'
   pod 'MJRefresh', '3.7.5'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseCrashlytics'
 end

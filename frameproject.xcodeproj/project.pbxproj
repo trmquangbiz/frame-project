@@ -800,6 +800,7 @@
 				BB06E26A2893D10200172F1E /* Frameworks */,
 				BB06E26B2893D10200172F1E /* Resources */,
 				A9F5A65F70D79298AF04FCE4 /* [CP] Embed Pods Frameworks */,
+				BBAEE5252A8F33C300BE47F7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -970,6 +971,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-frameproject/Pods-frameproject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BBAEE5252A8F33C300BE47F7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1253,9 +1271,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M2T6Z3VFYT;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M2T6Z3VFYT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = frameproject/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = frameproject;
@@ -1272,6 +1292,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = trmquang.frameproject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development trmquang.frameproject";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "frameproject/frameproject-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1286,9 +1308,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M2T6Z3VFYT;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M2T6Z3VFYT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = frameproject/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = frameproject;
@@ -1306,6 +1330,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = trmquang.frameproject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore trmquang.frameproject";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "frameproject/frameproject-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
