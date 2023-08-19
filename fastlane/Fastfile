@@ -79,7 +79,7 @@ platform :ios do
 		app_identifier: "trmquang.frameproject",
 		notify_external_testers: false)
   end
-  desc "For ios distribution to firebase.\nNeed GoogleService-Info.plist to process. Developers need to run 'firebase login' first to provide credential."
+  desc "For ios distribution to firebase.\nNeed GoogleService-Info.plist to process. Developers need to run 'firebase login' first to provide credential. Please access fastlane/firebase to edit release notes and testers."
   lane :distribute_firebase do
 	sync_code_signing(type: "development",
 		generate_apple_certs: false,

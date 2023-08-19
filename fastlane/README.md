@@ -22,7 +22,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 ```
 
 For app signing.
-Please create 2 private repo to contains key for development (1 repository) and production (1 repository)
+Please create 2 private repo to contains key for development (1 repository) and production (1 repository).
 
 ### ios testflight_beta
 
@@ -31,7 +31,7 @@ Please create 2 private repo to contains key for development (1 repository) and 
 ```
 
 For developer to upload testflight.
-Developer need to provide iCloud email and password and must have role in the App Store Connect team so they can upload beta build to Testflight
+Developer need to provide iCloud email and password and must have role in the App Store Connect team so they can upload beta build to Testflight.
 
 ### ios testflight_beta_jenkin
 
@@ -39,8 +39,8 @@ Developer need to provide iCloud email and password and must have role in the Ap
 [bundle exec] fastlane ios testflight_beta_jenkin
 ```
 
-For jenkin CD to upload testflight.
-Please create 1 private repository name 'app_store_connect_api_key' and contains the App Store Connect API Key. Every time jenkin run, after checking out, please redirect to fastlane directory and checkout the repository so it can insert the app store connect API Key
+For jenkin CD to upload beta build to Testflight.
+Please create 1 private repository name 'app_store_connect_api_key' and contains the App Store Connect API Key. Every time jenkin run, after checking out, please redirect to fastlane directory and checkout the repository so it can insert the App Store Connect API Key.
 
 ### ios distribute_firebase
 
@@ -49,7 +49,7 @@ Please create 1 private repository name 'app_store_connect_api_key' and contains
 ```
 
 For ios distribution to firebase.
-Need GoogleService-Info.plist to process. Developer need to run 'firebase login' first to provide credential
+Need GoogleService-Info.plist to process. Developers need to run 'firebase login' first to provide credential. Please access fastlane/firebase to edit release notes and testers.
 
 ----
 
