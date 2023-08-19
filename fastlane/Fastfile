@@ -31,7 +31,13 @@ platform :ios do
 		readonly: true)
   end
   lane :testflight_beta do
-       build_app(scheme: "frameproject",
+    	sync_code_signing(type: "appstore",
+		generate_apple_certs: false,
+		app_identifier: "trmquang.frameproject",
+		storage_mode: "git",
+		git_url: "git@github.com:trmquangbiz/frame-project-production-certificate.git",
+		readonly: true)
+      	build_app(scheme: "frameproject",
 		workspace: "frameproject.xcworkspace",
 		include_symbols: true,
 		include_bitcode: false,
@@ -42,6 +48,8 @@ platform :ios do
     		  }
        		},
 		clean: true,
-		skip_profile_detection: false,)
+		skip_profile_detection: false)
+	upload_to_testflight(api_key_path: "fastlane/app_store_connect_api_key/key.json",
+		app_identifier: "trmquang.frameproject")
   end
 end
