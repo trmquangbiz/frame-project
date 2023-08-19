@@ -2,7 +2,7 @@
 Podfile.lock
 Pods/
 frameproject.xcodeproj/xcuserdata
-frameproject.xcodeproj/xcshareddata/xcschemes
+frameproject.xcodeproj/xcshareddata
 frameproject.xcworkspace
 xcuserdata
 fastlane/report.xml
