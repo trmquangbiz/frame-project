@@ -34,4 +34,5 @@ platform :ios do
   end
   lane :beta do
        build_app(scheme: "frameproject")
+  end
 end
