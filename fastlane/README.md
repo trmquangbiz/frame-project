@@ -13,11 +13,23 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-## Signing
+## iOS
+
+### ios signing
 
 ```sh
-[bundle exec] fastlane signing
+[bundle exec] fastlane ios signing
 ```
+
+
+
+### ios testflight_beta
+
+```sh
+[bundle exec] fastlane ios testflight_beta
+```
+
+
 
 ----
 

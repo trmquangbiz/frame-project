@@ -4,8 +4,11 @@ Pods/
 frameproject.xcodeproj/xcuserdata
 frameproject.xcodeproj/xcshareddata
 frameproject.xcworkspace
+frameproject.ipa
+frameproject.app.dSYM.zip
 xcuserdata
 fastlane/report.xml
 fastlane/Preview.html
+fastlane/app_store_connect_api_key/
 frameprojectTests/
 frameprojectUITests

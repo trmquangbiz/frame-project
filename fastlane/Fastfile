@@ -20,19 +20,28 @@ platform :ios do
 	sync_code_signing(type: "development",
 		generate_apple_certs: false,
 		app_identifier: "trmquang.frameproject",
-		username: "trmquang0109@gmail.com",
 		storage_mode: "git",
 		git_url: "git@github.com:trmquangbiz/frame-project-development-certificate.git",
 		readonly: true)
 	sync_code_signing(type: "appstore",
 		generate_apple_certs: false,
 		app_identifier: "trmquang.frameproject",
-		username: "trmquang.frameproject",
 		storage_mode: "git",
 		git_url: "git@github.com:trmquangbiz/frame-project-production-certificate.git",
 		readonly: true)
   end
-  lane :beta do
-       build_app(scheme: "frameproject")
+  lane :testflight_beta do
+       build_app(scheme: "frameproject",
+		workspace: "frameproject.xcworkspace",
+		include_symbols: true,
+		include_bitcode: false,
+		export_method: "app-store",
+		export_options: {
+    	          provisioningProfiles: {
+      		     "trmquang.frameproject" => "match AppStore trmquang.frameproject"
+    		  }
+       		},
+		clean: true,
+		skip_profile_detection: false,)
   end
 end
