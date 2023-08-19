@@ -1,6 +1,6 @@
 # This file contains the fastlane.tools configuration
 # You can find the documentation at https://docs.fastlane.tools
-#
+# 
 # For a list of all available actions, check out
 #
 #     https://docs.fastlane.tools/actions
@@ -8,7 +8,8 @@
 # For a list of all available plugins, check out
 #
 #     https://docs.fastlane.tools/plugins/available-plugins
-#
+# 
+# Please send mail to trmquang0109@gmail.com for further information!
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
@@ -16,6 +17,7 @@
 default_platform(:ios)
 
 platform :ios do
+  desc "For app signing"
   lane :signing do
 	sync_code_signing(type: "development",
 		generate_apple_certs: false,
@@ -30,6 +32,7 @@ platform :ios do
 		git_url: "git@github.com:trmquangbiz/frame-project-production-certificate.git",
 		readonly: true)
   end
+  desc "For developer to upload testflight"
   lane :testflight_beta do
     	sync_code_signing(type: "appstore",
 		generate_apple_certs: false,
@@ -49,7 +52,54 @@ platform :ios do
        		},
 		clean: true,
 		skip_profile_detection: false)
-	upload_to_testflight(api_key_path: "fastlane/app_store_connect_api_key/key.json",
-		app_identifier: "trmquang.frameproject")
+	upload_to_testflight(api_key_path: app_identifier: "trmquang.frameproject",
+		notify_external_testers: false)
   end
+  desc "For jenkin CD to upload testflight"
+  lane :testflight_beta_jenkin
+	sync_code_signing(type: "appstore",
+		generate_apple_certs: false,
+		app_identifier: "trmquang.frameproject",
+		storage_mode: "git",
+		git_url: "git@github.com:trmquangbiz/frame-project-production-certificate.git",
+		readonly: true)
+      	build_app(scheme: "frameproject",
+		workspace: "frameproject.xcworkspace",
+		include_symbols: true,
+		include_bitcode: false,
+		export_method: "app-store",
+		export_options: {
+    	          provisioningProfiles: {
+      		     "trmquang.frameproject" => "match AppStore trmquang.frameproject"
+    		  }
+       		},
+		clean: true,
+		skip_profile_detection: false)
+	upload_to_testflight(api_key_path: "fastlane/app_store_connect_api_key/key.json",
+		app_identifier: "trmquang.frameproject",
+		notify_external_testers: false)
+  end
+  desc "For ios distribution to firebase"
+  lane :distribute_firebase do
+	sync_code_signing(type: "development",
+		generate_apple_certs: false,
+		app_identifier: "trmquang.frameproject",
+		storage_mode: "git",
+		git_url: "git@github.com:trmquangbiz/frame-project-development-certificate.git",
+		readonly: true)
+	build_app(scheme: "frameproject-staging",
+		workspace: "frameproject.xcworkspace",
+		include_symbols: true,
+		include_bitcode: false,
+		export_method: "development",
+		export_options: {
+    	          provisioningProfiles: {
+      		     "trmquang.frameproject" => "match AppStore trmquang.frameproject"
+    		  }
+       		},
+		clean: true,
+		skip_profile_detection: false)
+	firebase_app_distribution(
+		release_notes_file: "fastlane/firebase/release-notes.txt",
+		testers_file: "fastlane/firebase/testers.txt")
 end
