@@ -17,7 +17,7 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "For app signing"
+  desc "For app signing.\nPlease create 2 private repo to contains key for development (1 repository) and production (1 repository)."
   lane :signing do
 	sync_code_signing(type: "development",
 		generate_apple_certs: false,
@@ -32,7 +32,7 @@ platform :ios do
 		git_url: "git@github.com:trmquangbiz/frame-project-production-certificate.git",
 		readonly: true)
   end
-  desc "For developer to upload testflight"
+  desc "For developer to upload testflight.\nDeveloper need to provide iCloud email and password and must have role in the App Store Connect team so they can upload beta build to Testflight."
   lane :testflight_beta do
     	sync_code_signing(type: "appstore",
 		generate_apple_certs: false,
@@ -55,7 +55,7 @@ platform :ios do
 	upload_to_testflight(app_identifier: "trmquang.frameproject",
 		notify_external_testers: false)
   end
-  desc "For jenkin CD to upload testflight"
+  desc "For jenkin CD to upload beta build to Testflight.\nPlease create 1 private repository name 'app_store_connect_api_key' and contains the App Store Connect API Key. Every time jenkin run, after checking out, please redirect to fastlane directory and checkout the repository so it can insert the App Store Connect API Key."
   lane :testflight_beta_jenkin do
 	sync_code_signing(type: "appstore",
 		generate_apple_certs: false,
@@ -79,7 +79,7 @@ platform :ios do
 		app_identifier: "trmquang.frameproject",
 		notify_external_testers: false)
   end
-  desc "For ios distribution to firebase"
+  desc "For ios distribution to firebase.\nNeed GoogleService-Info.plist to process. Developers need to run 'firebase login' first to provide credential."
   lane :distribute_firebase do
 	sync_code_signing(type: "development",
 		generate_apple_certs: false,

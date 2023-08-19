@@ -21,7 +21,8 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios signing
 ```
 
-For app signing
+For app signing.
+Please create 2 private repo to contains key for development (1 repository) and production (1 repository)
 
 ### ios testflight_beta
 
@@ -29,7 +30,8 @@ For app signing
 [bundle exec] fastlane ios testflight_beta
 ```
 
-For developer to upload testflight
+For developer to upload testflight.
+Developer need to provide iCloud email and password and must have role in the App Store Connect team so they can upload beta build to Testflight
 
 ### ios testflight_beta_jenkin
 
@@ -37,7 +39,8 @@ For developer to upload testflight
 [bundle exec] fastlane ios testflight_beta_jenkin
 ```
 
-For jenkin CD to upload testflight
+For jenkin CD to upload testflight.
+Please create 1 private repository name 'app_store_connect_api_key' and contains the App Store Connect API Key. Every time jenkin run, after checking out, please redirect to fastlane directory and checkout the repository so it can insert the app store connect API Key
 
 ### ios distribute_firebase
 
@@ -45,7 +48,8 @@ For jenkin CD to upload testflight
 [bundle exec] fastlane ios distribute_firebase
 ```
 
-For ios distribution to firebase
+For ios distribution to firebase.
+Need GoogleService-Info.plist to process. Developer need to run 'firebase login' first to provide credential
 
 ----
 
