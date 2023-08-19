@@ -21,7 +21,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios signing
 ```
 
-
+For app signing
 
 ### ios testflight_beta
 
@@ -29,7 +29,23 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios testflight_beta
 ```
 
+For developer to upload testflight
 
+### ios testflight_beta_jenkin
+
+```sh
+[bundle exec] fastlane ios testflight_beta_jenkin
+```
+
+For jenkin CD to upload testflight
+
+### ios distribute_firebase
+
+```sh
+[bundle exec] fastlane ios distribute_firebase
+```
+
+For ios distribution to firebase
 
 ----
 
