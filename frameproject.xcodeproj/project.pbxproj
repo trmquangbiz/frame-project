@@ -116,6 +116,7 @@
 		BBAEE51F2A8B865E00BE47F7 /* SampleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE51E2A8B865E00BE47F7 /* SampleListPresenter.swift */; };
 		BBAEE5212A8B86AE00BE47F7 /* SampleListWireFrameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE5202A8B86AE00BE47F7 /* SampleListWireFrameProtocol.swift */; };
 		BBAEE5232A8B86B400BE47F7 /* SampleListWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAEE5222A8B86B400BE47F7 /* SampleListWireFrame.swift */; };
+		BBC047DC2A91A99900C01289 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBC047DB2A91A99900C01289 /* GoogleService-Info.plist */; };
 		BBD85F6B29516EDE0019AD4D /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F6A29516EDE0019AD4D /* TestObject.swift */; };
 		BBD85F6D295462690019AD4D /* GlobalStatusVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */; };
 		BBD85F71295463020019AD4D /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F70295463020019AD4D /* NSBundle+Language.m */; };
@@ -265,6 +266,7 @@
 		BBAEE51E2A8B865E00BE47F7 /* SampleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListPresenter.swift; sourceTree = "<group>"; };
 		BBAEE5202A8B86AE00BE47F7 /* SampleListWireFrameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListWireFrameProtocol.swift; sourceTree = "<group>"; };
 		BBAEE5222A8B86B400BE47F7 /* SampleListWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListWireFrame.swift; sourceTree = "<group>"; };
+		BBC047DB2A91A99900C01289 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BBD85F6A29516EDE0019AD4D /* TestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
 		BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStatusVariable.swift; sourceTree = "<group>"; };
 		BBD85F6F295463020019AD4D /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 		BB06E26F2893D10200172F1E /* frameproject */ = {
 			isa = PBXGroup;
 			children = (
+				BBC047DB2A91A99900C01289 /* GoogleService-Info.plist */,
 				BBAD31272A7BDA5E0082247B /* Init */,
 				BB68DDAD2A2502810095AFD8 /* Resources */,
 				BBA8DE1B2927247000BD9E45 /* CustomFrameworks */,
@@ -906,6 +909,7 @@
 				BB68DDBC2A2502C70095AFD8 /* SourceSansPro-Bold.otf in Resources */,
 				BB68DDC32A2502C70095AFD8 /* SourceSansPro-ExtraLightIt.otf in Resources */,
 				BB68DDBE2A2502C70095AFD8 /* SourceSansPro-ExtraLight.otf in Resources */,
+				BBC047DC2A91A99900C01289 /* GoogleService-Info.plist in Resources */,
 				BB06E2BB2895342200172F1E /* Sample.storyboard in Resources */,
 				BB68DDC12A2502C70095AFD8 /* SourceSansPro-Light.otf in Resources */,
 				BB68DDC42A2502C70095AFD8 /* SourceSansPro-BoldIt.otf in Resources */,
