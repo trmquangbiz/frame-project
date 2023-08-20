@@ -101,7 +101,7 @@ There is a class that this project allowed user to make a safe KVO. For the long
 addSafeObserver(sampleObservingObj, forKeyPath: #keyPath(SampleNSObjectClass.subscribedSampleKeyPath), selector: #selector(receiveChange))
 ```
 
-## 6. Observale Primitive Array with multi handling action
+## 6. Observable Primitive Array with multi handling action
 There are times that we need to do a global service which serve the lifetime logic of app. These "singleton" services can contain data pool which is built from normal Array. Usually, to track changes of any Array, developers will use didSet, however the weak point of didSet is its "single action", which means only one action is performed in that didSet block. So developers will work around by adding another keypath in the service, the didSet block will change the value of keyPath, and other class/screen will subscribe to that keypath
 
 Good point, but if we have 10 data pools in that service?
