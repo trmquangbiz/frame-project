@@ -36,7 +36,6 @@
 		BB4E369728BF2529002C27A7 /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E369628BF2529002C27A7 /* DataType.swift */; };
 		BB4E369928BF29CB002C27A7 /* ImagePathInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E369828BF29CB002C27A7 /* ImagePathInfo.swift */; };
 		BB4E369C28BF2E47002C27A7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E369B28BF2E47002C27A7 /* NetworkManager.swift */; };
-		BB5F28E52A909E0900D4DEC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB5F28E42A909E0900D4DEC3 /* GoogleService-Info.plist */; };
 		BB61DF0C28A0F52C006F2E63 /* StandardNSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DF0B28A0F52C006F2E63 /* StandardNSObject.swift */; };
 		BB61DF1328A3D811006F2E63 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DF1228A3D811006F2E63 /* UIFont.swift */; };
 		BB61DF1628A3DC09006F2E63 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB61DF1528A3DC09006F2E63 /* RadioButtonView.swift */; };
@@ -184,7 +183,6 @@
 		BB4E369628BF2529002C27A7 /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
 		BB4E369828BF29CB002C27A7 /* ImagePathInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePathInfo.swift; sourceTree = "<group>"; };
 		BB4E369B28BF2E47002C27A7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		BB5F28E42A909E0900D4DEC3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB61DF0B28A0F52C006F2E63 /* StandardNSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNSObject.swift; sourceTree = "<group>"; };
 		BB61DF1228A3D811006F2E63 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		BB61DF1528A3DC09006F2E63 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
@@ -343,7 +341,6 @@
 		BB06E26F2893D10200172F1E /* frameproject */ = {
 			isa = PBXGroup;
 			children = (
-				BB5F28E42A909E0900D4DEC3 /* GoogleService-Info.plist */,
 				BBAD31272A7BDA5E0082247B /* Init */,
 				BB68DDAD2A2502810095AFD8 /* Resources */,
 				BBA8DE1B2927247000BD9E45 /* CustomFrameworks */,
@@ -909,7 +906,6 @@
 				BB68DDBC2A2502C70095AFD8 /* SourceSansPro-Bold.otf in Resources */,
 				BB68DDC32A2502C70095AFD8 /* SourceSansPro-ExtraLightIt.otf in Resources */,
 				BB68DDBE2A2502C70095AFD8 /* SourceSansPro-ExtraLight.otf in Resources */,
-				BB5F28E52A909E0900D4DEC3 /* GoogleService-Info.plist in Resources */,
 				BB06E2BB2895342200172F1E /* Sample.storyboard in Resources */,
 				BB68DDC12A2502C70095AFD8 /* SourceSansPro-Light.otf in Resources */,
 				BB68DDC42A2502C70095AFD8 /* SourceSansPro-BoldIt.otf in Resources */,
@@ -1277,7 +1273,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M2T6Z3VFYT;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1317,7 +1313,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = M2T6Z3VFYT;
 				GENERATE_INFOPLIST_FILE = YES;
