@@ -9,12 +9,13 @@ import Foundation
 import RealmSwift
 import ObjectMapper
 
-class SampleObject: Object, Mappable {
+class SampleObject: Object, Mappable, ExpirePolicyRealmObject {
     @Persisted(primaryKey: true) var id: Int = 0
     @Persisted var name: String?
     @Persisted var orderNumber: Int = 0
     @Persisted var group: String = ""
     
+    @Persisted var addedAt: Date = Date()
     required convenience init?(map: ObjectMapperMap) {
         self.init()
         guard let _ = map.JSON["id"] as? Int else {

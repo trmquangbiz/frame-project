@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        MigrationService.sharedInstance.migrate()
+        MigrationService.sharedInstance.deleteExpiredObjects()
         FirebaseApp.configure()
         return true
     }
