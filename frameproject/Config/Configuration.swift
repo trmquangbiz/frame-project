@@ -14,14 +14,38 @@ class Configuration {
     }()
     var environmentConfig: EnvironmentConfigurationProtocol
     
+    var baseRequestDomain: String? {
+        get {
+            return environmentConfig.baseRequestDomain
+        }
+    }
+    var baseRequestScheme: String? {
+        get {
+            return environmentConfig.baseRequestScheme
+        }
+    }
+    var baseRequestPortNumber: Int? {
+        get {
+            return environmentConfig.baseRequestPortNumber
+        }
+    }
     var baseRequestURL: String {
         get {
-            return environmentConfig.baseRequestURL
+            guard let scheme = baseRequestScheme,
+                  let domain = baseRequestDomain else {
+                return ""
+            }
+            return "\(scheme)://\(domain)" + (baseRequestPortNumber != nil ? ":\(baseRequestPortNumber!)" : "")
         }
     }
     var uploadImageURL: String {
         get {
-            return environmentConfig.uploadImageURL
+            let requestURL = baseRequestURL
+            guard let uploadImagePath = environmentConfig.uploadImagePath,
+                  requestURL.count > 0 else {
+                return ""
+            }
+            return requestURL + "/\(uploadImagePath)" 
         }
     }
     

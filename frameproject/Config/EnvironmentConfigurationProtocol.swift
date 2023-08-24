@@ -15,14 +15,25 @@ protocol EnvironmentConfigurationProtocol: AnyObject {
 
 extension EnvironmentConfigurationProtocol {
     
-    var baseRequestURL: String {
+    var baseRequestDomain: String?{
         get {
-            return model?.baseRequestURL ?? ""
+            
+            return model?.baseRequestDomain
         }
     }
-    var uploadImageURL: String {
+    var baseRequestScheme: String? {
         get {
-            return model?.uploadImageURL ?? ""
+            return model?.baseRequestScheme
+        }
+    }
+    var baseRequestPortNumber: Int? {
+        get {
+            return model?.baseRequestPortNumber
+        }
+    }
+    var uploadImagePath: String? {
+        get {
+            return model?.uploadImagePath
         }
     }
 }

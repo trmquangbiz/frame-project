@@ -11,14 +11,35 @@ import Alamofire
 
 class AlamofireNetworkService: NetworkServiceProtocol {
     var config: NetworkServiceConfigProtocol
-    private let session = AF
+    private var session: Session
     
-    init(config: NetworkServiceConfigProtocol = AlamofireServiceConfig(maxNumberRequest: 100, timeoutInterval: 60, additionalHeadersForRequest: [:], allowCellularAccess: true)) {
+    enum SessionSelection {
+        case afDefault
+        case pinnedCerfificate
+        var value: Session {
+            switch self {
+            case .afDefault:
+                return AF
+            case .pinnedCerfificate:
+                let evaluators = [
+                    Configuration.shared.baseRequestDomain!:
+                    PinnedCertificatesTrustEvaluator(certificates: [
+                        Certificates.yourCert
+                    ])
+                ]
+                return Session.init(serverTrustManager: ServerTrustManager(evaluators: evaluators))
+            }
+        }
+    }
+    
+
+    init(session: Session = SessionSelection.afDefault.value, config: NetworkServiceConfigProtocol = AlamofireServiceConfig(maxNumberRequest: 100, timeoutInterval: 60, additionalHeadersForRequest: [:], allowCellularAccess: true)) {
+        self.session = session
         self.config = config
-        session.sessionConfiguration.httpAdditionalHeaders = config.additionalHeadersForRequest
-        session.sessionConfiguration.allowsCellularAccess = config.allowCellularAccess
-        session.sessionConfiguration.httpMaximumConnectionsPerHost = config.maxNumberRequest
-        session.sessionConfiguration.timeoutIntervalForRequest = config.timeoutInterval
+        self.session.sessionConfiguration.httpAdditionalHeaders = config.additionalHeadersForRequest
+        self.session.sessionConfiguration.allowsCellularAccess = config.allowCellularAccess
+        self.session.sessionConfiguration.httpMaximumConnectionsPerHost = config.maxNumberRequest
+        self.session.sessionConfiguration.timeoutIntervalForRequest = config.timeoutInterval
     }
     
     func cancel(){

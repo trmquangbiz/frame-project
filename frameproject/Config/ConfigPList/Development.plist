@@ -2,9 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>uploadImageURL</key>
-	<string>https://localhost:8080/images/upload</string>
-	<key>baseRequestURL</key>
-	<string>https://localhost:8080</string>
+	<key>uploadImagePath</key>
+	<string>images/upload</string>
+	<key>baseRequestPortNumber</key>
+	<integer>8080</integer>
+	<key>baseRequestScheme</key>
+	<string>https</string>
+	<key>baseRequestDomain</key>
+	<string>localhost</string>
 </dict>
 </plist>
