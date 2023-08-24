@@ -31,6 +31,9 @@ Here is the libraries I included inside this frame-project:
 
 - Architecture:
     - MVP (Model - View - Presenter)
+ 
+- App Security:
+    - Pinning Certificate
   
 ## 3. Programming Paradigm, Data Storage and Architecture
 The project is built in reactive programming, but not on RxSwift framework. I have used my experience to **make logic flow between data flow become more simple**. Please take a look at SamplePresenter.swift and SampleListPresenter.swift. 
@@ -181,8 +184,55 @@ Design system is a really important in every big company. It is a really good wa
     var radioButtonView = DesignSystem.View.radioButtonView
 ```
 
+## 10. App Security
 
-## 10. Give it a try!
+This app use Pinning Certificate technique to secure the connection. I have integrated it in AlamofireNetworkService and Certifcate model. All you need to do is share the TLS certificates between server and app. You just need to add the certificates into Resources/Certificate directory and config the above mentioned files:
+
+```swift
+struct Certificates {
+    static let yourCert = Certificates.certificate(filename: "your.cert.file.name")
+  
+    private static func certificate(filename: String) -> SecCertificate {
+        let filePath = Bundle.main.path(forResource: filename, ofType: "cer")!
+        let data = try! Data(contentsOf: URL(fileURLWithPath: filePath))
+        let certificate = SecCertificateCreateWithData(nil, data as CFData)!
+        return certificate
+    }
+}
+```
+
+```swift
+class AlamofireNetworkService: NetworkServiceProtocol {
+    var config: NetworkServiceConfigProtocol
+    ...
+    
+    enum SessionSelection {
+        case afDefault
+        case pinnedCerfificate
+        var value: Session {
+            switch self {
+            case .afDefault:
+                return AF
+            case .pinnedCerfificate:
+                let evaluators = [
+                    Configuration.shared.baseRequestDomain!:
+                    PinnedCertificatesTrustEvaluator(certificates: [
+                        Certificates.yourCert
+                    ])
+                ]
+                return Session.init(serverTrustManager: ServerTrustManager(evaluators: evaluators))
+            }
+        }
+    }
+    ...
+}
+```
+
+## 11. Environment config
+
+This app is integrated with environment configuration by using plist file, instead of hard coding. Please check Configuration.swift for further detail
+
+## 12. Give it a try!
 More things will be integrated in future. Now, let just having fun!
 After cloning, please run:
 
