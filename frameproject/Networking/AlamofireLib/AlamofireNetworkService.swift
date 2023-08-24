@@ -11,14 +11,35 @@ import Alamofire
 
 class AlamofireNetworkService: NetworkServiceProtocol {
     var config: NetworkServiceConfigProtocol
-    private let session = AF
+    private var session: Session
     
-    init(config: NetworkServiceConfigProtocol = AlamofireServiceConfig(maxNumberRequest: 100, timeoutInterval: 60, additionalHeadersForRequest: [:], allowCellularAccess: true)) {
+    enum SessionSelection {
+        case afDefault
+        case pinnedCerfificate
+        var value: Session {
+            switch self {
+            case .afDefault:
+                return AF
+            case .pinnedCerfificate:
+                let evaluators = [
+                    Configuration.shared.baseRequestDomain!:
+                    PinnedCertificatesTrustEvaluator(certificates: [
+                        Certificates.yourCert
+                    ])
+                ]
+                return Session.init(serverTrustManager: ServerTrustManager(evaluators: evaluators))
+            }
+        }
+    }
+    
+
+    init(session: Session = SessionSelection.afDefault.value, config: NetworkServiceConfigProtocol = AlamofireServiceConfig(maxNumberRequest: 100, timeoutInterval: 60, additionalHeadersForRequest: [:], allowCellularAccess: true)) {
+        self.session = session
         self.config = config
-        session.sessionConfiguration.httpAdditionalHeaders = config.additionalHeadersForRequest
-        session.sessionConfiguration.allowsCellularAccess = config.allowCellularAccess
-        session.sessionConfiguration.httpMaximumConnectionsPerHost = config.maxNumberRequest
-        session.sessionConfiguration.timeoutIntervalForRequest = config.timeoutInterval
+        self.session.sessionConfiguration.httpAdditionalHeaders = config.additionalHeadersForRequest
+        self.session.sessionConfiguration.allowsCellularAccess = config.allowCellularAccess
+        self.session.sessionConfiguration.httpMaximumConnectionsPerHost = config.maxNumberRequest
+        self.session.sessionConfiguration.timeoutIntervalForRequest = config.timeoutInterval
     }
     
     func cancel(){
@@ -220,7 +241,14 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                     value = responseStr
                 }
             case .failure(let error):
-                value = error.localizedDescription
+                let isServerTrustEvaluationError =
+                        error.asAFError?.isServerTrustEvaluationError ?? false
+                if isServerTrustEvaluationError {
+                    value = "Certificate Pinning error"
+                }
+                else {
+                    value = error.localizedDescription
+                }
             }
             
             if code >= 200 && code <= 300 {
@@ -333,10 +361,18 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                     }
                 }
             case .failure(let error):
+                let isServerTrustEvaluationError =
+                        error.asAFError?.isServerTrustEvaluationError ?? false
                 var errorDescription = "Alamofire throw error"
-                if let AFerrorDescription = error.errorDescription {
-                    errorDescription = AFerrorDescription
+                if isServerTrustEvaluationError {
+                    errorDescription = "Certificate Pinning error"
                 }
+                else {
+                    if let AFerrorDescription = error.errorDescription {
+                        errorDescription = AFerrorDescription
+                    }
+                }
+                
                 let errorData = ErrorData.init(code: 9999, value: errorDescription, requestInfo: requestInfo)
                 DispatchQueue.main.async {
                     completionHandler(errorData, nil)

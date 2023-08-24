@@ -8,11 +8,15 @@
 import Foundation
 
 class ConfigModel: Decodable {
-    var baseRequestURL: String = ""
-    var uploadImageURL: String = ""
+    var baseRequestDomain: String?
+    var baseRequestScheme: String?
+    var baseRequestPortNumber: Int?
+    var uploadImagePath: String?
     
     enum CodingKeys: String, CodingKey {
-        case baseRequestURL = "baseRequestURL"
-        case uploadImageURL = "uploadImageURL"
+        case baseRequestDomain = "baseRequestDomain"
+        case baseRequestScheme = "baseRequestScheme"
+        case baseRequestPortNumber = "baseRequestPortNumber"
+        case uploadImagePath = "uploadImagePath"
     }
 }

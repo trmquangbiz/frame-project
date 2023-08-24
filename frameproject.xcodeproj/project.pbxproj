@@ -123,6 +123,8 @@
 		BBC048712A9731B000C01289 /* EnvironmentConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048702A9731B000C01289 /* EnvironmentConfigurationProtocol.swift */; };
 		BBC048732A97345100C01289 /* Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBC048722A97345100C01289 /* Production.plist */; };
 		BBC048752A9736A500C01289 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048742A9736A500C01289 /* JSONDecoder.swift */; };
+		BBC048772A97882100C01289 /* Certificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048762A97882100C01289 /* Certificate.swift */; };
+		BBC0487B2A979AB200C01289 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0487A2A979AB200C01289 /* UIImageView.swift */; };
 		BBD85F6B29516EDE0019AD4D /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F6A29516EDE0019AD4D /* TestObject.swift */; };
 		BBD85F6D295462690019AD4D /* GlobalStatusVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */; };
 		BBD85F71295463020019AD4D /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F70295463020019AD4D /* NSBundle+Language.m */; };
@@ -279,6 +281,8 @@
 		BBC048702A9731B000C01289 /* EnvironmentConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfigurationProtocol.swift; sourceTree = "<group>"; };
 		BBC048722A97345100C01289 /* Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Production.plist; sourceTree = "<group>"; };
 		BBC048742A9736A500C01289 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
+		BBC048762A97882100C01289 /* Certificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificate.swift; sourceTree = "<group>"; };
+		BBC0487A2A979AB200C01289 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		BBD85F6A29516EDE0019AD4D /* TestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
 		BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStatusVariable.swift; sourceTree = "<group>"; };
 		BBD85F6F295463020019AD4D /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
@@ -417,6 +421,7 @@
 				BB4E369828BF29CB002C27A7 /* ImagePathInfo.swift */,
 				BB4E369B28BF2E47002C27A7 /* NetworkManager.swift */,
 				BB809BDE2907D44200D123CD /* NetworkManagerUtilities.swift */,
+				BBC048762A97882100C01289 /* Certificate.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 				BBAEE5142A8B84F000BE47F7 /* UITableView.swift */,
 				BBC0486E2A972BCC00C01289 /* Encodable.swift */,
 				BBC048742A9736A500C01289 /* JSONDecoder.swift */,
+				BBC0487A2A979AB200C01289 /* UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 		BB68DDAD2A2502810095AFD8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BBC048792A9788CD00C01289 /* Certificates */,
 				BB68DDAE2A2502940095AFD8 /* Font */,
 			);
 			path = Resources;
@@ -789,6 +796,13 @@
 				BBC047E22A97158700C01289 /* Development.plist */,
 			);
 			path = ConfigPList;
+			sourceTree = "<group>";
+		};
+		BBC048792A9788CD00C01289 /* Certificates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Certificates;
 			sourceTree = "<group>";
 		};
 		BBD85F6E295462CE0019AD4D /* NSBundle+Language */ = {
@@ -1035,6 +1049,7 @@
 				BBAD312E2A7BDD4E0082247B /* UtilityRouter.swift in Sources */,
 				BB06E2B3289528CB00172F1E /* ObservingSelectorInfo.swift in Sources */,
 				BBAD31072A7400CA0082247B /* SmartObservable.swift in Sources */,
+				BBC048772A97882100C01289 /* Certificate.swift in Sources */,
 				BBAD310F2A74B83B0082247B /* SmartObservableProtocol.swift in Sources */,
 				BBA8DE32292724C800BD9E45 /* UrlRouted.swift in Sources */,
 				BB61DF1B28A3EAA7006F2E63 /* ShowHideView.swift in Sources */,
@@ -1043,6 +1058,7 @@
 				BBAD31202A7BB62A0082247B /* SampleWireFrameProtocol.swift in Sources */,
 				BB769EF12902B8B2000D5F1D /* EnvironmentConfiguration.swift in Sources */,
 				BBD85F762954686C0019AD4D /* AuthenticationService.swift in Sources */,
+				BBC0487B2A979AB200C01289 /* UIImageView.swift in Sources */,
 				BBA8DE30292724C800BD9E45 /* String+Extension.swift in Sources */,
 				BB06E2C12895845700172F1E /* UIView.swift in Sources */,
 				BB06E2D22896324D00172F1E /* DesignSystemView.swift in Sources */,
