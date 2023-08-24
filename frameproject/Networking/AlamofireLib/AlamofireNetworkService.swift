@@ -241,7 +241,14 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                     value = responseStr
                 }
             case .failure(let error):
-                value = error.localizedDescription
+                let isServerTrustEvaluationError =
+                        error.asAFError?.isServerTrustEvaluationError ?? false
+                if isServerTrustEvaluationError {
+                    value = "Certificate Pinning error"
+                }
+                else {
+                    value = error.localizedDescription
+                }
             }
             
             if code >= 200 && code <= 300 {
@@ -354,10 +361,18 @@ class AlamofireNetworkService: NetworkServiceProtocol {
                     }
                 }
             case .failure(let error):
+                let isServerTrustEvaluationError =
+                        error.asAFError?.isServerTrustEvaluationError ?? false
                 var errorDescription = "Alamofire throw error"
-                if let AFerrorDescription = error.errorDescription {
-                    errorDescription = AFerrorDescription
+                if isServerTrustEvaluationError {
+                    errorDescription = "Certificate Pinning error"
                 }
+                else {
+                    if let AFerrorDescription = error.errorDescription {
+                        errorDescription = AFerrorDescription
+                    }
+                }
+                
                 let errorData = ErrorData.init(code: 9999, value: errorDescription, requestInfo: requestInfo)
                 DispatchQueue.main.async {
                     completionHandler(errorData, nil)
