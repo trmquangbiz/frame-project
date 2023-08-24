@@ -12,7 +12,7 @@ class Configuration {
         var instance = Configuration()
         return instance
     }()
-    var environmentConfig: EnvironmentConfiguration
+    var environmentConfig: EnvironmentConfigurationProtocol
     
     var baseRequestURL: String {
         get {
@@ -27,9 +27,9 @@ class Configuration {
     
     init () {
         #if DEBUG
-            environmentConfig = DevelopmentEnvironmentConfiguration()
+            environmentConfig = EnvironmentConfiguration.init(configFileName: "Development")
         #else
-            environmentConfig = ProductionEnvironmentConfiguration()
+            environmentConfig = EnvironmentConfiguration.init(configFileName: "Production")
         #endif
     }
 }

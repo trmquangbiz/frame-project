@@ -62,8 +62,6 @@
 		BB769EED2902B78F000D5F1D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB769EEC2902B78F000D5F1D /* Configuration.swift */; };
 		BB769EEF2902B7A8000D5F1D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB769EEE2902B7A8000D5F1D /* Constant.swift */; };
 		BB769EF12902B8B2000D5F1D /* EnvironmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB769EF02902B8B2000D5F1D /* EnvironmentConfiguration.swift */; };
-		BB769EF32902BB71000D5F1D /* DevelopmentEnvironmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB769EF22902BB71000D5F1D /* DevelopmentEnvironmentConfiguration.swift */; };
-		BB769EF52902BB80000D5F1D /* ProductionEnvironmentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB769EF42902BB80000D5F1D /* ProductionEnvironmentConfiguration.swift */; };
 		BB809BD229069F8900D123CD /* AlamofireNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB809BD129069F8900D123CD /* AlamofireNetworkService.swift */; };
 		BB809BD92906AB1900D123CD /* AlamofireServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB809BD82906AB1900D123CD /* AlamofireServiceConfig.swift */; };
 		BB809BDD2907C2E300D123CD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB809BDC2907C2E300D123CD /* String.swift */; };
@@ -119,6 +117,12 @@
 		BBC047DC2A91A99900C01289 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBC047DB2A91A99900C01289 /* GoogleService-Info.plist */; };
 		BBC047DE2A91ADFF00C01289 /* ExpirePolicyRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC047DD2A91ADFF00C01289 /* ExpirePolicyRealmObject.swift */; };
 		BBC047E02A91B15400C01289 /* MigrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC047DF2A91B15400C01289 /* MigrationService.swift */; };
+		BBC047E32A97158800C01289 /* Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBC047E22A97158700C01289 /* Development.plist */; };
+		BBC0486D2A972ABB00C01289 /* ConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0486C2A972ABB00C01289 /* ConfigModel.swift */; };
+		BBC0486F2A972BCC00C01289 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0486E2A972BCC00C01289 /* Encodable.swift */; };
+		BBC048712A9731B000C01289 /* EnvironmentConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048702A9731B000C01289 /* EnvironmentConfigurationProtocol.swift */; };
+		BBC048732A97345100C01289 /* Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = BBC048722A97345100C01289 /* Production.plist */; };
+		BBC048752A9736A500C01289 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048742A9736A500C01289 /* JSONDecoder.swift */; };
 		BBD85F6B29516EDE0019AD4D /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F6A29516EDE0019AD4D /* TestObject.swift */; };
 		BBD85F6D295462690019AD4D /* GlobalStatusVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */; };
 		BBD85F71295463020019AD4D /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F70295463020019AD4D /* NSBundle+Language.m */; };
@@ -212,8 +216,6 @@
 		BB769EEC2902B78F000D5F1D /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		BB769EEE2902B7A8000D5F1D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BB769EF02902B8B2000D5F1D /* EnvironmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfiguration.swift; sourceTree = "<group>"; };
-		BB769EF22902BB71000D5F1D /* DevelopmentEnvironmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopmentEnvironmentConfiguration.swift; sourceTree = "<group>"; };
-		BB769EF42902BB80000D5F1D /* ProductionEnvironmentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionEnvironmentConfiguration.swift; sourceTree = "<group>"; };
 		BB809BD129069F8900D123CD /* AlamofireNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkService.swift; sourceTree = "<group>"; };
 		BB809BD82906AB1900D123CD /* AlamofireServiceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireServiceConfig.swift; sourceTree = "<group>"; };
 		BB809BDC2907C2E300D123CD /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -271,6 +273,12 @@
 		BBC047DB2A91A99900C01289 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BBC047DD2A91ADFF00C01289 /* ExpirePolicyRealmObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpirePolicyRealmObject.swift; sourceTree = "<group>"; };
 		BBC047DF2A91B15400C01289 /* MigrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationService.swift; sourceTree = "<group>"; };
+		BBC047E22A97158700C01289 /* Development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Development.plist; sourceTree = "<group>"; };
+		BBC0486C2A972ABB00C01289 /* ConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigModel.swift; sourceTree = "<group>"; };
+		BBC0486E2A972BCC00C01289 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
+		BBC048702A9731B000C01289 /* EnvironmentConfigurationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfigurationProtocol.swift; sourceTree = "<group>"; };
+		BBC048722A97345100C01289 /* Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Production.plist; sourceTree = "<group>"; };
+		BBC048742A9736A500C01289 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
 		BBD85F6A29516EDE0019AD4D /* TestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
 		BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStatusVariable.swift; sourceTree = "<group>"; };
 		BBD85F6F295463020019AD4D /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
@@ -460,6 +468,8 @@
 				BBAEE50C2A8B7CCB00BE47F7 /* UILabel.swift */,
 				BBAEE50E2A8B837300BE47F7 /* UIScrollView.swift */,
 				BBAEE5142A8B84F000BE47F7 /* UITableView.swift */,
+				BBC0486E2A972BCC00C01289 /* Encodable.swift */,
+				BBC048742A9736A500C01289 /* JSONDecoder.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -618,13 +628,14 @@
 		BB769EEB2902B767000D5F1D /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				BBC047E12A97156A00C01289 /* ConfigPList */,
 				BB769EEC2902B78F000D5F1D /* Configuration.swift */,
 				BB769EEE2902B7A8000D5F1D /* Constant.swift */,
 				BB769EF02902B8B2000D5F1D /* EnvironmentConfiguration.swift */,
-				BB769EF22902BB71000D5F1D /* DevelopmentEnvironmentConfiguration.swift */,
-				BB769EF42902BB80000D5F1D /* ProductionEnvironmentConfiguration.swift */,
 				BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */,
 				BBD85F752954686C0019AD4D /* AuthenticationService.swift */,
+				BBC0486C2A972ABB00C01289 /* ConfigModel.swift */,
+				BBC048702A9731B000C01289 /* EnvironmentConfigurationProtocol.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -769,6 +780,15 @@
 				BBAEE51E2A8B865E00BE47F7 /* SampleListPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BBC047E12A97156A00C01289 /* ConfigPList */ = {
+			isa = PBXGroup;
+			children = (
+				BBC048722A97345100C01289 /* Production.plist */,
+				BBC047E22A97158700C01289 /* Development.plist */,
+			);
+			path = ConfigPList;
 			sourceTree = "<group>";
 		};
 		BBD85F6E295462CE0019AD4D /* NSBundle+Language */ = {
@@ -918,10 +938,12 @@
 				BBC047DC2A91A99900C01289 /* GoogleService-Info.plist in Resources */,
 				BB06E2BB2895342200172F1E /* Sample.storyboard in Resources */,
 				BB68DDC12A2502C70095AFD8 /* SourceSansPro-Light.otf in Resources */,
+				BBC047E32A97158800C01289 /* Development.plist in Resources */,
 				BB68DDC42A2502C70095AFD8 /* SourceSansPro-BoldIt.otf in Resources */,
 				BB68DDC72A2502C70095AFD8 /* SourceSansPro-It.otf in Resources */,
 				BB06E2782893D10200172F1E /* Main.storyboard in Resources */,
 				BB68DDC62A2502C70095AFD8 /* SourceSansPro-Black.otf in Resources */,
+				BBC048732A97345100C01289 /* Production.plist in Resources */,
 				BB68DDC22A2502C70095AFD8 /* SourceSansPro-BlackIt.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1015,8 +1037,8 @@
 				BBAD31072A7400CA0082247B /* SmartObservable.swift in Sources */,
 				BBAD310F2A74B83B0082247B /* SmartObservableProtocol.swift in Sources */,
 				BBA8DE32292724C800BD9E45 /* UrlRouted.swift in Sources */,
-				BB769EF32902BB71000D5F1D /* DevelopmentEnvironmentConfiguration.swift in Sources */,
 				BB61DF1B28A3EAA7006F2E63 /* ShowHideView.swift in Sources */,
+				BBC0486F2A972BCC00C01289 /* Encodable.swift in Sources */,
 				BB06E2752893D10200172F1E /* ViewController.swift in Sources */,
 				BBAD31202A7BB62A0082247B /* SampleWireFrameProtocol.swift in Sources */,
 				BB769EF12902B8B2000D5F1D /* EnvironmentConfiguration.swift in Sources */,
@@ -1065,17 +1087,19 @@
 				BBA8DE4329272D4500BD9E45 /* ObservableArray.swift in Sources */,
 				BB61DF2628A75F08006F2E63 /* NetworkServiceConfig.swift in Sources */,
 				BBAD31242A7BB88D0082247B /* SamplePresenterProtocol.swift in Sources */,
-				BB769EF52902BB80000D5F1D /* ProductionEnvironmentConfiguration.swift in Sources */,
 				BBAEE5072A8B767F00BE47F7 /* TableViewCell.swift in Sources */,
 				BBD85F71295463020019AD4D /* NSBundle+Language.m in Sources */,
 				BB4E369728BF2529002C27A7 /* DataType.swift in Sources */,
 				BBAEE5052A8B347100BE47F7 /* TableView.swift in Sources */,
+				BBC048752A9736A500C01289 /* JSONDecoder.swift in Sources */,
 				BBAD310D2A74AFBD0082247B /* SmartLocalObservable.swift in Sources */,
 				BB95AC652905C18200F4653E /* Dictionary.swift in Sources */,
 				BBFB0C4129696D57005EF628 /* ObservingBlockInfo.swift in Sources */,
+				BBC0486D2A972ABB00C01289 /* ConfigModel.swift in Sources */,
 				BB06E2CF28958CC500172F1E /* Font.swift in Sources */,
 				BBAEE51F2A8B865E00BE47F7 /* SampleListPresenter.swift in Sources */,
 				BB61DF0C28A0F52C006F2E63 /* StandardNSObject.swift in Sources */,
+				BBC048712A9731B000C01289 /* EnvironmentConfigurationProtocol.swift in Sources */,
 				BB809BE1290BD72600D123CD /* APIServiceManager.swift in Sources */,
 				BBA8DE2D292724C800BD9E45 /* NSString+MD5Addition.m in Sources */,
 				BBA8DE2F292724C800BD9E45 /* UrlPattern.swift in Sources */,
