@@ -11,6 +11,7 @@ class SampleListViewController: ViewController {
     
 
     var presenter: SampleListPresenterProtocol!
+    let searchTxtField: UITextField = UITextField()
     var sampleObjectList: [SampleNameCellModel] {
         get {
             return presenter.sampleObjectList

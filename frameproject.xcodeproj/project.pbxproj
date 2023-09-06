@@ -125,6 +125,10 @@
 		BBC048752A9736A500C01289 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048742A9736A500C01289 /* JSONDecoder.swift */; };
 		BBC048772A97882100C01289 /* Certificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048762A97882100C01289 /* Certificate.swift */; };
 		BBC0487B2A979AB200C01289 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0487A2A979AB200C01289 /* UIImageView.swift */; };
+		BBC048892AA8261400C01289 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048882AA8261400C01289 /* User.swift */; };
+		BBC0488C2AA828E200C01289 /* AuthenticationRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0488B2AA828E200C01289 /* AuthenticationRequestBuilder.swift */; };
+		BBC0488F2AA8292700C01289 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0488E2AA8292700C01289 /* AuthenticationRequest.swift */; };
+		BBC048932AA8567500C01289 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048922AA8567500C01289 /* Keychain.swift */; };
 		BBD85F6B29516EDE0019AD4D /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F6A29516EDE0019AD4D /* TestObject.swift */; };
 		BBD85F6D295462690019AD4D /* GlobalStatusVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */; };
 		BBD85F71295463020019AD4D /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD85F70295463020019AD4D /* NSBundle+Language.m */; };
@@ -283,6 +287,10 @@
 		BBC048742A9736A500C01289 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
 		BBC048762A97882100C01289 /* Certificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificate.swift; sourceTree = "<group>"; };
 		BBC0487A2A979AB200C01289 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		BBC048882AA8261400C01289 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BBC0488B2AA828E200C01289 /* AuthenticationRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequestBuilder.swift; sourceTree = "<group>"; };
+		BBC0488E2AA8292700C01289 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
+		BBC048922AA8567500C01289 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		BBD85F6A29516EDE0019AD4D /* TestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
 		BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStatusVariable.swift; sourceTree = "<group>"; };
 		BBD85F6F295463020019AD4D /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
@@ -487,6 +495,7 @@
 				BB06E2A72893D6ED00172F1E /* Debugger.swift */,
 				BB06E2AF28951AAE00172F1E /* ViewUtility.swift */,
 				BBD85F73295467360019AD4D /* Utils.swift */,
+				BBC048922AA8567500C01289 /* Keychain.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -494,10 +503,12 @@
 		BB06E2AB289518F300172F1E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BBC0488A2AA8272000C01289 /* RequestBuilder */,
 				BB06E2B42895300600172F1E /* SampleNSObjectClass.swift */,
 				BBD85F6A29516EDE0019AD4D /* TestObject.swift */,
 				BBAD310A2A7405F70082247B /* SampleMappable.swift */,
 				BBAD31122A74D5BB0082247B /* SampleObject.swift */,
+				BBC048882AA8261400C01289 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -640,7 +651,6 @@
 				BB769EEE2902B7A8000D5F1D /* Constant.swift */,
 				BB769EF02902B8B2000D5F1D /* EnvironmentConfiguration.swift */,
 				BBD85F6C295462690019AD4D /* GlobalStatusVariable.swift */,
-				BBD85F752954686C0019AD4D /* AuthenticationService.swift */,
 				BBC0486C2A972ABB00C01289 /* ConfigModel.swift */,
 				BBC048702A9731B000C01289 /* EnvironmentConfigurationProtocol.swift */,
 			);
@@ -661,6 +671,7 @@
 			children = (
 				BBA8DE19292722D200BD9E45 /* LSLocationManager.swift */,
 				BBC047DF2A91B15400C01289 /* MigrationService.swift */,
+				BBD85F752954686C0019AD4D /* AuthenticationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -803,6 +814,23 @@
 			children = (
 			);
 			path = Certificates;
+			sourceTree = "<group>";
+		};
+		BBC0488A2AA8272000C01289 /* RequestBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				BBC0488D2AA8291300C01289 /* AuthenticationRequest */,
+			);
+			path = RequestBuilder;
+			sourceTree = "<group>";
+		};
+		BBC0488D2AA8291300C01289 /* AuthenticationRequest */ = {
+			isa = PBXGroup;
+			children = (
+				BBC0488B2AA828E200C01289 /* AuthenticationRequestBuilder.swift */,
+				BBC0488E2AA8292700C01289 /* AuthenticationRequest.swift */,
+			);
+			path = AuthenticationRequest;
 			sourceTree = "<group>";
 		};
 		BBD85F6E295462CE0019AD4D /* NSBundle+Language */ = {
@@ -1090,6 +1118,7 @@
 				BBAEE5152A8B84F000BE47F7 /* UITableView.swift in Sources */,
 				BBA8DE3B2927258E00BD9E45 /* MotionKit.swift in Sources */,
 				BBAD31032A73F2570082247B /* APIPath.swift in Sources */,
+				BBC0488C2AA828E200C01289 /* AuthenticationRequestBuilder.swift in Sources */,
 				BBD85F74295467360019AD4D /* Utils.swift in Sources */,
 				BBAEE51D2A8B865800BE47F7 /* SampleListPresenterProtocol.swift in Sources */,
 				BBE4B87028B0F54E00ADDC4C /* NetworkingParam.swift in Sources */,
@@ -1098,6 +1127,7 @@
 				BB769EED2902B78F000D5F1D /* Configuration.swift in Sources */,
 				BB06E2C528958A0700172F1E /* UIColor.swift in Sources */,
 				BB809BDD2907C2E300D123CD /* String.swift in Sources */,
+				BBC0488F2AA8292700C01289 /* AuthenticationRequest.swift in Sources */,
 				BBA8DE1A292722D200BD9E45 /* LSLocationManager.swift in Sources */,
 				BBE4B87528B101CE00ADDC4C /* ResponseData.swift in Sources */,
 				BBA8DE4329272D4500BD9E45 /* ObservableArray.swift in Sources */,
@@ -1108,7 +1138,9 @@
 				BB4E369728BF2529002C27A7 /* DataType.swift in Sources */,
 				BBAEE5052A8B347100BE47F7 /* TableView.swift in Sources */,
 				BBC048752A9736A500C01289 /* JSONDecoder.swift in Sources */,
+				BBC048932AA8567500C01289 /* Keychain.swift in Sources */,
 				BBAD310D2A74AFBD0082247B /* SmartLocalObservable.swift in Sources */,
+				BBC048892AA8261400C01289 /* User.swift in Sources */,
 				BB95AC652905C18200F4653E /* Dictionary.swift in Sources */,
 				BBFB0C4129696D57005EF628 /* ObservingBlockInfo.swift in Sources */,
 				BBC0486D2A972ABB00C01289 /* ConfigModel.swift in Sources */,

@@ -75,8 +75,9 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
         currentPagination = nil
         APIServiceManager.shared.getListObject(endPoint: remotePath.path,
                                                queryParams: queryParams,
-                                               objectType: E.self) {[weak self] isSuccess, statusCode, responseObject, errorMsg, pagination  in
-            if isSuccess {
+                                               objectType: E.self) {[weak self] response  in
+            switch response {
+            case .success(statusCode: _, responseObject: let responseObject, pagination: let pagination):
                 if let weakSelf = self {
                     weakSelf.currentPagination = pagination
                 }
@@ -125,8 +126,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                         completion()
                     }
                 }
-            }
-            else {
+            case .fail(statusCode: let statusCode, errorMsg: let errorMsg):
                 if statusCode == 404 {
                     if let weakSelf = self, let list = weakSelf.obj{
                         let realm = try! Realm()
@@ -168,8 +168,9 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
         
         APIServiceManager.shared.getListObject(endPoint: remotePath.path,
                                                queryParams: newQueryParams,
-                                               objectType: E.self) {[weak self] isSuccess, statusCode, responseObject, errorMsg, pagination in
-            if isSuccess {
+                                               objectType: E.self) {[weak self] response in
+            switch response {
+            case .success(statusCode: _, responseObject: let responseObject, pagination: let pagination):
                 if let weakSelf = self {
                     weakSelf.currentPagination = pagination
                 }
@@ -206,8 +207,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                         completion()
                     }
                 }
-            }
-            else {
+            case .fail(statusCode: let statusCode, errorMsg: let errorMsg):
                 if statusCode == 404 {
                     if let completion = emptyCompletion {
                         completion()
@@ -218,6 +218,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                         completion(statusCode, errorMsg)
                     }
                 }
+                
             }
         }
         

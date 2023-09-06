@@ -25,7 +25,7 @@ class APIServiceManager {
     
     private func setAuthorizationTokenFrom(json: [String:AnyObject]) {
         if let token = json[Constant.kAccessToken] as? String {
-            UserDefaults.standard.set(token, forKey: Constant.kAccessToken)
+            AuthenticationService.shared.setAccessToken(token)
         }
     }
     
@@ -80,7 +80,7 @@ class APIServiceManager {
     ///
     ///
     private func getAuthorizationToken() -> String? {
-        return AuthenticationService.accessToken
+        return AuthenticationService.shared.accessToken
     }
     
     func get(endPoint: String,
@@ -195,12 +195,27 @@ extension APIServiceManager: NetworkManagerDelegate {
 }
 
 extension APIServiceManager {
+    enum Response<T> {
+        case success(statusCode: Int, responseObject: T?)
+        case fail(statusCode: Int, errorMsg: Any?)
+        
+    }
+    
+    enum ResponseNoMapping {
+        case success(statusCode: Int)
+        case fail(statusCode: Int, errorMsg: Any?)
+    }
+    enum ResponseList<T> {
+        case success(statusCode: Int, responseObject: [T]?, pagination: [String: Any]?)
+        case fail(statusCode: Int, errorMsg: Any?)
+    }
+    
     func getObject<T: Mappable>(endPoint: String,
                                 queryParams: [String: Any]?,
                                 extraHeaders: [String: String]? = nil,
                                 forAuthenticate: Bool = false,
                                 objectType: T.Type?,
-                                completion: @escaping ((_ isSuccess: Bool, _ statusCode: Int, _ responseObject: T?, _ errorMsg: Any?)->()),
+                                completion: @escaping ((Response<T>) -> ()),
                                 functionName: String = #function,
                                 file: String = #file,
                                 fileID: String = #fileID,
@@ -214,17 +229,17 @@ extension APIServiceManager {
                let value = responsePackage.value as? [String: Any],
                let data = value[Constant.kData] as? [String: Any] {
                 if let obj = T.init(JSON: data) {
-                    completion(true, responsePackage.code, obj, nil)
+                    completion(.success(statusCode: responsePackage.code, responseObject: obj))
                 }
                 else {
-                    completion(false, 9999, nil, "Response success (\(responsePackage.code)) but mapping fail")
+                    completion(.fail(statusCode: 9999, errorMsg: "Response success (\(responsePackage.code)) but mapping fail"))
                 }
             }
             else if let errorPackage = errorPackage {
-                completion(false, errorPackage.code, nil, errorPackage.value)
+                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
             }
             else {
-                completion(false, 9999, nil, "No response from both responsePackage and errorPackage")
+                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
             }
         },
             functionName: functionName,
@@ -240,7 +255,7 @@ extension APIServiceManager {
                                     extraHeaders: [String: String]? = nil,
                                     forAuthenticate: Bool = false,
                                     objectType: T.Type?,
-                                    completion: @escaping ((_ isSuccess: Bool, _ statusCode: Int, _ responseObject: [T]?, _ errorMsg: Any?, _ pagination: [String: Any]?)->()),
+                                    completion: @escaping ((ResponseList<T>)->()),
                                     functionName: String = #function,
                                     file: String = #file,
                                     fileID: String = #fileID,
@@ -264,15 +279,14 @@ extension APIServiceManager {
                 if let pagination = value[Constant.kPagination] as? [String: Any] {
                     paginationDict = pagination
                 }
-               
                 
-                completion(true, responsePackage.code, objList, nil, paginationDict)
+                completion(.success(statusCode: responsePackage.code, responseObject: objList, pagination: paginationDict))
             }
             else if let errorPackage = errorPackage {
-                completion(false, errorPackage.code, nil, errorPackage.value, nil)
+                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
             }
             else {
-                completion(false, 9999, nil, "No response from both responsePackage and errorPackage", nil)
+                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
             }
             
         },
@@ -283,14 +297,15 @@ extension APIServiceManager {
     }
     
     func postAndResponseObject<T: Mappable>(endPoint: String,
-                                  requestBody: [String: Any]?,
-                                  extraHeaders: [String: String]? = nil,
-                                  forAuthenticate: Bool = false,
-                                  completion: @escaping ((_ isSuccess: Bool, _ statusCode: Int, _ responseObject: T?, _ errorMsg: Any?)->()),
-                                  functionName: String = #function,
-                                  file: String = #file,
-                                  fileID: String = #fileID,
-                                  line: Int = #line) {
+                                            requestBody: [String: Any]?,
+                                            extraHeaders: [String: String]? = nil,
+                                            forAuthenticate: Bool = false,
+                                            objectType: T.Type,
+                                            completion: @escaping ((Response<T>)->()),
+                                            functionName: String = #function,
+                                            file: String = #file,
+                                            fileID: String = #fileID,
+                                            line: Int = #line) {
         post(endPoint: endPoint,
              requestBody: requestBody,
              extraHeaders: extraHeaders,
@@ -300,17 +315,17 @@ extension APIServiceManager {
                let value = responsePackage.value as? [String: Any],
                let data = value[Constant.kData] as? [String: Any] {
                 if let obj = T.init(JSON: data) {
-                    completion(true, responsePackage.code, obj, nil)
+                    completion(.success(statusCode: responsePackage.code, responseObject: obj))
                 }
                 else {
-                    completion(false, 9999, nil, "Response success (\(responsePackage.code)) but mapping fail")
+                    completion(.success(statusCode: responsePackage.code, responseObject: nil))
                 }
             }
             else if let errorPackage = errorPackage {
-                completion(false, errorPackage.code, nil, errorPackage.value)
+                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
             }
             else {
-                completion(false, 9999, nil, "No response from both responsePackage and errorPackage")
+                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
             }
         },
              functionName: functionName,
@@ -324,7 +339,8 @@ extension APIServiceManager {
                                                 requestBody: [String: Any]?,
                                                 extraHeaders: [String: String]? = nil,
                                                 forAuthenticate: Bool = false,
-                                                completion: @escaping ((_ isSuccess: Bool, _ statusCode: Int, _ responseObject: [T]?, _ errorMsg: Any?)->()),
+                                                objectType: T.Type,
+                                                completion: @escaping ((ResponseList<T>)->()),
                                                 functionName: String = #function,
                                                 file: String = #file,
                                                 fileID: String = #fileID,
@@ -343,13 +359,13 @@ extension APIServiceManager {
                         objList.append(obj)
                     }
                 }
-                completion(true, responsePackage.code, objList, nil)
+                completion(.success(statusCode: responsePackage.code, responseObject: objList, pagination: nil))
             }
             else if let errorPackage = errorPackage {
-                completion(false, errorPackage.code, nil, errorPackage.value)
+                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
             }
             else {
-                completion(false, 9999, nil, "No response from both responsePackage and errorPackage")
+                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
             }
         },
              functionName: functionName,
@@ -363,12 +379,12 @@ extension APIServiceManager {
                                   requestBody: [String: Any]?,
                                   extraHeaders: [String: String]? = nil,
                                   forAuthenticate: Bool = false,
-                                  completion: @escaping ((_ isSuccess: Bool, _ statusCode: Int, _ responseObject: T?, _ errorMsg: Any?)->()),
+                                  completion: @escaping ((Response<T>)->()),
                                   functionName: String = #function,
                                   file: String = #file,
                                   fileID: String = #fileID,
                                   line: Int = #line) {
-        post(endPoint: endPoint,
+        put(endPoint: endPoint,
              requestBody: requestBody,
              extraHeaders: extraHeaders,
              forAuthenticate: forAuthenticate,
@@ -377,17 +393,17 @@ extension APIServiceManager {
                let value = responsePackage.value as? [String: Any],
                let data = value[Constant.kData] as? [String: Any] {
                 if let obj = T.init(JSON: data) {
-                    completion(true, responsePackage.code, obj, nil)
+                    completion(.success(statusCode: responsePackage.code, responseObject: obj))
                 }
                 else {
-                    completion(false, 9999, nil, "Response success (\(responsePackage.code)) but mapping fail")
+                    completion(.success(statusCode: responsePackage.code, responseObject: nil))
                 }
             }
             else if let errorPackage = errorPackage {
-                completion(false, errorPackage.code, nil, errorPackage.value)
+                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
             }
             else {
-                completion(false, 9999, nil, "No response from both responsePackage and errorPackage")
+                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
             }
         },
              functionName: functionName,
@@ -401,12 +417,12 @@ extension APIServiceManager {
                                                 requestBody: [String: Any]?,
                                                 extraHeaders: [String: String]? = nil,
                                                 forAuthenticate: Bool = false,
-                                                completion: @escaping ((_ isSuccess: Bool, _ statusCode: Int, _ responseObject: [T]?, _ errorMsg: Any?)->()),
+                                                completion: @escaping ((ResponseList<T>)->()),
                                                 functionName: String = #function,
                                                 file: String = #file,
                                                 fileID: String = #fileID,
                                                 line: Int = #line) {
-        post(endPoint: endPoint,
+        put(endPoint: endPoint,
              requestBody: requestBody,
              extraHeaders: extraHeaders,
              forAuthenticate: forAuthenticate,
@@ -420,13 +436,13 @@ extension APIServiceManager {
                         objList.append(obj)
                     }
                 }
-                completion(true, responsePackage.code, objList, nil)
+                completion(.success(statusCode: responsePackage.code, responseObject: objList, pagination: nil))
             }
             else if let errorPackage = errorPackage {
-                completion(false, errorPackage.code, nil, errorPackage.value)
+                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
             }
             else {
-                completion(false, 9999, nil, "No response from both responsePackage and errorPackage")
+                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
             }
         },
              functionName: functionName,
@@ -439,7 +455,7 @@ extension APIServiceManager {
     func delete(endPoint: String,
              extraHeaders: [String: String]? = nil,
              forAuthenticate: Bool = false,
-             completion: @escaping ((_ isSuccess: Bool, _ statusCode: Int, _ errorMsg: Any?)->()),
+             completion: @escaping ((ResponseNoMapping)->()),
              functionName: String = #function,
              file: String = #file,
              fileID: String = #fileID,
@@ -449,13 +465,13 @@ extension APIServiceManager {
                forAuthenticate: forAuthenticate,
                completionHandler: { errorPackage, responsePackage in
             if let responsePackage = responsePackage{
-                completion(true, responsePackage.code, nil)
+                completion(.success(statusCode: responsePackage.code))
             }
             else if let errorPackage = errorPackage {
-                completion(false, errorPackage.code, errorPackage.value)
+                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
             }
             else {
-                completion(false, 9999, "No response from both responsePackage and errorPackage")
+                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
             }
         },
                functionName: functionName,

@@ -50,8 +50,11 @@ enum HMACAlgorithm {
     
 }
 extension String {
+    var dataFormat: Data? {
+        return data(using: .utf8)
+    }
     var dictionary: [String: Any]? {
-        if let data = data(using: .utf8) {
+        if let data = dataFormat {
             do {
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]
             } catch {
@@ -122,5 +125,16 @@ extension String {
     }
     func isCorrectPhoneNumberFormat() -> Bool {
         return isMatchWithRegex(regexStr: Constant.phoneNumberFormatRegex)
+    }
+    
+    func toDictionary() -> [String: Any]? {
+        if let data = data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]
+            } catch {
+                Debugger.debug("Convert string to dictionary fail: " + error.localizedDescription)
+            }
+        }
+        return nil
     }
 }
