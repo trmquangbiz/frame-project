@@ -125,9 +125,6 @@
 		BBC048752A9736A500C01289 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048742A9736A500C01289 /* JSONDecoder.swift */; };
 		BBC048772A97882100C01289 /* Certificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048762A97882100C01289 /* Certificate.swift */; };
 		BBC0487B2A979AB200C01289 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0487A2A979AB200C01289 /* UIImageView.swift */; };
-		BBC0487D2AA334AB00C01289 /* SamplePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0487C2AA334AB00C01289 /* SamplePublisher.swift */; };
-		BBC0487F2AA342F700C01289 /* SamplePublisherOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0487E2AA342F700C01289 /* SamplePublisherOutput.swift */; };
-		BBC048812AA383CD00C01289 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048802AA383CD00C01289 /* UITextField.swift */; };
 		BBC048892AA8261400C01289 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC048882AA8261400C01289 /* User.swift */; };
 		BBC0488C2AA828E200C01289 /* AuthenticationRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0488B2AA828E200C01289 /* AuthenticationRequestBuilder.swift */; };
 		BBC0488F2AA8292700C01289 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC0488E2AA8292700C01289 /* AuthenticationRequest.swift */; };
@@ -290,9 +287,6 @@
 		BBC048742A9736A500C01289 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
 		BBC048762A97882100C01289 /* Certificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificate.swift; sourceTree = "<group>"; };
 		BBC0487A2A979AB200C01289 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		BBC0487C2AA334AB00C01289 /* SamplePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePublisher.swift; sourceTree = "<group>"; };
-		BBC0487E2AA342F700C01289 /* SamplePublisherOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePublisherOutput.swift; sourceTree = "<group>"; };
-		BBC048802AA383CD00C01289 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		BBC048882AA8261400C01289 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BBC0488B2AA828E200C01289 /* AuthenticationRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequestBuilder.swift; sourceTree = "<group>"; };
 		BBC0488E2AA8292700C01289 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
@@ -490,7 +484,6 @@
 				BBC0486E2A972BCC00C01289 /* Encodable.swift */,
 				BBC048742A9736A500C01289 /* JSONDecoder.swift */,
 				BBC0487A2A979AB200C01289 /* UIImageView.swift */,
-				BBC048802AA383CD00C01289 /* UITextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -515,8 +508,6 @@
 				BBD85F6A29516EDE0019AD4D /* TestObject.swift */,
 				BBAD310A2A7405F70082247B /* SampleMappable.swift */,
 				BBAD31122A74D5BB0082247B /* SampleObject.swift */,
-				BBC0487C2AA334AB00C01289 /* SamplePublisher.swift */,
-				BBC0487E2AA342F700C01289 /* SamplePublisherOutput.swift */,
 				BBC048882AA8261400C01289 /* User.swift */,
 			);
 			path = Model;
@@ -1079,7 +1070,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBC0487F2AA342F700C01289 /* SamplePublisherOutput.swift in Sources */,
 				BBAEE5172A8B85E500BE47F7 /* SampleListViewController.swift in Sources */,
 				BB4E369C28BF2E47002C27A7 /* NetworkManager.swift in Sources */,
 				BB06E2C32895887F00172F1E /* DesignSystem.swift in Sources */,
@@ -1149,7 +1139,6 @@
 				BBAEE5052A8B347100BE47F7 /* TableView.swift in Sources */,
 				BBC048752A9736A500C01289 /* JSONDecoder.swift in Sources */,
 				BBC048932AA8567500C01289 /* Keychain.swift in Sources */,
-				BBC0487D2AA334AB00C01289 /* SamplePublisher.swift in Sources */,
 				BBAD310D2A74AFBD0082247B /* SmartLocalObservable.swift in Sources */,
 				BBC048892AA8261400C01289 /* User.swift in Sources */,
 				BB95AC652905C18200F4653E /* Dictionary.swift in Sources */,
@@ -1166,7 +1155,6 @@
 				BBD85F6B29516EDE0019AD4D /* TestObject.swift in Sources */,
 				BBA8DE31292724C800BD9E45 /* InfiniteScrollView.swift in Sources */,
 				BBAD310B2A7405F70082247B /* SampleMappable.swift in Sources */,
-				BBC048812AA383CD00C01289 /* UITextField.swift in Sources */,
 				BB06E2AD2895190D00172F1E /* ObservingInfo.swift in Sources */,
 				BBA8DE2E292724C800BD9E45 /* DeviceUID.m in Sources */,
 				BBFB0C4329696E3D005EF628 /* ObservingActionInfo.swift in Sources */,
