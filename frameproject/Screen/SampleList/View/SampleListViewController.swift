@@ -11,6 +11,7 @@ class SampleListViewController: ViewController {
     
 
     var presenter: SampleListPresenterProtocol!
+    let searchTxtField: UITextField = UITextField()
     var sampleObjectList: [SampleNameCellModel] {
         get {
             return presenter.sampleObjectList
@@ -31,6 +32,7 @@ class SampleListViewController: ViewController {
             }
         }
         presenter.viewDidLoad()
+        searchTxtField.textPublisher.
     }
     
     override func setupView() {
