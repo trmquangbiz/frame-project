@@ -45,4 +45,7 @@ class Constant {
     
     static let phoneNumberFormatRegex = "^0?\\d{4,16}$"
     
+    static let kCurrentLoginPhone: String = "kCurrentLoginPhone"
+    static let kCurrentLoginCountryCode: String = "kCurrentLoginCountryCode"
+    
 }

@@ -74,8 +74,27 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
         if let remotePath = remotePath {
             APIServiceManager.shared.getObject(endPoint: remotePath.path,
                                                queryParams: queryParams,
-                                               objectType: T.self) {[weak self] isSuccess, statusCode, responseObject, errorMsg in
-                guard isSuccess else {
+                                               objectType: T.self) {[weak self] response in
+                switch response {
+                case .success(statusCode: _, responseObject: let responseObject):
+                    if var responseObject = responseObject {
+                        if let weakSelf = self, let process = weakSelf.preprocessObject {
+                            responseObject = process(responseObject)
+                        }
+                        let realm = try! Realm()
+                        realm.safeWrite {
+                            realm.add(responseObject, update: .all)
+                        }
+                        if let weakSelf = self {
+                            if weakSelf._obj == nil {
+                                weakSelf.fetchLocal()
+                            }
+                        }
+                    }
+                    if let completion = successCompletion {
+                        completion()
+                    }
+                case .fail(statusCode: let statusCode, errorMsg: let errorMsg):
                     if statusCode == 404 {
                         if let weakSelf = self, let obj = weakSelf._obj {
                             weakSelf._obj = nil
@@ -89,23 +108,6 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
                         completion(statusCode, errorMsg)
                     }
                     return
-                }
-                if var responseObject = responseObject {
-                    if let weakSelf = self, let process = weakSelf.preprocessObject {
-                        responseObject = process(responseObject)
-                    }
-                    let realm = try! Realm()
-                    realm.safeWrite {
-                        realm.add(responseObject, update: .all)
-                    }
-                    if let weakSelf = self {
-                        if weakSelf._obj == nil {
-                            weakSelf.fetchLocal()
-                        }
-                    }
-                }
-                if let completion = successCompletion {
-                    completion()
                 }
             }
         }

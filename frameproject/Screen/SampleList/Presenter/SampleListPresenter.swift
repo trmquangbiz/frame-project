@@ -24,6 +24,8 @@ class SampleListPresenter: SampleListPresenterProtocol {
     }
     
     func viewDidLoad() {
+        AuthenticationService.shared.saveAccountAndPassword(countryCode: "84", phoneNumber: "909054627", password: "01091993")
+        AuthenticationService.shared.fetchAccessToken(successCompletion: nil, failCompletion: nil)
         sampleObservableList = SampleObject.makeSampleListObservableList()
             .subscribe({[weak self] changes in
                 if let weakSelf = self {

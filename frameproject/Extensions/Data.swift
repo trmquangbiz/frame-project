@@ -11,4 +11,8 @@ extension Data {
     var jsonString: String? {
         return String.init(data: self, encoding: .utf8)
     }
+    
+    var string: String? {
+        return String.init(data: self, encoding: .utf8)
+    }
 }

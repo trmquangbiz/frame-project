@@ -32,7 +32,6 @@ class SampleListViewController: ViewController {
             }
         }
         presenter.viewDidLoad()
-        searchTxtField.textPublisher.
     }
     
     override func setupView() {

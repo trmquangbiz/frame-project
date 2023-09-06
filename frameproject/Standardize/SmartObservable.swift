@@ -88,8 +88,21 @@ class SmartObservable<T: Mappable>: SmartObservableProtocol {
         if let remotePath = remotePath {
             APIServiceManager.shared.getObject(endPoint: remotePath.path,
                                                queryParams: queryParams,
-                                               objectType: T.self) {[weak self] isSuccess, statusCode, responseObject, errorMsg in
-                guard isSuccess else {
+                                               objectType: T.self) {[weak self] response in
+                switch response {
+                case .success(statusCode: _, responseObject: let responseObject):
+                    if var responseObject = responseObject {
+                        if let weakSelf = self, let process = weakSelf.preprocessObject {
+                            responseObject = process(responseObject)
+                        }
+                        if let weakSelf = self {
+                            weakSelf.set(obj: responseObject)
+                        }
+                    }
+                    if let completion = successCompletion {
+                        completion()
+                    }
+                case .fail(statusCode: let statusCode, errorMsg: let errorMsg):
                     if statusCode == 404 {
                         if let weakSelf = self {
                             weakSelf._obj = nil
@@ -100,17 +113,7 @@ class SmartObservable<T: Mappable>: SmartObservableProtocol {
                     }
                     return
                 }
-                if var responseObject = responseObject {
-                    if let weakSelf = self, let process = weakSelf.preprocessObject {
-                        responseObject = process(responseObject)
-                    }
-                    if let weakSelf = self {
-                        weakSelf.set(obj: responseObject)
-                    }
-                }
-                if let completion = successCompletion {
-                    completion()
-                }
+
             }
         }
     }
