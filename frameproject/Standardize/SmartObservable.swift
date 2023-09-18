@@ -84,10 +84,11 @@ class SmartObservable<T: Mappable>: SmartObservableProtocol {
     func fetchLocal() {
     }
     
-    func fetchRemote(queryParams: [String: Any]? = nil, onSuccess successCompletion: (()->())? = nil, onFail failCompletion: ((_ errorCode: Int, _ errorMsg: Any?)->())? = nil) {
+    func fetchRemote(queryParams: [String: Any]? = nil, forAuthenticate: Bool, onSuccess successCompletion: (()->())? = nil, onFail failCompletion: ((_ errorCode: Int, _ errorMsg: Any?)->())? = nil) {
         if let remotePath = remotePath {
             APIServiceManager.shared.getObject(endPoint: remotePath.path,
                                                queryParams: queryParams,
+                                               forAuthenticate: forAuthenticate,
                                                objectType: T.self) {[weak self] response in
                 switch response {
                 case .success(statusCode: _, responseObject: let responseObject):

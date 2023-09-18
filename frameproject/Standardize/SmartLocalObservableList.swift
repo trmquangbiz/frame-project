@@ -22,7 +22,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
     var currentPagination: [String: Any]?
     var preprocessReloadedObject: (([E]) -> [E])?
     var preprocessLoadMoreObject: (([E], Int) -> [E])?
-    var networkDataAPIManager: APIServiceManagerProtocol = APIServiceManager()
+    var networkDataAPIManager: APIServiceManagerProtocol = APIServiceManager.shared
     private var notificationToken: NotificationToken?
     
     init(predicate: String?, sortConditions: [RealmSwift.SortDescriptor]) {
@@ -74,9 +74,12 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
             return
         }
         currentPagination = nil
-        APIServiceManager.shared.getListObject(endPoint: remotePath.path,
-                                               queryParams: queryParams,
-                                               objectType: E.self) {[weak self] response  in
+        networkDataAPIManager.getListObject(endPoint: remotePath.path,
+                                            queryParams: queryParams,
+                                            extraHeaders: nil,
+                                            forAuthenticate: false,
+                                            objectType: E.self,
+                                            completion: {[weak self] response  in
             switch response {
             case .success(statusCode: _, responseObject: let responseObject, pagination: let pagination):
                 if let weakSelf = self {
@@ -86,10 +89,8 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                     if let weakSelf = self, let preprocessObject = weakSelf.preprocessReloadedObject {
                         list = preprocessObject(list)
                     }
-                    if let primaryProperty = E._getProperties().first(where: { property in
-                        return property.isPrimary
-                    }) {
-                        let key = primaryProperty.getterName
+                    if let primaryProperty = E.primaryKey() {
+                        let key = primaryProperty
                         var listExistedId: [Any] = []
                         list.forEach { node in
                             if let value = node.value(forKey: key) {
@@ -145,7 +146,11 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                     }
                 }
             }
-        }
+        },
+                                            functionName: #function,
+                                            file: #file,
+                                            fileID: #fileID,
+                                            line: #line)
     }
     
     func loadMore(queryParams: [String : Any]?, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?, onEmpty emptyCompletion: (()->())?) {
@@ -166,10 +171,12 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
             return
         }
         // set pagination query param here
-        
-        APIServiceManager.shared.getListObject(endPoint: remotePath.path,
-                                               queryParams: newQueryParams,
-                                               objectType: E.self) {[weak self] response in
+        networkDataAPIManager.getListObject(endPoint: remotePath.path,
+                                            queryParams: newQueryParams,
+                                            extraHeaders: nil,
+                                            forAuthenticate: false,
+                                            objectType: E.self,
+                                            completion: {[weak self] response in
             switch response {
             case .success(statusCode: _, responseObject: let responseObject, pagination: let pagination):
                 if let weakSelf = self {
@@ -187,9 +194,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                         }
                         list = preprocessObject(list, listCount)
                     }
-                    if let _ = E._getProperties().first(where: { property in
-                        return property.isPrimary
-                    }) {
+                    if let _ = E.primaryKey() {
                         realm.safeWrite {
                             realm.add(list, update: .all)
                         }
@@ -221,8 +226,12 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                 }
                 
             }
-        }
-        
+            
+        },
+                                            functionName: #function,
+                                            file: #file,
+                                            fileID: #fileID,
+                                            line: #line)
     }
     
     func set(remotePath: APIPath) -> Self {
@@ -294,5 +303,3 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
     }
     
 }
-
-var a = SmartLocalObservableList<Results<SampleObject>>(predicate: nil, sortConditions: [])
