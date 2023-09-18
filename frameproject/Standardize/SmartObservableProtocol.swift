@@ -15,6 +15,7 @@ protocol SmartObservableProtocol<T>: AnyObject {
     var subscribeBlock: ((T?)->())? {get set}
     func fetchLocal()
     func fetchRemote(queryParams: [String: Any]?,
+                     forAuthenticate: Bool,
                      onSuccess successCompletion: (()->())?,
                      onFail failCompletion: ((_ errorCode: Int, _ errorMsg: Any?)->())?)
     func set(remotePath: APIPath) -> Self

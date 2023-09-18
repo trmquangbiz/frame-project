@@ -16,6 +16,10 @@ class SampleObject: Object, Mappable, ExpirePolicyRealmObject {
     @Persisted var group: String = ""
     
     @Persisted var addedAt: Date = Date()
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     required convenience init?(map: ObjectMapperMap) {
         self.init()
         guard let _ = map.JSON["id"] as? Int else {
