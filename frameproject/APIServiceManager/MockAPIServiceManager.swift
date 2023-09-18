@@ -10,30 +10,28 @@ import ObjectMapper
 
 class MockAPIServiceManager: APIServiceManagerProtocol {
     let config = Configuration.shared
-    /// Your json file should be in this format Method_{domain}({portNumberIfHave})/endPoint
+    /// Your json file should be in this format Method_{domain}({portNumberIfHave})_endPoint
     ///
-    /// For example: GET_localhost(8080)/samples
+    /// For example: GET_localhost(8080)_samples
     func getJSONFileName(fromEndPoint endPoint: String) -> String {
         guard let baseRequestDomain = config.baseRequestDomain else {
             return ""
         }
         let trimmedEndpoint = endPoint.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        return baseRequestDomain
-        + (config.baseRequestPortNumber != nil ? "(\(config.baseRequestPortNumber!))" : "")
-        + (trimmedEndpoint.count > 0 ? "/\(trimmedEndpoint)" : "")
+        return (baseRequestDomain + (config.baseRequestPortNumber != nil ? "(\(config.baseRequestPortNumber!))" : "") + (trimmedEndpoint.count > 0 ? "/\(trimmedEndpoint)" : "")).replacingOccurrences(of: "/", with: "_")
     }
     
     func getJSON(fileName: String) -> [String: Any]? {
-        guard let path = Bundle.main.path(forResource: fileName, ofType: "json"),
-              let url = URL.init(string: path) else {
+        guard let path = Bundle.main.path(forResource: fileName, ofType: "json") else {
             Debugger.debug("Cannot create JSON mock path for \(fileName)")
             return nil
         }
         do {
-            let data = try Data.init(contentsOf: url, options: .mappedIfSafe)
-            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-            if let jsonDict = jsonResult as? [String: Any] {
-                return jsonDict
+            if let data = try String.init(contentsOfFile: path).data(using: .utf8) {
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                if let jsonDict = jsonResult as? [String: Any] {
+                    return jsonDict
+                }
             }
             return nil
         }

@@ -25,6 +25,9 @@ class User: Object, Mappable {
         id <- map["id"]
         name <- map["name"]
     }
+    override class func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 extension User {

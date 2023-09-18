@@ -29,7 +29,7 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
     
     private var notificationToken: NotificationToken?
     
-    var networkDataAPIManager: APIServiceManagerProtocol = APIServiceManager()
+    var networkDataAPIManager: APIServiceManagerProtocol = APIServiceManager.shared
     
     deinit {
         if let notificationToken = notificationToken {
@@ -72,11 +72,14 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
         }
     }
     
-    func fetchRemote(queryParams: [String : Any]?, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?) {
+    func fetchRemote(queryParams: [String : Any]?, forAuthenticate: Bool = false, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?) {
         if let remotePath = remotePath {
-            APIServiceManager.shared.getObject(endPoint: remotePath.path,
-                                               queryParams: queryParams,
-                                               objectType: T.self) {[weak self] response in
+            networkDataAPIManager.getObject(endPoint: remotePath.path,
+                                            queryParams: queryParams,
+                                            extraHeaders: nil,
+                                            forAuthenticate: forAuthenticate,
+                                            objectType: T.self,
+                                            completion: {[weak self] response in
                 switch response {
                 case .success(statusCode: _, responseObject: let responseObject):
                     if var responseObject = responseObject {
@@ -111,7 +114,11 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
                     }
                     return
                 }
-            }
+            },
+                                            functionName: #function,
+                                            file: #file,
+                                            fileID: #fileID,
+                                            line: #line)
         }
     }
     
