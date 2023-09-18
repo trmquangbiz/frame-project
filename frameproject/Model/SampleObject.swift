@@ -64,6 +64,7 @@ extension SampleObject {
                                                }
                                                return rawObjectList
                                            })
+                                           .setNetworkDataAPIManager(MockAPIServiceManager())
         return list
     }
 }

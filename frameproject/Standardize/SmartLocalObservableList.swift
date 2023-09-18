@@ -22,6 +22,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
     var currentPagination: [String: Any]?
     var preprocessReloadedObject: (([E]) -> [E])?
     var preprocessLoadMoreObject: (([E], Int) -> [E])?
+    var networkDataAPIManager: APIServiceManagerProtocol = APIServiceManager()
     private var notificationToken: NotificationToken?
     
     init(predicate: String?, sortConditions: [RealmSwift.SortDescriptor]) {
@@ -285,6 +286,12 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
     }
     
     
+    func setNetworkDataAPIManager(_ value: APIServiceManagerProtocol) -> Self {
+        #if DEBUG
+        self.networkDataAPIManager = value
+        #endif
+        return self
+    }
     
 }
 

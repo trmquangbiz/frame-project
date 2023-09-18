@@ -1,0 +1,39 @@
+{
+	"data": [
+	{
+		"id": 1,
+		"name":  "Test object 1"
+	},
+	{
+		"id": 2,
+		"name":  "Test object 2"
+	},
+	{
+		"id": 3,
+		"name":  "Test object 3"
+	},
+	{
+		"id": 4,
+		"name":  "Test object 4"
+	},
+	{
+		"id": 5,
+		"name":  "Test object 5"
+	},
+	{
+		"id": 6,
+		"name":  "Test object 6"
+	},
+	{
+		"id": 7,
+		"name":  "Test object 7"
+	},
+	{
+		"id": 8,
+		"name":  "Test object 8"
+	}
+	],
+	"pagination": {
+		"nextURL": "samples?page=2&limit=8"
+	}
+}

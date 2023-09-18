@@ -33,6 +33,9 @@
 		BB06E2CF28958CC500172F1E /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB06E2CE28958CC500172F1E /* Font.swift */; };
 		BB06E2D22896324D00172F1E /* DesignSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB06E2D12896324D00172F1E /* DesignSystemView.swift */; };
 		BB06E2D42897905D00172F1E /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB06E2D32897905D00172F1E /* Spacing.swift */; };
+		BB19FE792AB80D270086453C /* APIServiceManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE782AB80D270086453C /* APIServiceManagerProtocol.swift */; };
+		BB19FE7B2AB858A70086453C /* MockAPIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE7A2AB858A70086453C /* MockAPIServiceManager.swift */; };
+		BB19FE7E2AB8B1AC0086453C /* GET_localhost(8080):samples.json in Resources */ = {isa = PBXBuildFile; fileRef = BB19FE7D2AB8B1AC0086453C /* GET_localhost(8080):samples.json */; };
 		BB4E369728BF2529002C27A7 /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E369628BF2529002C27A7 /* DataType.swift */; };
 		BB4E369928BF29CB002C27A7 /* ImagePathInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E369828BF29CB002C27A7 /* ImagePathInfo.swift */; };
 		BB4E369C28BF2E47002C27A7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E369B28BF2E47002C27A7 /* NetworkManager.swift */; };
@@ -193,6 +196,9 @@
 		BB06E2CE28958CC500172F1E /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		BB06E2D12896324D00172F1E /* DesignSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemView.swift; sourceTree = "<group>"; };
 		BB06E2D32897905D00172F1E /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		BB19FE782AB80D270086453C /* APIServiceManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManagerProtocol.swift; sourceTree = "<group>"; };
+		BB19FE7A2AB858A70086453C /* MockAPIServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIServiceManager.swift; sourceTree = "<group>"; };
+		BB19FE7D2AB8B1AC0086453C /* GET_localhost(8080):samples.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET_localhost(8080):samples.json"; sourceTree = "<group>"; };
 		BB4E369628BF2529002C27A7 /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
 		BB4E369828BF29CB002C27A7 /* ImagePathInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePathInfo.swift; sourceTree = "<group>"; };
 		BB4E369B28BF2E47002C27A7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -503,6 +509,7 @@
 		BB06E2AB289518F300172F1E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BB19FE7C2AB892480086453C /* MockingJSON */,
 				BBC0488A2AA8272000C01289 /* RequestBuilder */,
 				BB06E2B42895300600172F1E /* SampleNSObjectClass.swift */,
 				BBD85F6A29516EDE0019AD4D /* TestObject.swift */,
@@ -582,6 +589,14 @@
 				BB61DF1428A3DBEB006F2E63 /* RadioButtonView */,
 			);
 			path = DesignSystemView;
+			sourceTree = "<group>";
+		};
+		BB19FE7C2AB892480086453C /* MockingJSON */ = {
+			isa = PBXGroup;
+			children = (
+				BB19FE7D2AB8B1AC0086453C /* GET_localhost(8080):samples.json */,
+			);
+			path = MockingJSON;
 			sourceTree = "<group>";
 		};
 		BB4E369A28BF2A78002C27A7 /* SocketService */ = {
@@ -847,6 +862,8 @@
 			children = (
 				BB809BE0290BD72600D123CD /* APIServiceManager.swift */,
 				BBAD31022A73F2570082247B /* APIPath.swift */,
+				BB19FE782AB80D270086453C /* APIServiceManagerProtocol.swift */,
+				BB19FE7A2AB858A70086453C /* MockAPIServiceManager.swift */,
 			);
 			path = APIServiceManager;
 			sourceTree = "<group>";
@@ -976,6 +993,7 @@
 				BB68DDBF2A2502C70095AFD8 /* SourceSansPro-SemiboldIt.otf in Resources */,
 				BB68DDBC2A2502C70095AFD8 /* SourceSansPro-Bold.otf in Resources */,
 				BB68DDC32A2502C70095AFD8 /* SourceSansPro-ExtraLightIt.otf in Resources */,
+				BB19FE7E2AB8B1AC0086453C /* GET_localhost(8080):samples.json in Resources */,
 				BB68DDBE2A2502C70095AFD8 /* SourceSansPro-ExtraLight.otf in Resources */,
 				BBC047DC2A91A99900C01289 /* GoogleService-Info.plist in Resources */,
 				BB06E2BB2895342200172F1E /* Sample.storyboard in Resources */,
@@ -1100,6 +1118,7 @@
 				BB809BD229069F8900D123CD /* AlamofireNetworkService.swift in Sources */,
 				BBAEE50B2A8B78FD00BE47F7 /* NameTableViewCell.swift in Sources */,
 				BBAD31172A76279E0082247B /* SmartLocalObservableList.swift in Sources */,
+				BB19FE792AB80D270086453C /* APIServiceManagerProtocol.swift in Sources */,
 				BB95AC672905C1AA00F4653E /* Data.swift in Sources */,
 				BB06E2B028951AAE00172F1E /* ViewUtility.swift in Sources */,
 				BBAEE5232A8B86B400BE47F7 /* SampleListWireFrame.swift in Sources */,
@@ -1120,6 +1139,7 @@
 				BBAD31032A73F2570082247B /* APIPath.swift in Sources */,
 				BBC0488C2AA828E200C01289 /* AuthenticationRequestBuilder.swift in Sources */,
 				BBD85F74295467360019AD4D /* Utils.swift in Sources */,
+				BB19FE7B2AB858A70086453C /* MockAPIServiceManager.swift in Sources */,
 				BBAEE51D2A8B865800BE47F7 /* SampleListPresenterProtocol.swift in Sources */,
 				BBE4B87028B0F54E00ADDC4C /* NetworkingParam.swift in Sources */,
 				BB61DF2C28B074D9006F2E63 /* NetworkHTTPMethod.swift in Sources */,
