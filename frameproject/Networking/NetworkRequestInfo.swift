@@ -56,6 +56,7 @@ class NetworkRequestInfo {
         self.isForAuthenticate = isForAuthenticate
     }
     
+    /// for copy
     convenience init(networkRequestInfo: NetworkRequestInfo) {
         self.init(url: networkRequestInfo.url,
                   method: networkRequestInfo.method,

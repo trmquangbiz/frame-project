@@ -10,29 +10,20 @@ import ObjectMapper
 import RealmSwift
 
 
-class APIServiceManager {
+class APIServiceManager: APIServiceManagerProtocol {
     
     let config = Configuration.shared
     
     static let shared: APIServiceManager = {
         let instance = APIServiceManager()
-        instance.networkManager.taskDelegate = instance
         return instance
     }()
     
-    
+    init() {
+        networkManager.taskDelegate = self
+    }
     var networkManager: NetworkManager = NetworkManager()
     
-    private func setAuthorizationTokenFrom(json: [String:AnyObject]) {
-        if let token = json[Constant.kAccessToken] as? String {
-            AuthenticationService.shared.setAccessToken(token)
-        }
-    }
-    
-    /**
-     Method gets the AskTutor base request URL
-     - returns: String
-     */
     private func getBaseRequestURL() -> String {
         return config.baseRequestURL
     }
@@ -79,11 +70,11 @@ class APIServiceManager {
     /// get current authorization token
     ///
     ///
-    private func getAuthorizationToken() -> String? {
+    func getAuthorizationToken() -> String? {
         return AuthenticationService.shared.accessToken
     }
     
-    func get(endPoint: String,
+    func get(url: String,
              queryParams: [String: Any]?,
              extraHeaders: [String: String]? = nil,
              forAuthenticate: Bool = false,
@@ -92,7 +83,7 @@ class APIServiceManager {
              file: String = #file,
              fileID: String = #fileID,
              line: Int = #line) {
-        let requestStr = currentRequestURLString(fromEndPoint: "")
+        let requestStr = url
         let params = createParameters(queryParams)
         let headers = currentHeaderForRequest(extraHeaders: extraHeaders)
         networkManager.get(url: requestStr,
@@ -106,7 +97,7 @@ class APIServiceManager {
                            line: line)
     }
     
-    func post(endPoint: String,
+    func post(url: String,
               requestBody: [String: Any]?,
               extraHeaders: [String: String]? = nil,
               forAuthenticate: Bool = false,
@@ -115,7 +106,7 @@ class APIServiceManager {
               file: String = #file,
               fileID: String = #fileID,
               line: Int = #line) {
-        let requestStr = currentRequestURLString(fromEndPoint: "")
+        let requestStr = url
         let body = createParameters(requestBody)
         let headers = currentHeaderForRequest(extraHeaders: extraHeaders)
         networkManager.post(url: requestStr,
@@ -130,7 +121,7 @@ class APIServiceManager {
         
     }
     
-    func put(endPoint: String,
+    func put(url: String,
              requestBody: [String: Any]?,
              extraHeaders: [String: String]? = nil,
              forAuthenticate: Bool = false,
@@ -139,7 +130,7 @@ class APIServiceManager {
              file: String = #file,
              fileID: String = #fileID,
              line: Int = #line) {
-        let requestStr = currentRequestURLString(fromEndPoint: "")
+        let requestStr = url
         let body = createParameters(requestBody)
         let headers = currentHeaderForRequest(extraHeaders: extraHeaders)
         networkManager.put(url: requestStr,
@@ -154,7 +145,7 @@ class APIServiceManager {
         
     }
     
-    func delete(endPoint: String,
+    func delete(url: String,
              extraHeaders: [String: String]? = nil,
              forAuthenticate: Bool = false,
              completionHandler: @escaping NetworkCompletionHandler,
@@ -162,7 +153,7 @@ class APIServiceManager {
              file: String = #file,
              fileID: String = #fileID,
              line: Int = #line) {
-        let requestStr = currentRequestURLString(fromEndPoint: "")
+        let requestStr = url
         let headers = currentHeaderForRequest(extraHeaders: extraHeaders)
         networkManager.delete(url: requestStr,
                             headers: headers,
@@ -174,72 +165,23 @@ class APIServiceManager {
         
     }
     
-}
-
-
-extension APIServiceManager: NetworkManagerDelegate {
-    func prehandleResponseData(_ manager: NetworkManager, response: ResponseData, forAuthenticate: Bool) {
-        if let responseData = response.value as? [String:AnyObject] {
-            if forAuthenticate == true {
-                // get authorization token here
-                setAuthorizationTokenFrom(json: responseData)
-            }
-            
-        }
-    }
-    
-    func prehandleErrorData(_ manager: NetworkManager, error: ErrorData) {
-        
-    }
-    
-}
-
-extension APIServiceManager {
-    enum Response<T> {
-        case success(statusCode: Int, responseObject: T?)
-        case fail(statusCode: Int, errorMsg: Any?)
-        
-    }
-    
-    enum ResponseNoMapping {
-        case success(statusCode: Int)
-        case fail(statusCode: Int, errorMsg: Any?)
-    }
-    enum ResponseList<T> {
-        case success(statusCode: Int, responseObject: [T]?, pagination: [String: Any]?)
-        case fail(statusCode: Int, errorMsg: Any?)
-    }
-    
     func getObject<T: Mappable>(endPoint: String,
                                 queryParams: [String: Any]?,
                                 extraHeaders: [String: String]? = nil,
                                 forAuthenticate: Bool = false,
-                                objectType: T.Type?,
+                                objectType: T.Type,
                                 completion: @escaping ((Response<T>) -> ()),
                                 functionName: String = #function,
                                 file: String = #file,
                                 fileID: String = #fileID,
                                 line: Int = #line) {
-        get(endPoint: endPoint,
+        get(url: currentRequestURLString(fromEndPoint: endPoint),
             queryParams: queryParams,
             extraHeaders: extraHeaders,
             forAuthenticate: forAuthenticate,
-            completionHandler: { errorPackage, responsePackage in
-            if let responsePackage = responsePackage,
-               let value = responsePackage.value as? [String: Any],
-               let data = value[Constant.kData] as? [String: Any] {
-                if let obj = T.init(JSON: data) {
-                    completion(.success(statusCode: responsePackage.code, responseObject: obj))
-                }
-                else {
-                    completion(.fail(statusCode: 9999, errorMsg: "Response success (\(responsePackage.code)) but mapping fail"))
-                }
-            }
-            else if let errorPackage = errorPackage {
-                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
-            }
-            else {
-                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
+            completionHandler: {[weak self] errorPackage, responsePackage in
+            if let weakSelf = self {
+                weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
         },
             functionName: functionName,
@@ -254,41 +196,20 @@ extension APIServiceManager {
                                     queryParams: [String: Any]?,
                                     extraHeaders: [String: String]? = nil,
                                     forAuthenticate: Bool = false,
-                                    objectType: T.Type?,
+                                    objectType: T.Type,
                                     completion: @escaping ((ResponseList<T>)->()),
                                     functionName: String = #function,
                                     file: String = #file,
                                     fileID: String = #fileID,
                                     line: Int = #line) {
-        get(endPoint: endPoint,
+        get(url: currentRequestURLString(fromEndPoint: endPoint),
             queryParams: queryParams,
             extraHeaders: extraHeaders,
             forAuthenticate: forAuthenticate,
-            completionHandler: { errorPackage, responsePackage in
-            if let responsePackage = responsePackage,
-               let value = responsePackage.value as? [String: Any] {
-                var objList: [T] = []
-                if let data = value[Constant.kData] as? [[String: Any]] {
-                    data.forEach { dataNode in
-                        if let obj = T.init(JSON: dataNode) {
-                            objList.append(obj)
-                        }
-                    }
-                }
-                var paginationDict: [String: Any]?
-                if let pagination = value[Constant.kPagination] as? [String: Any] {
-                    paginationDict = pagination
-                }
-                
-                completion(.success(statusCode: responsePackage.code, responseObject: objList, pagination: paginationDict))
+            completionHandler: {[weak self] errorPackage, responsePackage in
+            if let weakSelf = self {
+                weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
-            else if let errorPackage = errorPackage {
-                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
-            }
-            else {
-                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
-            }
-            
         },
             functionName: functionName,
             file: file,
@@ -306,26 +227,13 @@ extension APIServiceManager {
                                             file: String = #file,
                                             fileID: String = #fileID,
                                             line: Int = #line) {
-        post(endPoint: endPoint,
+        post(url: currentRequestURLString(fromEndPoint: endPoint),
              requestBody: requestBody,
              extraHeaders: extraHeaders,
              forAuthenticate: forAuthenticate,
-             completionHandler: { errorPackage, responsePackage in
-            if let responsePackage = responsePackage,
-               let value = responsePackage.value as? [String: Any],
-               let data = value[Constant.kData] as? [String: Any] {
-                if let obj = T.init(JSON: data) {
-                    completion(.success(statusCode: responsePackage.code, responseObject: obj))
-                }
-                else {
-                    completion(.success(statusCode: responsePackage.code, responseObject: nil))
-                }
-            }
-            else if let errorPackage = errorPackage {
-                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
-            }
-            else {
-                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
+             completionHandler: {[weak self] errorPackage, responsePackage in
+            if let weakSelf = self {
+                weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
         },
              functionName: functionName,
@@ -345,27 +253,13 @@ extension APIServiceManager {
                                                 file: String = #file,
                                                 fileID: String = #fileID,
                                                 line: Int = #line) {
-        post(endPoint: endPoint,
+        post(url: currentRequestURLString(fromEndPoint: endPoint),
              requestBody: requestBody,
              extraHeaders: extraHeaders,
              forAuthenticate: forAuthenticate,
-             completionHandler: { errorPackage, responsePackage in
-            if let responsePackage = responsePackage,
-               let value = responsePackage.value as? [String: Any],
-               let data = value[Constant.kData] as? [[String: Any]] {
-                var objList: [T] = []
-                data.forEach { dataNode in
-                    if let obj = T.init(JSON: dataNode) {
-                        objList.append(obj)
-                    }
-                }
-                completion(.success(statusCode: responsePackage.code, responseObject: objList, pagination: nil))
-            }
-            else if let errorPackage = errorPackage {
-                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
-            }
-            else {
-                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
+             completionHandler: {[weak self] errorPackage, responsePackage in
+            if let weakSelf = self {
+                weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
         },
              functionName: functionName,
@@ -376,34 +270,22 @@ extension APIServiceManager {
     }
     
     func putAndResponseObject<T: Mappable>(endPoint: String,
-                                  requestBody: [String: Any]?,
-                                  extraHeaders: [String: String]? = nil,
-                                  forAuthenticate: Bool = false,
-                                  completion: @escaping ((Response<T>)->()),
-                                  functionName: String = #function,
-                                  file: String = #file,
-                                  fileID: String = #fileID,
-                                  line: Int = #line) {
-        put(endPoint: endPoint,
+                                           requestBody: [String: Any]?,
+                                           extraHeaders: [String: String]? = nil,
+                                           forAuthenticate: Bool = false,
+                                           objectType: T.Type,
+                                           completion: @escaping ((Response<T>)->()),
+                                           functionName: String = #function,
+                                           file: String = #file,
+                                           fileID: String = #fileID,
+                                           line: Int = #line) {
+        put(url: currentRequestURLString(fromEndPoint: endPoint),
              requestBody: requestBody,
              extraHeaders: extraHeaders,
              forAuthenticate: forAuthenticate,
-             completionHandler: { errorPackage, responsePackage in
-            if let responsePackage = responsePackage,
-               let value = responsePackage.value as? [String: Any],
-               let data = value[Constant.kData] as? [String: Any] {
-                if let obj = T.init(JSON: data) {
-                    completion(.success(statusCode: responsePackage.code, responseObject: obj))
-                }
-                else {
-                    completion(.success(statusCode: responsePackage.code, responseObject: nil))
-                }
-            }
-            else if let errorPackage = errorPackage {
-                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
-            }
-            else {
-                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
+             completionHandler: {[weak self] errorPackage, responsePackage in
+            if let weakSelf = self {
+                weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
         },
              functionName: functionName,
@@ -414,35 +296,22 @@ extension APIServiceManager {
     }
     
     func putAndResponseListObject<T: Mappable>(endPoint: String,
-                                                requestBody: [String: Any]?,
-                                                extraHeaders: [String: String]? = nil,
-                                                forAuthenticate: Bool = false,
-                                                completion: @escaping ((ResponseList<T>)->()),
-                                                functionName: String = #function,
-                                                file: String = #file,
-                                                fileID: String = #fileID,
-                                                line: Int = #line) {
-        put(endPoint: endPoint,
+                                               requestBody: [String: Any]?,
+                                               extraHeaders: [String: String]? = nil,
+                                               forAuthenticate: Bool = false,
+                                               objectType: T.Type,
+                                               completion: @escaping ((ResponseList<T>)->()),
+                                               functionName: String = #function,
+                                               file: String = #file,
+                                               fileID: String = #fileID,
+                                               line: Int = #line) {
+        put(url: currentRequestURLString(fromEndPoint: endPoint),
              requestBody: requestBody,
              extraHeaders: extraHeaders,
              forAuthenticate: forAuthenticate,
-             completionHandler: { errorPackage, responsePackage in
-            if let responsePackage = responsePackage,
-               let value = responsePackage.value as? [String: Any],
-               let data = value[Constant.kData] as? [[String: Any]] {
-                var objList: [T] = []
-                data.forEach { dataNode in
-                    if let obj = T.init(JSON: dataNode) {
-                        objList.append(obj)
-                    }
-                }
-                completion(.success(statusCode: responsePackage.code, responseObject: objList, pagination: nil))
-            }
-            else if let errorPackage = errorPackage {
-                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
-            }
-            else {
-                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
+             completionHandler: {[weak self] errorPackage, responsePackage in
+            if let weakSelf = self {
+                weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
         },
              functionName: functionName,
@@ -460,18 +329,12 @@ extension APIServiceManager {
              file: String = #file,
              fileID: String = #fileID,
              line: Int = #line) {
-        delete(endPoint: endPoint,
+        delete(url: currentRequestURLString(fromEndPoint: endPoint),
                extraHeaders: extraHeaders,
                forAuthenticate: forAuthenticate,
-               completionHandler: { errorPackage, responsePackage in
-            if let responsePackage = responsePackage{
-                completion(.success(statusCode: responsePackage.code))
-            }
-            else if let errorPackage = errorPackage {
-                completion(.fail(statusCode: errorPackage.code, errorMsg: errorPackage.value))
-            }
-            else {
-                completion(.fail(statusCode: 9999, errorMsg: "No response from both responsePackage and errorPackage"))
+               completionHandler: {[weak self] errorPackage, responsePackage in
+            if let weakSelf = self {
+                weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, completion: completion)
             }
         },
                functionName: functionName,
@@ -480,8 +343,23 @@ extension APIServiceManager {
                line: line)
         
     }
+    
 }
 
-extension APIServiceManager {
+
+extension APIServiceManager: NetworkManagerDelegate {
+    func prehandleResponseData(_ manager: NetworkManager, response: ResponseData, forAuthenticate: Bool) {
+        if let responseData = response.value as? [String: Any] {
+            if forAuthenticate == true {
+                // get authorization token here
+                setAuthorizationTokenFrom(json: responseData)
+            }
+            
+        }
+    }
+    
+    func prehandleErrorData(_ manager: NetworkManager, error: ErrorData) {
+        
+    }
     
 }

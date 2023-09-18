@@ -29,6 +29,8 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
     
     private var notificationToken: NotificationToken?
     
+    var networkDataAPIManager: APIServiceManagerProtocol = APIServiceManager()
+    
     deinit {
         if let notificationToken = notificationToken {
             notificationToken.invalidate()
@@ -138,6 +140,12 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
     
     private func didSetObj() {
         triggerSubscribeBlock()
+    }
+    
+    func setNetworkDataAPIManager(_ value: APIServiceManagerProtocol) {
+        #if DEBUG
+        self.networkDataAPIManager = value
+        #endif
     }
     
     private func triggerSubscribeBlock() {
