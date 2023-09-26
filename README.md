@@ -31,9 +31,13 @@ Here is the libraries I included inside this frame-project:
 
 - Architecture:
     - MVP (Model - View - Presenter)
+    - MVVM (Model - View - ViewModel)
  
 - App Security:
     - Pinning Certificate
+ 
+- Other technologies
+    - RxSwift
   
 ## 3. Programming Paradigm, Data Storage and Architecture
 The project is built in reactive programming, but not on RxSwift framework. I have used my experience to **make logic flow between data flow become more simple**. Please take a look at SamplePresenter.swift and SampleListPresenter.swift. 
