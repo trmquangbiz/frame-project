@@ -46,11 +46,7 @@ class MockAPIServiceManager: APIServiceManagerProtocol {
                                 extraHeaders: [String: String]? = nil,
                                 forAuthenticate: Bool = false,
                                 objectType: T.Type,
-                                completion: @escaping ((Response<T>) -> ()),
-                                functionName: String = #function,
-                                file: String = #file,
-                                fileID: String = #fileID,
-                                line: Int = #line) {
+                                completion: @escaping ((Response<T>) -> ())) {
         let jsonFileName = "GET_\(getJSONFileName(fromEndPoint: endPoint))"
         if let json = getJSON(fileName: jsonFileName),
            let data = json[Constant.kData] as? [String: Any] {
@@ -72,11 +68,7 @@ class MockAPIServiceManager: APIServiceManagerProtocol {
                                     extraHeaders: [String: String]? = nil,
                                     forAuthenticate: Bool = false,
                                     objectType: T.Type,
-                                    completion: @escaping ((ResponseList<T>)->()),
-                                    functionName: String = #function,
-                                    file: String = #file,
-                                    fileID: String = #fileID,
-                                    line: Int = #line) {
+                                    completion: @escaping ((ResponseList<T>)->())) {
         let jsonFileName = "GET_\(getJSONFileName(fromEndPoint: endPoint))"
         if let json = getJSON(fileName: jsonFileName) {
             if forAuthenticate == true {
@@ -96,11 +88,7 @@ class MockAPIServiceManager: APIServiceManagerProtocol {
                                             extraHeaders: [String: String]? = nil,
                                             forAuthenticate: Bool = false,
                                             objectType: T.Type,
-                                            completion: @escaping ((Response<T>)->()),
-                                            functionName: String = #function,
-                                            file: String = #file,
-                                            fileID: String = #fileID,
-                                            line: Int = #line) {
+                                            completion: @escaping ((Response<T>)->())) {
         let jsonFileName = "POST_\(getJSONFileName(fromEndPoint: endPoint))"
         if let json = getJSON(fileName: jsonFileName) {
             if forAuthenticate == true {
@@ -120,11 +108,7 @@ class MockAPIServiceManager: APIServiceManagerProtocol {
                                                 extraHeaders: [String: String]? = nil,
                                                 forAuthenticate: Bool = false,
                                                 objectType: T.Type,
-                                                completion: @escaping ((ResponseList<T>)->()),
-                                                functionName: String = #function,
-                                                file: String = #file,
-                                                fileID: String = #fileID,
-                                                line: Int = #line) {
+                                                completion: @escaping ((ResponseList<T>)->())) {
         let jsonFileName = "POST_\(getJSONFileName(fromEndPoint: endPoint))"
         if let json = getJSON(fileName: jsonFileName) {
             if forAuthenticate == true {
@@ -144,11 +128,7 @@ class MockAPIServiceManager: APIServiceManagerProtocol {
                                            extraHeaders: [String: String]? = nil,
                                            forAuthenticate: Bool = false,
                                            objectType: T.Type,
-                                           completion: @escaping ((Response<T>)->()),
-                                           functionName: String = #function,
-                                           file: String = #file,
-                                           fileID: String = #fileID,
-                                           line: Int = #line) {
+                                           completion: @escaping ((Response<T>)->())) {
         let jsonFileName = "PUT_\(getJSONFileName(fromEndPoint: endPoint))"
         if let json = getJSON(fileName: jsonFileName) {
             if forAuthenticate == true {
@@ -168,11 +148,7 @@ class MockAPIServiceManager: APIServiceManagerProtocol {
                                                extraHeaders: [String: String]? = nil,
                                                forAuthenticate: Bool = false,
                                                objectType: T.Type,
-                                               completion: @escaping ((ResponseList<T>)->()),
-                                               functionName: String = #function,
-                                               file: String = #file,
-                                               fileID: String = #fileID,
-                                               line: Int = #line) {
+                                               completion: @escaping ((ResponseList<T>)->())) {
         let jsonFileName = "PUT_\(getJSONFileName(fromEndPoint: endPoint))"
         if let json = getJSON(fileName: jsonFileName) {
             if forAuthenticate == true {
@@ -190,11 +166,7 @@ class MockAPIServiceManager: APIServiceManagerProtocol {
     func delete(endPoint: String,
              extraHeaders: [String: String]? = nil,
              forAuthenticate: Bool = false,
-             completion: @escaping ((ResponseNoMapping)->()),
-             functionName: String = #function,
-             file: String = #file,
-             fileID: String = #fileID,
-             line: Int = #line) {
+             completion: @escaping ((ResponseNoMapping)->())) {
         // no need to mock on delete request
         completion(.success(statusCode: 200))
     }

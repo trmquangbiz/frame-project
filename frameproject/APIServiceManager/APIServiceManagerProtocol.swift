@@ -32,11 +32,7 @@ protocol APIServiceManagerProtocol: AnyObject {
                                 extraHeaders: [String: String]?,
                                 forAuthenticate: Bool,
                                 objectType: T.Type,
-                                completion: @escaping ((Response<T>) -> ()),
-                                functionName: String,
-                                file: String,
-                                fileID: String,
-                                line: Int)
+                                completion: @escaping ((Response<T>) -> ()))
     
     
     func getListObject<T: Mappable>(endPoint: String,
@@ -44,64 +40,40 @@ protocol APIServiceManagerProtocol: AnyObject {
                                     extraHeaders: [String: String]?,
                                     forAuthenticate: Bool,
                                     objectType: T.Type,
-                                    completion: @escaping ((ResponseList<T>)->()),
-                                    functionName: String,
-                                    file: String,
-                                    fileID: String,
-                                    line: Int)
+                                    completion: @escaping ((ResponseList<T>)->()))
     
     func postAndResponseObject<T: Mappable>(endPoint: String,
                                             requestBody: [String: Any]?,
                                             extraHeaders: [String: String]?,
                                             forAuthenticate: Bool,
                                             objectType: T.Type,
-                                            completion: @escaping ((Response<T>)->()),
-                                            functionName: String,
-                                            file: String,
-                                            fileID: String,
-                                            line: Int)
+                                            completion: @escaping ((Response<T>)->()))
     
     func postAndResponseListObject<T: Mappable>(endPoint: String,
                                                 requestBody: [String: Any]?,
                                                 extraHeaders: [String: String]?,
                                                 forAuthenticate: Bool,
                                                 objectType: T.Type,
-                                                completion: @escaping ((ResponseList<T>)->()),
-                                                functionName: String,
-                                                file: String,
-                                                fileID: String,
-                                                line: Int)
+                                                completion: @escaping ((ResponseList<T>)->()))
     
     func putAndResponseObject<T: Mappable>(endPoint: String,
                                            requestBody: [String: Any]?,
                                            extraHeaders: [String: String]?,
                                            forAuthenticate: Bool,
                                            objectType: T.Type,
-                                           completion: @escaping ((Response<T>)->()),
-                                           functionName: String,
-                                           file: String,
-                                           fileID: String,
-                                           line: Int)
+                                           completion: @escaping ((Response<T>)->()))
     
     func putAndResponseListObject<T: Mappable>(endPoint: String,
                                                requestBody: [String: Any]?,
                                                extraHeaders: [String: String]?,
                                                forAuthenticate: Bool,
                                                objectType: T.Type,
-                                               completion: @escaping ((ResponseList<T>)->()),
-                                               functionName: String,
-                                               file: String,
-                                               fileID: String,
-                                               line: Int)
+                                               completion: @escaping ((ResponseList<T>)->()))
     
     func delete(endPoint: String,
              extraHeaders: [String: String]?,
              forAuthenticate: Bool,
-             completion: @escaping ((ResponseNoMapping)->()),
-             functionName: String,
-             file: String,
-             fileID: String,
-             line: Int)
+             completion: @escaping ((ResponseNoMapping)->()))
 }
 
 extension APIServiceManagerProtocol {

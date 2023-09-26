@@ -170,11 +170,7 @@ class APIServiceManager: APIServiceManagerProtocol {
                                 extraHeaders: [String: String]? = nil,
                                 forAuthenticate: Bool = false,
                                 objectType: T.Type,
-                                completion: @escaping ((Response<T>) -> ()),
-                                functionName: String = #function,
-                                file: String = #file,
-                                fileID: String = #fileID,
-                                line: Int = #line) {
+                                completion: @escaping ((Response<T>) -> ())) {
         get(url: currentRequestURLString(fromEndPoint: endPoint),
             queryParams: queryParams,
             extraHeaders: extraHeaders,
@@ -183,12 +179,7 @@ class APIServiceManager: APIServiceManagerProtocol {
             if let weakSelf = self {
                 weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
-        },
-            functionName: functionName,
-            file: file,
-            fileID: fileID,
-            line: line
-        )
+        })
     }
     
     
@@ -197,11 +188,7 @@ class APIServiceManager: APIServiceManagerProtocol {
                                     extraHeaders: [String: String]? = nil,
                                     forAuthenticate: Bool = false,
                                     objectType: T.Type,
-                                    completion: @escaping ((ResponseList<T>)->()),
-                                    functionName: String = #function,
-                                    file: String = #file,
-                                    fileID: String = #fileID,
-                                    line: Int = #line) {
+                                    completion: @escaping ((ResponseList<T>)->())) {
         get(url: currentRequestURLString(fromEndPoint: endPoint),
             queryParams: queryParams,
             extraHeaders: extraHeaders,
@@ -210,11 +197,7 @@ class APIServiceManager: APIServiceManagerProtocol {
             if let weakSelf = self {
                 weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
-        },
-            functionName: functionName,
-            file: file,
-            fileID: fileID,
-            line: line)
+        })
     }
     
     func postAndResponseObject<T: Mappable>(endPoint: String,
@@ -222,11 +205,7 @@ class APIServiceManager: APIServiceManagerProtocol {
                                             extraHeaders: [String: String]? = nil,
                                             forAuthenticate: Bool = false,
                                             objectType: T.Type,
-                                            completion: @escaping ((Response<T>)->()),
-                                            functionName: String = #function,
-                                            file: String = #file,
-                                            fileID: String = #fileID,
-                                            line: Int = #line) {
+                                            completion: @escaping ((Response<T>)->())) {
         post(url: currentRequestURLString(fromEndPoint: endPoint),
              requestBody: requestBody,
              extraHeaders: extraHeaders,
@@ -235,11 +214,7 @@ class APIServiceManager: APIServiceManagerProtocol {
             if let weakSelf = self {
                 weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
-        },
-             functionName: functionName,
-             file: file,
-             fileID: fileID,
-             line: line)
+        })
         
     }
     
@@ -248,11 +223,7 @@ class APIServiceManager: APIServiceManagerProtocol {
                                                 extraHeaders: [String: String]? = nil,
                                                 forAuthenticate: Bool = false,
                                                 objectType: T.Type,
-                                                completion: @escaping ((ResponseList<T>)->()),
-                                                functionName: String = #function,
-                                                file: String = #file,
-                                                fileID: String = #fileID,
-                                                line: Int = #line) {
+                                                completion: @escaping ((ResponseList<T>)->())) {
         post(url: currentRequestURLString(fromEndPoint: endPoint),
              requestBody: requestBody,
              extraHeaders: extraHeaders,
@@ -261,11 +232,7 @@ class APIServiceManager: APIServiceManagerProtocol {
             if let weakSelf = self {
                 weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
-        },
-             functionName: functionName,
-             file: file,
-             fileID: fileID,
-             line: line)
+        })
         
     }
     
@@ -274,11 +241,7 @@ class APIServiceManager: APIServiceManagerProtocol {
                                            extraHeaders: [String: String]? = nil,
                                            forAuthenticate: Bool = false,
                                            objectType: T.Type,
-                                           completion: @escaping ((Response<T>)->()),
-                                           functionName: String = #function,
-                                           file: String = #file,
-                                           fileID: String = #fileID,
-                                           line: Int = #line) {
+                                           completion: @escaping ((Response<T>)->())) {
         put(url: currentRequestURLString(fromEndPoint: endPoint),
              requestBody: requestBody,
              extraHeaders: extraHeaders,
@@ -287,11 +250,7 @@ class APIServiceManager: APIServiceManagerProtocol {
             if let weakSelf = self {
                 weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
-        },
-             functionName: functionName,
-             file: file,
-             fileID: fileID,
-             line: line)
+        })
         
     }
     
@@ -300,11 +259,7 @@ class APIServiceManager: APIServiceManagerProtocol {
                                                extraHeaders: [String: String]? = nil,
                                                forAuthenticate: Bool = false,
                                                objectType: T.Type,
-                                               completion: @escaping ((ResponseList<T>)->()),
-                                               functionName: String = #function,
-                                               file: String = #file,
-                                               fileID: String = #fileID,
-                                               line: Int = #line) {
+                                               completion: @escaping ((ResponseList<T>)->())) {
         put(url: currentRequestURLString(fromEndPoint: endPoint),
              requestBody: requestBody,
              extraHeaders: extraHeaders,
@@ -313,22 +268,14 @@ class APIServiceManager: APIServiceManagerProtocol {
             if let weakSelf = self {
                 weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, objectType: objectType, completion: completion)
             }
-        },
-             functionName: functionName,
-             file: file,
-             fileID: fileID,
-             line: line)
+        })
         
     }
     
     func delete(endPoint: String,
              extraHeaders: [String: String]? = nil,
              forAuthenticate: Bool = false,
-             completion: @escaping ((ResponseNoMapping)->()),
-             functionName: String = #function,
-             file: String = #file,
-             fileID: String = #fileID,
-             line: Int = #line) {
+             completion: @escaping ((ResponseNoMapping)->())) {
         delete(url: currentRequestURLString(fromEndPoint: endPoint),
                extraHeaders: extraHeaders,
                forAuthenticate: forAuthenticate,
@@ -336,11 +283,7 @@ class APIServiceManager: APIServiceManagerProtocol {
             if let weakSelf = self {
                 weakSelf.handleNetworkCompletionHandler(responsePackage: responsePackage, errorPackage: errorPackage, completion: completion)
             }
-        },
-               functionName: functionName,
-               file: file,
-               fileID: fileID,
-               line: line)
+        })
         
     }
     

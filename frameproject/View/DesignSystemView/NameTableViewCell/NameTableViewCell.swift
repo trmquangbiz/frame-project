@@ -7,7 +7,12 @@
 
 import UIKit
 
-struct SampleNameCellModel {
+protocol SampleNameCellModelProtocol: AnyObject {
+    var name: String {get}
+    var id: Int? {get}
+}
+
+class SampleNameCellModel: SampleNameCellModelProtocol {
     var sample: SampleObject
     var name: String {
         get {
@@ -24,6 +29,26 @@ struct SampleNameCellModel {
             }
             return nil
         }
+    }
+    init(sample: SampleObject) {
+        self.sample = sample
+    }
+}
+
+class RxSampleNameCellModel: SampleNameCellModelProtocol {
+    var sample: RxSampleObject
+    var name: String {
+        get {
+            return sample.name
+        }
+    }
+    var id: Int? {
+        get {
+            return sample.id
+        }
+    }
+    init(sample: RxSampleObject) {
+        self.sample = sample
     }
 }
 
@@ -46,13 +71,12 @@ class NameTableViewCell: TableViewCell {
     
     override func didSetup() {
         super.didSetup()
-        if let viewModel = viewModel as? SampleNameCellModel {
+        if let viewModel = viewModel as? SampleNameCellModelProtocol {
             distributeSampleNameCellModel(viewModel: viewModel)
         }
-        // if you support more than one type of model, add below this comment
     }
     
-    func distributeSampleNameCellModel(viewModel: SampleNameCellModel) {
+    func distributeSampleNameCellModel(viewModel: SampleNameCellModelProtocol) {
         nameLbl.text = viewModel.name
     }
     

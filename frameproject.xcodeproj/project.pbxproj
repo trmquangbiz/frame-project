@@ -36,6 +36,13 @@
 		BB19FE792AB80D270086453C /* APIServiceManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE782AB80D270086453C /* APIServiceManagerProtocol.swift */; };
 		BB19FE7B2AB858A70086453C /* MockAPIServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE7A2AB858A70086453C /* MockAPIServiceManager.swift */; };
 		BB19FE7E2AB8B1AC0086453C /* GET_localhost(8080)_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = BB19FE7D2AB8B1AC0086453C /* GET_localhost(8080)_samples.json */; };
+		BB19FE822AB9A67D0086453C /* RxSampleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE812AB9A67D0086453C /* RxSampleObject.swift */; };
+		BB19FE892AB9B3810086453C /* RXSampleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE882AB9B3810086453C /* RXSampleListViewController.swift */; };
+		BB19FE8D2AB9B3AE0086453C /* RXSampleListWireFrameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE8C2AB9B3AE0086453C /* RXSampleListWireFrameProtocol.swift */; };
+		BB19FE8F2AB9B3C70086453C /* RXSampleListWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE8E2AB9B3C70086453C /* RXSampleListWireFrame.swift */; };
+		BB19FE952ABC00F80086453C /* UILayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE942ABC00F80086453C /* UILayoutGuide.swift */; };
+		BB19FE972ABF299B0086453C /* RxSampleListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE962ABF299B0086453C /* RxSampleListSection.swift */; };
+		BB19FE9A2AC042A50086453C /* RxSampleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB19FE992AC042A50086453C /* RxSampleListViewModel.swift */; };
 		BB4E369728BF2529002C27A7 /* DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E369628BF2529002C27A7 /* DataType.swift */; };
 		BB4E369928BF29CB002C27A7 /* ImagePathInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E369828BF29CB002C27A7 /* ImagePathInfo.swift */; };
 		BB4E369C28BF2E47002C27A7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4E369B28BF2E47002C27A7 /* NetworkManager.swift */; };
@@ -199,6 +206,13 @@
 		BB19FE782AB80D270086453C /* APIServiceManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceManagerProtocol.swift; sourceTree = "<group>"; };
 		BB19FE7A2AB858A70086453C /* MockAPIServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIServiceManager.swift; sourceTree = "<group>"; };
 		BB19FE7D2AB8B1AC0086453C /* GET_localhost(8080)_samples.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET_localhost(8080)_samples.json"; sourceTree = "<group>"; };
+		BB19FE812AB9A67D0086453C /* RxSampleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSampleObject.swift; sourceTree = "<group>"; };
+		BB19FE882AB9B3810086453C /* RXSampleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXSampleListViewController.swift; sourceTree = "<group>"; };
+		BB19FE8C2AB9B3AE0086453C /* RXSampleListWireFrameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXSampleListWireFrameProtocol.swift; sourceTree = "<group>"; };
+		BB19FE8E2AB9B3C70086453C /* RXSampleListWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RXSampleListWireFrame.swift; sourceTree = "<group>"; };
+		BB19FE942ABC00F80086453C /* UILayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILayoutGuide.swift; sourceTree = "<group>"; };
+		BB19FE962ABF299B0086453C /* RxSampleListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSampleListSection.swift; sourceTree = "<group>"; };
+		BB19FE992AC042A50086453C /* RxSampleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSampleListViewModel.swift; sourceTree = "<group>"; };
 		BB4E369628BF2529002C27A7 /* DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataType.swift; sourceTree = "<group>"; };
 		BB4E369828BF29CB002C27A7 /* ImagePathInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePathInfo.swift; sourceTree = "<group>"; };
 		BB4E369B28BF2E47002C27A7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -457,6 +471,7 @@
 		BB06E2A32893D18600172F1E /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				BB19FE832AB9A8B30086453C /* RXSampleList */,
 				BBAEE5082A8B785F00BE47F7 /* SampleList */,
 				BB06E2B62895307800172F1E /* Sample */,
 			);
@@ -474,6 +489,7 @@
 		BB06E2A52893D1AE00172F1E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BB19FE942ABC00F80086453C /* UILayoutGuide.swift */,
 				BB06E2C02895845700172F1E /* UIView.swift */,
 				BB06E2C428958A0700172F1E /* UIColor.swift */,
 				BB61DF1228A3D811006F2E63 /* UIFont.swift */,
@@ -516,6 +532,8 @@
 				BBAD310A2A7405F70082247B /* SampleMappable.swift */,
 				BBAD31122A74D5BB0082247B /* SampleObject.swift */,
 				BBC048882AA8261400C01289 /* User.swift */,
+				BB19FE812AB9A67D0086453C /* RxSampleObject.swift */,
+				BB19FE962ABF299B0086453C /* RxSampleListSection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -597,6 +615,41 @@
 				BB19FE7D2AB8B1AC0086453C /* GET_localhost(8080)_samples.json */,
 			);
 			path = MockingJSON;
+			sourceTree = "<group>";
+		};
+		BB19FE832AB9A8B30086453C /* RXSampleList */ = {
+			isa = PBXGroup;
+			children = (
+				BB19FE982AC042960086453C /* ViewModel */,
+				BB19FE862AB9B3460086453C /* WireFrame */,
+				BB19FE852AB9B33C0086453C /* View */,
+			);
+			path = RXSampleList;
+			sourceTree = "<group>";
+		};
+		BB19FE852AB9B33C0086453C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB19FE882AB9B3810086453C /* RXSampleListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB19FE862AB9B3460086453C /* WireFrame */ = {
+			isa = PBXGroup;
+			children = (
+				BB19FE8C2AB9B3AE0086453C /* RXSampleListWireFrameProtocol.swift */,
+				BB19FE8E2AB9B3C70086453C /* RXSampleListWireFrame.swift */,
+			);
+			path = WireFrame;
+			sourceTree = "<group>";
+		};
+		BB19FE982AC042960086453C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BB19FE992AC042A50086453C /* RxSampleListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BB4E369A28BF2A78002C27A7 /* SocketService */ = {
@@ -1102,6 +1155,7 @@
 				BBC0486F2A972BCC00C01289 /* Encodable.swift in Sources */,
 				BB06E2752893D10200172F1E /* ViewController.swift in Sources */,
 				BBAD31202A7BB62A0082247B /* SampleWireFrameProtocol.swift in Sources */,
+				BB19FE952ABC00F80086453C /* UILayoutGuide.swift in Sources */,
 				BB769EF12902B8B2000D5F1D /* EnvironmentConfiguration.swift in Sources */,
 				BBD85F762954686C0019AD4D /* AuthenticationService.swift in Sources */,
 				BBC0487B2A979AB200C01289 /* UIImageView.swift in Sources */,
@@ -1118,6 +1172,7 @@
 				BB809BD229069F8900D123CD /* AlamofireNetworkService.swift in Sources */,
 				BBAEE50B2A8B78FD00BE47F7 /* NameTableViewCell.swift in Sources */,
 				BBAD31172A76279E0082247B /* SmartLocalObservableList.swift in Sources */,
+				BB19FE972ABF299B0086453C /* RxSampleListSection.swift in Sources */,
 				BB19FE792AB80D270086453C /* APIServiceManagerProtocol.swift in Sources */,
 				BB95AC672905C1AA00F4653E /* Data.swift in Sources */,
 				BB06E2B028951AAE00172F1E /* ViewUtility.swift in Sources */,
@@ -1149,17 +1204,22 @@
 				BB809BDD2907C2E300D123CD /* String.swift in Sources */,
 				BBC0488F2AA8292700C01289 /* AuthenticationRequest.swift in Sources */,
 				BBA8DE1A292722D200BD9E45 /* LSLocationManager.swift in Sources */,
+				BB19FE8D2AB9B3AE0086453C /* RXSampleListWireFrameProtocol.swift in Sources */,
 				BBE4B87528B101CE00ADDC4C /* ResponseData.swift in Sources */,
+				BB19FE8F2AB9B3C70086453C /* RXSampleListWireFrame.swift in Sources */,
 				BBA8DE4329272D4500BD9E45 /* ObservableArray.swift in Sources */,
 				BB61DF2628A75F08006F2E63 /* NetworkServiceConfig.swift in Sources */,
 				BBAD31242A7BB88D0082247B /* SamplePresenterProtocol.swift in Sources */,
 				BBAEE5072A8B767F00BE47F7 /* TableViewCell.swift in Sources */,
+				BB19FE822AB9A67D0086453C /* RxSampleObject.swift in Sources */,
 				BBD85F71295463020019AD4D /* NSBundle+Language.m in Sources */,
 				BB4E369728BF2529002C27A7 /* DataType.swift in Sources */,
 				BBAEE5052A8B347100BE47F7 /* TableView.swift in Sources */,
 				BBC048752A9736A500C01289 /* JSONDecoder.swift in Sources */,
 				BBC048932AA8567500C01289 /* Keychain.swift in Sources */,
 				BBAD310D2A74AFBD0082247B /* SmartLocalObservable.swift in Sources */,
+				BB19FE892AB9B3810086453C /* RXSampleListViewController.swift in Sources */,
+				BB19FE9A2AC042A50086453C /* RxSampleListViewModel.swift in Sources */,
 				BBC048892AA8261400C01289 /* User.swift in Sources */,
 				BB95AC652905C18200F4653E /* Dictionary.swift in Sources */,
 				BBFB0C4129696D57005EF628 /* ObservingBlockInfo.swift in Sources */,

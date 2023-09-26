@@ -66,7 +66,7 @@ class SampleViewController: ViewController {
                                      testLbl.alignLeading(to: view!, space: 15),
                                      view.alignTrailing(to: testLbl, space: 15)])
         
-        testLbl.text = "Hello, World!"
+        testLbl.text = "Hello, sample object id \(presenter.sampleId!)!"
         
         
     }

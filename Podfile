@@ -15,4 +15,7 @@ target 'frameproject' do
   pod 'MJRefresh', '3.7.5'
   pod 'FirebaseAnalytics'
   pod 'FirebaseCrashlytics'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
 end

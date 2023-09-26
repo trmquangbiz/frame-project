@@ -114,11 +114,7 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
                     }
                     return
                 }
-            },
-                                            functionName: #function,
-                                            file: #file,
-                                            fileID: #fileID,
-                                            line: #line)
+            })
         }
     }
     
