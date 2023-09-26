@@ -146,11 +146,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                     }
                 }
             }
-        },
-                                            functionName: #function,
-                                            file: #file,
-                                            fileID: #fileID,
-                                            line: #line)
+        })
     }
     
     func loadMore(queryParams: [String : Any]?, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?, onEmpty emptyCompletion: (()->())?) {
@@ -227,11 +223,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                 
             }
             
-        },
-                                            functionName: #function,
-                                            file: #file,
-                                            fileID: #fileID,
-                                            line: #line)
+        })
     }
     
     func set(remotePath: APIPath) -> Self {

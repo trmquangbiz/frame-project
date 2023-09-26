@@ -20,4 +20,16 @@ class UtilityRouter {
             appDelegate.window!.makeKeyAndVisible()
         }
     }
+    
+    static func showRxSampleList() {
+        if let vc = RXSampleListWireFrame.createRXSampleListViewController() {
+            let nav = UINavigationController.init(rootViewController: vc)
+            let window = UIWindow.init(frame: UIScreen.main.bounds)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            window.backgroundColor = DSColor.white.value
+            window.rootViewController = nav
+            appDelegate.window = window
+            appDelegate.window!.makeKeyAndVisible()
+        }
+    }
 }
