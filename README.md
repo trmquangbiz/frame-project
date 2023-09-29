@@ -35,6 +35,7 @@ Here is the libraries I included inside this frame-project:
  
 - App Security:
     - Pinning Certificate
+    - Keychain
  
 - Other technologies
     - RxSwift
