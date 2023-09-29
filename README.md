@@ -11,6 +11,7 @@ Here is the libraries I included inside this frame-project:
  
 - Serialize:
     - ObjectMapper
+    - Codable
 
 - Data Storage:
     - Realm
@@ -39,11 +40,14 @@ Here is the libraries I included inside this frame-project:
  
 - Other technologies
     - RxSwift
+    - Mocking API (self-implemented)
   
 ## 3. Programming Paradigm, Data Storage and Architecture
 The project is built in reactive programming, but not on RxSwift framework. I have used my experience to **make logic flow between data flow become more simple**. Please take a look at SamplePresenter.swift and SampleListPresenter.swift. 
 
 There are thoughts that I think I would try to integrate Realm with my framework. I have also included expired mechanism for realm to make sure the local memory is not taken by realm so much (90 days). You can check Service/MigrationService.swift for more info. Still RxSwift provide some benefits that I will try to integrate later.
+
+There are couple of screens that I demonstrate integrating RxSwift into my project, in case you're interested
 
 ## 4. Networking, serialization and subscribe mechanism
 This project doesn't put all API in the handler. Instead, it fixed the API logic and serialize logic in the Entity layer, which means 1 API will go with 1 serialize logic through out the development time. It helps me developer faster by avoiding repeat the api call and serialization process.
