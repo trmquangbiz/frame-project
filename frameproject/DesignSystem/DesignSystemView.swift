@@ -8,12 +8,8 @@
 import Foundation
 import UIKit
 
-class DesignSystemView: ShowHideView {
-    
-}
-
 extension DesignSystem {
-    class View {
+    class View: ShowHideView {
         static var radioButtonView: RadioButtonView {
             get {
                 return RadioButtonView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0))

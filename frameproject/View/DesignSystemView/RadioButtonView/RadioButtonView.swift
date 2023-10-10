@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RadioButtonView: DesignSystemView {
+class RadioButtonView: DesignSystem.View {
     
     // MARK: - View Elements
     private lazy var outerBoxView: View = {

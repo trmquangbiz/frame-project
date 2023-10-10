@@ -543,7 +543,6 @@
 			children = (
 				BB06E2742893D10200172F1E /* ViewController.swift */,
 				BB06E2BC28956E9B00172F1E /* View.swift */,
-				BB06E2D12896324D00172F1E /* DesignSystemView.swift */,
 				BB61DF0B28A0F52C006F2E63 /* StandardNSObject.swift */,
 				BB61DF1A28A3EAA7006F2E63 /* ShowHideView.swift */,
 				BBA8DE4229272D4500BD9E45 /* ObservableArray.swift */,
@@ -575,6 +574,7 @@
 				BB06E2CA28958C3900172F1E /* Icon.swift */,
 				BB06E2CE28958CC500172F1E /* Font.swift */,
 				BB06E2D32897905D00172F1E /* Spacing.swift */,
+				BB06E2D12896324D00172F1E /* DesignSystemView.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
