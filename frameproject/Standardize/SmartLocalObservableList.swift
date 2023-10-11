@@ -23,6 +23,7 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
     var preprocessReloadedObject: (([E]) -> [E])?
     var preprocessLoadMoreObject: (([E], Int) -> [E])?
     var networkDataAPIManager: APIServiceManagerProtocol = APIServiceManager.shared
+    var localDataAPIManager = RealmLocalListFetcher<T>.init()
     private var notificationToken: NotificationToken?
     
     init(predicate: String?, sortConditions: [RealmSwift.SortDescriptor]) {
@@ -44,13 +45,11 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
     
     
     func fetchLocal() {
-        let realm = try! Realm()
-        if let predicate = predicate {
-            obj = realm.objects(E.self).filter(predicate).sorted(by: sortConditions) as? T
-            
+        do {
+            obj = try localDataAPIManager.get(predicate, sortDescriptors: sortConditions)
         }
-        else {
-            obj = realm.objects(E.self).sorted(by: sortConditions) as? T
+        catch {
+            
         }
         if let obj = obj {
             obj.safeObserve {[weak self] changes in
@@ -63,7 +62,6 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                 }
             }
         }
-       
     }
     
     func fetchRemote(queryParams: [String : Any]?, onSuccess successCompletion: (() -> ())?, onFail failCompletion: ((Int, Any?) -> ())?, onEmpty emptyCompletion: (()->())?) {
@@ -82,11 +80,11 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                                             completion: {[weak self] response  in
             switch response {
             case .success(statusCode: _, responseObject: let responseObject, pagination: let pagination):
-                if let weakSelf = self {
-                    weakSelf.currentPagination = pagination
+                if let `self` = self {
+                    self.currentPagination = pagination
                 }
                 if var list = responseObject {
-                    if let weakSelf = self, let preprocessObject = weakSelf.preprocessReloadedObject {
+                    if let `self` = self, let preprocessObject = self.preprocessReloadedObject {
                         list = preprocessObject(list)
                     }
                     if let primaryProperty = E.primaryKey() {
@@ -97,20 +95,30 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                                 listExistedId.append(value)
                             }
                         }
-                        let realm = try! Realm()
-                        var notExistedList: Results<E> = realm.objects(E.self).filter("NOT (\(key) IN %@)", listExistedId)
-                        if let weakSelf = self, let predicate = weakSelf.predicate {
-                            notExistedList = realm.objects(E.self).filter(predicate).filter("NOT (\(key) IN %@)", listExistedId)
-                        }
-                        realm.safeWrite {
-                            realm.add(list, update: .all)
-                            realm.delete(notExistedList)
+                        if let `self` = self {
+                            do {
+                                try self.localDataAPIManager.write(from: list)
+                                if let predicate = self.predicate {
+                                    try self.localDataAPIManager.delete("(\(predicate)) AND (NOT (\(key) IN %@))", listExistedId)
+                                }
+                                else {
+                                    try self.localDataAPIManager.delete("NOT (\(key) IN %@)", listExistedId)
+                                }
+                            }
+                            catch {
+                                
+                            }
+                            
                         }
                     }
                     else {
-                        let realm = try! Realm()
-                        realm.safeWrite {
-                            realm.add(list)
+                        if let `self` = self {
+                            do {
+                                try self.localDataAPIManager.write(from: list)
+                            }
+                            catch {
+                                
+                            }
                         }
                     }
                     if let completion = successCompletion {
@@ -118,10 +126,12 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                     }
                 }
                 else {
-                    if let weakSelf = self, let list = weakSelf.obj{
-                        let realm = try! Realm()
-                        realm.safeWrite {
-                            realm.delete(list)
+                    if let `self` = self, let list = self.obj{
+                        do {
+                            try self.localDataAPIManager.delete(list)
+                        }
+                        catch {
+                            
                         }
                     }
                     if let completion = emptyCompletion {
@@ -130,10 +140,11 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                 }
             case .fail(statusCode: let statusCode, errorMsg: let errorMsg):
                 if statusCode == 404 {
-                    if let weakSelf = self, let list = weakSelf.obj{
-                        let realm = try! Realm()
-                        realm.safeWrite {
-                            realm.delete(list)
+                    if let `self` = self, let list = self.obj{
+                        do {
+                            try self.localDataAPIManager.delete(list)
+                        } catch {
+                            
                         }
                     }
                     if let completion = emptyCompletion {
@@ -179,29 +190,29 @@ class SmartLocalObservableList<T: RealmCollection> where T.Element: RealmSwiftOb
                     weakSelf.currentPagination = pagination
                 }
                 if var list = responseObject {
-                    let realm = try! Realm()
-                    if let weakSelf = self, let preprocessObject = weakSelf.preprocessLoadMoreObject {
-                        var listCount = 0
-                        if let predicate = weakSelf.predicate {
-                            listCount = realm.objects(E.self).filter(predicate).count
+                    if let `self` = self {
+                        if let preprocessObject = self.preprocessLoadMoreObject {
+                            var listCount = 0
+                            do {
+                                let existedList = try self.localDataAPIManager.get(self.predicate, sortDescriptors: [])
+                                listCount = existedList.count
+                            }
+                            catch {
+                                
+                            }
+                            list = preprocessObject(list, listCount)
                         }
-                        else {
-                            listCount = realm.objects(E.self).count
+                        if let _ = E.primaryKey() {
+                            do {
+                                try self.localDataAPIManager.write(from: list)
+                            }
+                            catch {
+                                
+                            }
                         }
-                        list = preprocessObject(list, listCount)
-                    }
-                    if let _ = E.primaryKey() {
-                        realm.safeWrite {
-                            realm.add(list, update: .all)
+                        if let completion = successCompletion {
+                            completion()
                         }
-                    }
-                    else {
-                        realm.safeWrite {
-                            realm.add(list)
-                        }
-                    }
-                    if let completion = successCompletion {
-                        completion()
                     }
                 }
                 else {

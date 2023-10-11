@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		968D2FD60FF73111722A446D /* Pods_frameproject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2D57B8AB078963692EAE8D /* Pods_frameproject.framework */; };
+		BB0174EC2AD6364F00C58F89 /* LocalObjectFetcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0174EB2AD6364F00C58F89 /* LocalObjectFetcherProtocol.swift */; };
+		BB0174EE2AD636D200C58F89 /* LocalListFetcherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0174ED2AD636D200C58F89 /* LocalListFetcherProtocol.swift */; };
+		BB0174F22AD63C2D00C58F89 /* RealmLocalObjectFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0174F12AD63C2D00C58F89 /* RealmLocalObjectFetcher.swift */; };
+		BB0174F42AD63DEF00C58F89 /* RealmLocalListFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0174F32AD63DEF00C58F89 /* RealmLocalListFetcher.swift */; };
 		BB06E2712893D10200172F1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB06E2702893D10200172F1E /* AppDelegate.swift */; };
 		BB06E2752893D10200172F1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB06E2742893D10200172F1E /* ViewController.swift */; };
 		BB06E2782893D10200172F1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB06E2762893D10200172F1E /* Main.storyboard */; };
@@ -174,6 +178,10 @@
 		2B1001D664A03BA3FA8131DB /* Pods-frameproject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frameproject.debug.xcconfig"; path = "Target Support Files/Pods-frameproject/Pods-frameproject.debug.xcconfig"; sourceTree = "<group>"; };
 		6F2D57B8AB078963692EAE8D /* Pods_frameproject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_frameproject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B88C784D9DD124BFE6D884E7 /* Pods-frameproject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frameproject.release.xcconfig"; path = "Target Support Files/Pods-frameproject/Pods-frameproject.release.xcconfig"; sourceTree = "<group>"; };
+		BB0174EB2AD6364F00C58F89 /* LocalObjectFetcherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalObjectFetcherProtocol.swift; sourceTree = "<group>"; };
+		BB0174ED2AD636D200C58F89 /* LocalListFetcherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalListFetcherProtocol.swift; sourceTree = "<group>"; };
+		BB0174F12AD63C2D00C58F89 /* RealmLocalObjectFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLocalObjectFetcher.swift; sourceTree = "<group>"; };
+		BB0174F32AD63DEF00C58F89 /* RealmLocalListFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLocalListFetcher.swift; sourceTree = "<group>"; };
 		BB06E26D2893D10200172F1E /* frameproject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frameproject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB06E2702893D10200172F1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB06E2742893D10200172F1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -362,6 +370,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BB0174E62AD564EE00C58F89 /* LocalRepository */ = {
+			isa = PBXGroup;
+			children = (
+				BB0174EB2AD6364F00C58F89 /* LocalObjectFetcherProtocol.swift */,
+				BB0174ED2AD636D200C58F89 /* LocalListFetcherProtocol.swift */,
+				BB0174F12AD63C2D00C58F89 /* RealmLocalObjectFetcher.swift */,
+				BB0174F32AD63DEF00C58F89 /* RealmLocalListFetcher.swift */,
+			);
+			path = LocalRepository;
+			sourceTree = "<group>";
+		};
 		BB06E2642893D10200172F1E = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +560,7 @@
 		BB06E2AE28951A5800172F1E /* Standardize */ = {
 			isa = PBXGroup;
 			children = (
+				BB0174E62AD564EE00C58F89 /* LocalRepository */,
 				BB06E2742893D10200172F1E /* ViewController.swift */,
 				BB06E2BC28956E9B00172F1E /* View.swift */,
 				BB61DF0B28A0F52C006F2E63 /* StandardNSObject.swift */,
@@ -1156,6 +1176,7 @@
 				BB06E2752893D10200172F1E /* ViewController.swift in Sources */,
 				BBAD31202A7BB62A0082247B /* SampleWireFrameProtocol.swift in Sources */,
 				BB19FE952ABC00F80086453C /* UILayoutGuide.swift in Sources */,
+				BB0174EC2AD6364F00C58F89 /* LocalObjectFetcherProtocol.swift in Sources */,
 				BB769EF12902B8B2000D5F1D /* EnvironmentConfiguration.swift in Sources */,
 				BBD85F762954686C0019AD4D /* AuthenticationService.swift in Sources */,
 				BBC0487B2A979AB200C01289 /* UIImageView.swift in Sources */,
@@ -1171,6 +1192,7 @@
 				BB61DF1628A3DC09006F2E63 /* RadioButtonView.swift in Sources */,
 				BB809BD229069F8900D123CD /* AlamofireNetworkService.swift in Sources */,
 				BBAEE50B2A8B78FD00BE47F7 /* NameTableViewCell.swift in Sources */,
+				BB0174F42AD63DEF00C58F89 /* RealmLocalListFetcher.swift in Sources */,
 				BBAD31172A76279E0082247B /* SmartLocalObservableList.swift in Sources */,
 				BB19FE972ABF299B0086453C /* RxSampleListSection.swift in Sources */,
 				BB19FE792AB80D270086453C /* APIServiceManagerProtocol.swift in Sources */,
@@ -1201,6 +1223,7 @@
 				BBA8DE3F29272C5F00BD9E45 /* ArrayExtension.swift in Sources */,
 				BB769EED2902B78F000D5F1D /* Configuration.swift in Sources */,
 				BB06E2C528958A0700172F1E /* UIColor.swift in Sources */,
+				BB0174F22AD63C2D00C58F89 /* RealmLocalObjectFetcher.swift in Sources */,
 				BB809BDD2907C2E300D123CD /* String.swift in Sources */,
 				BBC0488F2AA8292700C01289 /* AuthenticationRequest.swift in Sources */,
 				BBA8DE1A292722D200BD9E45 /* LSLocationManager.swift in Sources */,
@@ -1248,6 +1271,7 @@
 				BBA8DE33292724C800BD9E45 /* ListTransform.swift in Sources */,
 				BBAEE50D2A8B7CCB00BE47F7 /* UILabel.swift in Sources */,
 				BB61DF2828B07407006F2E63 /* NetworkServiceProtocol.swift in Sources */,
+				BB0174EE2AD636D200C58F89 /* LocalListFetcherProtocol.swift in Sources */,
 				BBAD31112A74D24D0082247B /* Realm.swift in Sources */,
 				BB06E2D42897905D00172F1E /* Spacing.swift in Sources */,
 				BBAD31222A7BB6EB0082247B /* SampleWireFrame.swift in Sources */,

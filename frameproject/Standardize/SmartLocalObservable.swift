@@ -30,6 +30,7 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
     private var notificationToken: NotificationToken?
     
     var networkDataAPIManager: APIServiceManagerProtocol = APIServiceManager.shared
+    var localDataAPIManager = RealmLocalObjectFetcher<T>.init()
     
     deinit {
         if let notificationToken = notificationToken {
@@ -83,17 +84,19 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
                 switch response {
                 case .success(statusCode: _, responseObject: let responseObject):
                     if var responseObject = responseObject {
-                        if let weakSelf = self, let process = weakSelf.preprocessObject {
-                            responseObject = process(responseObject)
-                        }
-                        let realm = try! Realm()
-                        realm.safeWrite {
-                            realm.add(responseObject, update: .all)
-                        }
-                        if let weakSelf = self {
-                            if weakSelf._obj == nil {
-                                weakSelf.fetchLocal()
+                        if let `self` = self {
+                            if let process = self.preprocessObject {
+                                responseObject = process(responseObject)
                             }
+                            do {
+                                try self.localDataAPIManager.write(from: responseObject)
+                                if self._obj == nil {
+                                    self.fetchLocal()
+                                }
+                            } catch {
+                                
+                            }
+                            
                         }
                     }
                     if let completion = successCompletion {
@@ -101,11 +104,13 @@ class SmartLocalObservable<T: Mappable & Object>: SmartObservableProtocol {
                     }
                 case .fail(statusCode: let statusCode, errorMsg: let errorMsg):
                     if statusCode == 404 {
-                        if let weakSelf = self, let obj = weakSelf._obj {
-                            weakSelf._obj = nil
-                            let realm = try! Realm()
-                            realm.safeWrite {
-                                realm.delete(obj)
+                        if let `self` = self, let obj = self._obj {
+                            self._obj = nil
+                            do {
+                                try self.localDataAPIManager.delete(obj: obj)
+                            }
+                            catch {
+                                
                             }
                         }
                     }
